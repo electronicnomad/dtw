@@ -11,7 +11,7 @@
 ```text
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml            # GitHub Pages 자동 배포 워크플로우
+│       └── deploy.yml            # GitHub Pages 자동 배포 워크플로우 (Actions 기반)
 ├── server/
 │   ├── index.html                # 메인 프레젠테이션 및 진행자 뷰 (29 슬라이드)
 │   ├── guide_workshop_facilitation.html  # 실전 워크숍 진행자 통합 운영 가이드 (HTML)
@@ -24,10 +24,13 @@
 │   ├── design-thinking-process.png       # 5단계 프로세스 다이어그램
 │   ├── dtw-actions.jpg                   # 팀 활동 키 비주얼
 │   ├── dtw-logo.jpg                      # DTW 로고
-│   ├── dtw_presentation.pptx            # 16:9 와이드스크린 PowerPoint 문서
-│   └── dtw_presentation.pdf             # 고해상도 PDF 발표 문서
+│   ├── dtw_presentation.pptx            # 16:9 와이드스크린 PowerPoint 문서 (웹 다운로드용)
+│   ├── dtw_presentation.pdf             # 고해상도 PDF 발표 문서 (웹 다운로드용)
+│   ├── robots.txt                        # 검색엔진 크롤링 차단 설정 (배포 루트)
+│   └── README.md                         # 서버 디렉터리 안내
 ├── dtw_presentation.pptx         # 루트 배포용 PowerPoint 프레젠테이션
 ├── dtw_presentation.pdf          # 루트 배포용 PDF 프레젠테이션 문서
+├── robots.txt                    # 검색엔진 크롤링 차단 설정
 ├── server.sh                     # 로컬 실행 스크립트 (Python HTTP Server)
 ├── .gitignore                    # Git 관리 제외 파일 정의
 ├── LICENSE                       # MIT License
@@ -56,6 +59,8 @@
   * 1분 미만 잔여 시 시각적 긴급 경고 애니메이션
 * **전체 슬라이드 조망 (Overview Grid):**
   * `O` 키를 눌러 29개 전체 슬라이드를 한눈에 보고 원하는 단계로 즉시 점프 가능
+* **검색엔진 노출 및 아카이빙 완전 차단:**
+  * 비공개 사내 워크숍 콘텐츠 보호를 위해 모든 웹 페이지에 `noindex, nofollow, noarchive` 메타 태그 및 `robots.txt`가 적용되어 있습니다.
 
 ---
 
@@ -114,13 +119,21 @@ python3 -m http.server 8080 --directory server
 서버 실행 후 브라우저에서 `http://localhost:8080`으로 접속합니다.
 
 ### 3) GitHub Pages 배포
-이 저장소에는 GitHub Actions 워크플로우([.github/workflows/deploy.yml](.github/workflows/deploy.yml))가 포함되어 있습니다.
-1. 저장소를 GitHub에 Push합니다.
-2. GitHub 저장소의 **Settings > Pages** 메뉴로 이동합니다.
-3. **Build and deployment > Source**를 **GitHub Actions**로 설정합니다.
-4. `main` 또는 `master` 브랜치에 Push되면 자동으로 웹 프레젠테이션 사이트가 배포됩니다.
+이 저장소에는 GitHub Actions 배포 워크플로우([.github/workflows/deploy.yml](.github/workflows/deploy.yml))가 탑재되어 있습니다.
 
-### 4) 듀얼 모니터 세팅 (프로젝터 + 발표자 노트북)
+* **배포 URL:** `https://electronicnomad.github.io/dtw/`
+* **배포 경로:** 저장소 루트가 아닌 프레젠테이션 및 가이드 문서가 포함된 `./server` 디렉터리가 배포 타깃입니다.
+* **초기 설정 (1회):**
+  1. GitHub 저장소의 **Settings > Pages** 메뉴로 이동합니다.
+  2. **Build and deployment > Source**를 **GitHub Actions**로 선택합니다.
+  3. `main` 브랜치에 코드가 푸시되면 자동으로 GitHub Actions가 실행되어 웹 사이트가 배포됩니다.
+
+### 4) 검색엔진 노출 방지 (SEO & 크롤러 차단)
+사내 교육 및 워크숍 자료 보호를 위해 이중 차단 설정이 적용되어 있습니다:
+* **`robots.txt`**: 배포 루트 디렉터리에 `Disallow: /` 규칙을 적용하여 모든 웹 크롤러의 접근을 차단합니다.
+* **HTML Meta 태그**: 모든 HTML 문서(`<head>`)에 `<meta name="robots" content="noindex, nofollow, noarchive">` 태그를 삽입하여 검색 결과 노출 및 캐싱 저장을 방지합니다.
+
+### 5) 듀얼 모니터 세팅 (프로젝터 + 발표자 노트북)
 1. 노트북을 프로젝터나 외부 모니터에 연결하고 디스플레이 설정을 **"화면 확장"**으로 지정합니다.
 2. 메인 브라우저 창을 프로젝터 화면으로 이동시킨 후 `F` 키를 눌러 전체화면으로 전환합니다.
 3. 상단의 **"진행자 뷰"** 버튼을 클릭하거나 `P` 키를 눌러 팝업 창을 엽니다.
