@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SERVER_DIR = os.path.join(BASE_DIR, "server")
 INDEX_HTML = os.path.join(SERVER_DIR, "index.html")
 EXPORT_DIR = os.path.join(SERVER_DIR, "export_slides")
-TOTAL_SLIDES = 29
+TOTAL_SLIDES = 31
 
 CHROME_BIN = os.environ.get(
     "CHROME_BIN",
@@ -48,7 +48,7 @@ def main():
         if f.endswith('.png'):
             os.remove(os.path.join(EXPORT_DIR, f))
 
-    print("Capturing 29 presentation slides via headless Chrome...")
+    print(f"Capturing {TOTAL_SLIDES} presentation slides via headless Chrome...")
     with ThreadPoolExecutor(max_workers=4) as executor:
         futures = [executor.submit(capture_slide, i) for i in range(1, TOTAL_SLIDES + 1)]
         slide_paths = [f.result() for f in futures]
@@ -68,13 +68,9 @@ def main():
         img = Image.open(p).convert("RGB")
         images.append(img)
         
-    pdf_paths = [
-        os.path.join(SERVER_DIR, "dtw_presentation.pdf"),
-        os.path.join(BASE_DIR, "dtw_presentation.pdf")
-    ]
-    for pdf_out in pdf_paths:
-        images[0].save(pdf_out, save_all=True, append_images=images[1:], resolution=150.0)
-        print(f"PDF saved: {pdf_out} ({os.path.getsize(pdf_out) / (1024*1024):.2f} MB)")
+    pdf_out = os.path.join(SERVER_DIR, "dtw_presentation.pdf")
+    images[0].save(pdf_out, save_all=True, append_images=images[1:], resolution=150.0)
+    print(f"PDF saved: {pdf_out} ({os.path.getsize(pdf_out) / (1024*1024):.2f} MB)")
 
     print("\nGenerating 16:9 PowerPoint (.pptx) presentation...")
     prs = Presentation()
@@ -86,13 +82,9 @@ def main():
         slide = prs.slides.add_slide(blank_layout)
         slide.shapes.add_picture(p, Inches(0), Inches(0), width=prs.slide_width, height=prs.slide_height)
         
-    pptx_paths = [
-        os.path.join(SERVER_DIR, "dtw_presentation.pptx"),
-        os.path.join(BASE_DIR, "dtw_presentation.pptx")
-    ]
-    for pptx_out in pptx_paths:
-        prs.save(pptx_out)
-        print(f"PPTX saved: {pptx_out} ({os.path.getsize(pptx_out) / (1024*1024):.2f} MB)")
+    pptx_out = os.path.join(SERVER_DIR, "dtw_presentation.pptx")
+    prs.save(pptx_out)
+    print(f"PPTX saved: {pptx_out} ({os.path.getsize(pptx_out) / (1024*1024):.2f} MB)")
 
     print(f"\nExport completed successfully! All {TOTAL_SLIDES} slides exported to PDF & PPTX.")
 

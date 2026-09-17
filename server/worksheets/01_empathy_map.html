@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worksheet 01 - Empathy Map Canvas | Design Thinking Workshop</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-light: #e0f2fe;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #cbd5e1;
+      --border-dark: #94a3b8;
+      --bg-box: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: var(--text);
+      background-color: #f1f5f9;
+      line-height: 1.35;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Screen Toolbar */
+    .screen-toolbar {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      gap: 10px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 8px 14px;
+      border-radius: 9999px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-tool {
+      background: #0284c7;
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: background 140ms ease;
+    }
+
+    .btn-tool:hover {
+      background: #0369a1;
+    }
+
+    .btn-tool.secondary {
+      background: #ffffff;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-tool.secondary:hover {
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    /* A4 Landscape Page Container */
+    .page-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .a4-landscape {
+      width: 281mm;
+      height: 198mm;
+      max-height: 198mm;
+      background: #ffffff;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+      border-radius: 4px;
+      padding: 6mm 8mm;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    /* Header */
+    header.ws-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+
+    .title-group h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-stage {
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .title-group p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .meta-fields {
+      display: flex;
+      gap: 14px;
+      font-size: 0.78rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .meta-label {
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .meta-line {
+      display: inline-block;
+      min-width: 65px;
+      border-bottom: 1.5px solid var(--border-dark);
+      height: 15px;
+    }
+
+    /* Persona Brief Banner */
+    .persona-bar {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.2fr;
+      gap: 8px;
+      background: var(--bg-box);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 10px;
+      margin-bottom: 6px;
+      font-size: 0.76rem;
+      flex-shrink: 0;
+    }
+
+    .persona-field {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .persona-field strong {
+      color: var(--primary);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Main Empathy Grid (4 Quadrants) */
+    .empathy-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 8px;
+      position: relative;
+      min-height: 0;
+    }
+
+    .grid-center-avatar {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 58px;
+      height: 58px;
+      background: #ffffff;
+      border: 2px solid var(--primary);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    .grid-center-avatar svg {
+      width: 22px;
+      height: 22px;
+      color: var(--primary);
+    }
+
+    .grid-center-avatar span {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .quadrant {
+      background: #ffffff;
+      border: 1.5px solid var(--border-dark);
+      border-radius: 6px;
+      padding: 6px 10px 8px 10px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      min-height: 0;
+    }
+
+    .quadrant-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 3px;
+      flex-shrink: 0;
+    }
+
+    .quadrant-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .quadrant-title .en-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .quadrant-desc {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    /* Huge Blank Writing Body with faint post-it placement slots */
+    .quadrant-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      min-height: 0;
+    }
+
+    .postit-zone {
+      border: 1px dashed #cbd5e1;
+      border-radius: 4px;
+      background: rgba(248, 250, 252, 0.6);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 6px;
+    }
+
+    .zone-guide {
+      font-size: 0.65rem;
+      color: #94a3b8;
+    }
+
+    .zone-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: auto;
+      margin-bottom: 4px;
+    }
+
+    .guide-line {
+      border-bottom: 1px dotted #e2e8f0;
+      height: 1px;
+    }
+
+    /* Bottom Split: Pain vs Gain */
+    .pain-gain-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 6px;
+      height: 34mm;
+      flex-shrink: 0;
+    }
+
+    .pain-box {
+      background: #fef2f2;
+      border: 1.5px solid #fca5a5;
+      border-radius: 6px;
+      padding: 6px 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gain-box {
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-radius: 6px;
+      padding: 6px 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3px;
+      flex-shrink: 0;
+    }
+
+    .pain-title {
+      color: #b91c1c;
+      font-size: 0.8rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .gain-title {
+      color: #15803d;
+      font-size: 0.8rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .box-desc {
+      font-size: 0.67rem;
+      color: var(--text-muted);
+    }
+
+    .box-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      margin-top: 3px;
+      min-height: 0;
+    }
+
+    .box-slot {
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 4px 6px;
+      font-size: 0.65rem;
+      color: #94a3b8;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Footer Note */
+    footer.ws-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      border-top: 1px solid #e2e8f0;
+      padding-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Print Styles */
+    @page {
+      size: A4 landscape;
+      margin: 6mm 8mm 6mm 8mm;
+    }
+
+    @media print {
+      *, *:before, *:after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      html, body {
+        width: 281mm !important;
+        height: 198mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        overflow: hidden !important;
+      }
+      .screen-toolbar {
+        display: none !important;
+      }
+      .page-wrap {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 281mm !important;
+        height: 198mm !important;
+      }
+      .a4-landscape {
+        width: 281mm !important;
+        height: 198mm !important;
+        max-height: 198mm !important;
+        min-height: 198mm !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen Toolbar -->
+  <div class="screen-toolbar no-print">
+    <a href="index.html" class="btn-tool secondary">&larr; 서식 전체 목록</a>
+    <button onclick="window.print()" class="btn-tool">인쇄 / PDF 저장</button>
+  </div>
+
+  <div class="page-wrap">
+    <div class="a4-landscape">
+      <!-- Header -->
+      <header class="ws-header">
+        <div class="title-group">
+          <h1>
+            <span class="badge-stage">Stage 1: Empathize</span>
+            페르소나 & 공감 맵 캔버스 (Empathy Map Canvas)
+          </h1>
+          <p>사용자의 입장이 되어 관찰하고 들은 구체적인 말, 생각, 행동, 감정을 가감 없이 기록합니다.</p>
+        </div>
+        <div class="meta-fields">
+          <div class="meta-item"><span class="meta-label">조 번호:</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">작성 일자:</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">제한 시간:</span><span style="font-weight:700; color:var(--primary);">20분</span></div>
+        </div>
+      </header>
+
+      <!-- Persona Brief -->
+      <div class="persona-bar">
+        <div class="persona-field">
+          <strong>타깃 페르소나:</strong>
+          <span style="border-bottom: 1px solid var(--border-dark); flex: 1; height: 16px;"></span>
+        </div>
+        <div class="persona-field">
+          <strong>역할/직무:</strong>
+          <span style="border-bottom: 1px solid var(--border-dark); flex: 1; height: 16px;"></span>
+        </div>
+        <div class="persona-field">
+          <strong>핵심 상황/맥락:</strong>
+          <span style="border-bottom: 1px solid var(--border-dark); flex: 1; height: 16px;"></span>
+        </div>
+      </div>
+
+      <!-- Main 4 Quadrants -->
+      <div class="empathy-grid">
+        <!-- Center Avatar -->
+        <div class="grid-center-avatar">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+          </svg>
+          <span>USER</span>
+        </div>
+
+        <!-- 1. SAY (말한 것) -->
+        <div class="quadrant">
+          <div class="quadrant-header">
+            <div class="quadrant-title">
+              1. SAY <span class="en-sub">(직접 말한 것)</span>
+            </div>
+            <span class="quadrant-desc">인터뷰 중 들은 실제 발언 (예: "매뉴얼 찾는 데 30분 걸려요")</span>
+          </div>
+          <div class="quadrant-body">
+            <div class="postit-zone">
+              <span class="zone-guide">[포스트잇 부착 / 자유 필기 구역 1]</span>
+              <div class="zone-lines"><div class="guide-line"></div><div class="guide-line"></div><div class="guide-line"></div></div>
+            </div>
+            <div class="postit-zone">
+              <span class="zone-guide">[포스트잇 부착 / 자유 필기 구역 2]</span>
+              <div class="zone-lines"><div class="guide-line"></div><div class="guide-line"></div><div class="guide-line"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. THINK (생각한 것) -->
+        <div class="quadrant">
+          <div class="quadrant-header">
+            <div class="quadrant-title">
+              2. THINK <span class="en-sub">(속으로 생각한 것)</span>
+            </div>
+            <span class="quadrant-desc">겉으로 말하지 않았지만 짐작되는 신념 (예: '내 책임이 될까 봐 두렵다')</span>
+          </div>
+          <div class="quadrant-body">
+            <div class="postit-zone">
+              <span class="zone-guide">[포스트잇 부착 / 자유 필기 구역 1]</span>
+              <div class="zone-lines"><div class="guide-line"></div><div class="guide-line"></div><div class="guide-line"></div></div>
+            </div>
+            <div class="postit-zone">
+              <span class="zone-guide">[포스트잇 부착 / 자유 필기 구역 2]</span>
+              <div class="zone-lines"><div class="guide-line"></div><div class="guide-line"></div><div class="guide-line"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. DO (행동한 것) -->
+        <div class="quadrant">
+          <div class="quadrant-header">
+            <div class="quadrant-title">
+              3. DO <span class="en-sub">(실제 행동한 것)</span>
+            </div>
+            <span class="quadrant-desc">관찰된 신체적 동작, 회피 행동 (예: 모니터에 단축키 포스트잇 도배)</span>
+          </div>
+          <div class="quadrant-body">
+            <div class="postit-zone">
+              <span class="zone-guide">[포스트잇 부착 / 자유 필기 구역 1]</span>
+              <div class="zone-lines"><div class="guide-line"></div><div class="guide-line"></div><div class="guide-line"></div></div>
+            </div>
+            <div class="postit-zone">
+              <span class="zone-guide">[포스트잇 부착 / 자유 필기 구역 2]</span>
+              <div class="zone-lines"><div class="guide-line"></div><div class="guide-line"></div><div class="guide-line"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. FEEL (느낀 감정선) -->
+        <div class="quadrant">
+          <div class="quadrant-header">
+            <div class="quadrant-title">
+              4. FEEL <span class="en-sub">(느끼는 감정)</span>
+            </div>
+            <span class="quadrant-desc">겪고 있는 감정 상태 (예: 마감 직전의 막막함, 반복 업무의 무기력)</span>
+          </div>
+          <div class="quadrant-body">
+            <div class="postit-zone">
+              <span class="zone-guide">[포스트잇 부착 / 자유 필기 구역 1]</span>
+              <div class="zone-lines"><div class="guide-line"></div><div class="guide-line"></div><div class="guide-line"></div></div>
+            </div>
+            <div class="postit-zone">
+              <span class="zone-guide">[포스트잇 부착 / 자유 필기 구역 2]</span>
+              <div class="zone-lines"><div class="guide-line"></div><div class="guide-line"></div><div class="guide-line"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom: Pain & Gain -->
+      <div class="pain-gain-row">
+        <!-- PAIN -->
+        <div class="pain-box">
+          <div class="box-header">
+            <span class="pain-title">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+              </svg>
+              PAIN (핵심 고통 & 걸림돌)
+            </span>
+            <span class="box-desc">가장 큰 좌절감, 시간 낭비, 두려움 (포스트잇 부착 또는 필기)</span>
+          </div>
+          <div class="box-body">
+            <div class="box-slot">
+              <span>[Pain 1]</span>
+              <div class="guide-line"></div>
+            </div>
+            <div class="box-slot">
+              <span>[Pain 2]</span>
+              <div class="guide-line"></div>
+            </div>
+            <div class="box-slot">
+              <span>[Pain 3]</span>
+              <div class="guide-line"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GAIN -->
+        <div class="gain-box">
+          <div class="box-header">
+            <span class="gain-title">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              GAIN (소망 & 성취 가치)
+            </span>
+            <span class="box-desc">달성하고 싶은 궁극적 성공 기준, 기대하는 희열 (포스트잇 부착 또는 필기)</span>
+          </div>
+          <div class="box-body">
+            <div class="box-slot">
+              <span>[Gain 1]</span>
+              <div class="guide-line"></div>
+            </div>
+            <div class="box-slot">
+              <span>[Gain 2]</span>
+              <div class="guide-line"></div>
+            </div>
+            <div class="box-slot">
+              <span>[Gain 3]</span>
+              <div class="guide-line"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="ws-footer">
+        <span>Design Thinking Workshop Toolkit &bull; Stage 1 Empathy Map</span>
+        <span>* 팁: 완벽한 문장 대신 짧은 키워드가 적힌 포스트잇(3x3)을 붙이거나 굵은 펜으로 기입하세요.</span>
+        <span>electronicnomad.net/dtw</span>
+      </footer>
+    </div>
+  </div>
+
+</body>
+</html>

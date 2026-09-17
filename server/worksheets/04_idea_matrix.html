@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worksheet 04 - Idea Prioritization 2x2 Matrix | Design Thinking Workshop</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <style>
+    :root {
+      --primary: #d97706;
+      --primary-light: #fef3c7;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #cbd5e1;
+      --border-dark: #94a3b8;
+      --bg-box: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: var(--text);
+      background-color: #f1f5f9;
+      line-height: 1.35;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Screen Toolbar */
+    .screen-toolbar {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      gap: 10px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 8px 14px;
+      border-radius: 9999px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-tool {
+      background: #d97706;
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: background 140ms ease;
+    }
+
+    .btn-tool:hover {
+      background: #b45309;
+    }
+
+    .btn-tool.secondary {
+      background: #ffffff;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-tool.secondary:hover {
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    /* A4 Landscape Page Container */
+    .page-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .a4-landscape {
+      width: 281mm;
+      height: 198mm;
+      max-height: 198mm;
+      background: #ffffff;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+      border-radius: 4px;
+      padding: 6mm 8mm;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    /* Header */
+    header.ws-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+
+    .title-group h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-stage {
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .title-group p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .meta-fields {
+      display: flex;
+      gap: 14px;
+      font-size: 0.78rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .meta-label {
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .meta-line {
+      display: inline-block;
+      min-width: 65px;
+      border-bottom: 1.5px solid var(--border-dark);
+      height: 15px;
+    }
+
+    /* Y-Axis Label Bar */
+    .y-axis-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Main 2x2 Matrix Grid - Fills remaining height */
+    .matrix-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 8px;
+      position: relative;
+      min-height: 0;
+    }
+
+    .quadrant {
+      border-radius: 6px;
+      padding: 6px 10px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      min-height: 0;
+    }
+
+    /* Q1: Big Bets */
+    .q-bigbets {
+      background: #eff6ff;
+      border: 1.5px solid #93c5fd;
+    }
+
+    /* Q2: Quick Wins */
+    .q-quickwins {
+      background: #f0fdf4;
+      border: 2px solid #22c55e;
+    }
+
+    /* Q3: Money Pits */
+    .q-moneypits {
+      background: #fef2f2;
+      border: 1.5px solid #fca5a5;
+    }
+
+    /* Q4: Fill-ins */
+    .q-fillins {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+    }
+
+    .quadrant-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      padding-bottom: 3px;
+      flex-shrink: 0;
+    }
+
+    .quadrant-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .quadrant-desc {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    /* Massive Clean Sticky Note Area */
+    .quadrant-canvas {
+      flex: 1;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.7);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      padding: 6px;
+      min-height: 0;
+    }
+
+    .postit-slot {
+      border: 1px dotted rgba(0, 0, 0, 0.2);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: #94a3b8;
+      text-align: center;
+      padding: 2px;
+    }
+
+    /* X-Axis Bar */
+    .x-axis-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      margin-top: 4px;
+      margin-bottom: 6px;
+      padding: 0 4px;
+      flex-shrink: 0;
+    }
+
+    /* Bottom: Final Selection */
+    .selection-bar {
+      background: #fffbeb;
+      border: 1.5px solid #fde68a;
+      border-radius: 6px;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .selection-tag {
+      font-weight: 800;
+      color: #b45309;
+      background: #fef3c7;
+      padding: 3px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-size: 0.74rem;
+    }
+
+    .selection-input {
+      flex: 1;
+      border-bottom: 1.5px solid #d97706;
+      height: 18px;
+    }
+
+    /* Footer */
+    footer.ws-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      border-top: 1px solid #e2e8f0;
+      padding-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Print Styles */
+    @page {
+      size: A4 landscape;
+      margin: 6mm 8mm 6mm 8mm;
+    }
+
+    @media print {
+      *, *:before, *:after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      html, body {
+        width: 281mm !important;
+        height: 198mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        overflow: hidden !important;
+      }
+      .screen-toolbar {
+        display: none !important;
+      }
+      .page-wrap {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 281mm !important;
+        height: 198mm !important;
+      }
+      .a4-landscape {
+        width: 281mm !important;
+        height: 198mm !important;
+        max-height: 198mm !important;
+        min-height: 198mm !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen Toolbar -->
+  <div class="screen-toolbar no-print">
+    <a href="index.html" class="btn-tool secondary">&larr; 서식 전체 목록</a>
+    <button onclick="window.print()" class="btn-tool">인쇄 / PDF 저장</button>
+  </div>
+
+  <div class="page-wrap">
+    <div class="a4-landscape">
+      <!-- Header -->
+      <header class="ws-header">
+        <div class="title-group">
+          <h1>
+            <span class="badge-stage">Stage 3: Ideate</span>
+            아이디어 우선순위 2x2 매트릭스 & 투표 보드
+          </h1>
+          <p>Crazy 8s에서 나온 아이디어 포스트잇을 4분면에 배치하고, 스티커 투표(1인당 3표)로 최종 과제를 선정합니다.</p>
+        </div>
+        <div class="meta-fields">
+          <div class="meta-item"><span class="meta-label">조 번호:</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">작성 일자:</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">제한 시간:</span><span style="font-weight:700; color:var(--primary);">15분</span></div>
+        </div>
+      </header>
+
+      <!-- Y-Axis Top Label -->
+      <div class="y-axis-bar">
+        <span>▲ 사용자 가치 및 임팩트 높음 (HIGH IMPACT)</span>
+      </div>
+
+      <!-- Main 2x2 Matrix Grid -->
+      <div class="matrix-grid">
+        <!-- Q1: Big Bets -->
+        <div class="quadrant q-bigbets">
+          <div class="quadrant-header">
+            <span class="quadrant-title" style="color: #1e40af;">
+              ★ Big Bets (전략적 혁신 과제)
+            </span>
+            <span class="quadrant-desc">높은 임팩트 &bull; 많은 노력 (장기 프로젝트)</span>
+          </div>
+          <div class="quadrant-canvas">
+            <div class="postit-slot">[포스트잇 부착]</div>
+            <div class="postit-slot">[포스트잇 부착]</div>
+            <div class="postit-slot">[포스트잇 부착]</div>
+            <div class="postit-slot">[포스트잇 부착]</div>
+            <div class="postit-slot">[포스트잇 부착]</div>
+            <div class="postit-slot">[포스트잇 부착]</div>
+          </div>
+        </div>
+
+        <!-- Q2: Quick Wins -->
+        <div class="quadrant q-quickwins">
+          <div class="quadrant-header">
+            <span class="quadrant-title" style="color: #15803d;">
+              ★ Quick Wins (즉시 실행 과제 - 파일럿 1순위)
+            </span>
+            <span class="quadrant-desc">높은 임팩트 &bull; 적은 노력 (사내 파일럿 최적)</span>
+          </div>
+          <div class="quadrant-canvas">
+            <div class="postit-slot" style="background:#f0fdf4;">[포스트잇 부착]</div>
+            <div class="postit-slot" style="background:#f0fdf4;">[포스트잇 부착]</div>
+            <div class="postit-slot" style="background:#f0fdf4;">[포스트잇 부착]</div>
+            <div class="postit-slot" style="background:#f0fdf4;">[포스트잇 부착]</div>
+            <div class="postit-slot" style="background:#f0fdf4;">[포스트잇 부착]</div>
+            <div class="postit-slot" style="background:#f0fdf4;">[포스트잇 부착]</div>
+          </div>
+        </div>
+
+        <!-- Q3: Money Pits -->
+        <div class="quadrant q-moneypits">
+          <div class="quadrant-header">
+            <span class="quadrant-title" style="color: #b91c1c;">
+              ✕ Money Pits / Skip (보류 & 폐기)
+            </span>
+            <span class="quadrant-desc">낮은 임팩트 &bull; 많은 노력 (과감히 제외)</span>
+          </div>
+          <div class="quadrant-canvas">
+            <div class="postit-slot">[포스트잇 부착]</div>
+            <div class="postit-slot">[포스트잇 부착]</div>
+            <div class="postit-slot">[포스트잇 부착]</div>
+            <div class="postit-slot">[포스트잇 부착]</div>
+            <div class="postit-slot">[포스트잇 부착]</div>
+            <div class="postit-slot">[포스트잇 부착]</div>
+          </div>
+        </div>
+
+        <!-- Q4: Fill-ins -->
+        <div class="quadrant q-fillins">
+          <div class="quadrant-header">
+            <span class="quadrant-title" style="color: #475569;">
+              • Fill-ins (보조 개선 기능)
+            </span>
+            <span class="quadrant-desc">낮은 임팩트 &bull; 적은 노력 (추후 틈새 적용)</span>
+          </div>
+          <div class="quadrant-canvas">
+            <div class="postit-slot">[포스트잇 부착]</div>
+            <div class="postit-slot">[포스트잇 부착]</div>
+            <div class="postit-slot">[포스트잇 부착]</div>
+            <div class="postit-slot">[포스트잇 부착]</div>
+            <div class="postit-slot">[포스트잇 부착]</div>
+            <div class="postit-slot">[포스트잇 부착]</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- X-Axis Bar -->
+      <div class="x-axis-bar">
+        <span>◀ 많은 노력 / 구현 난이도 높음 (HIGH EFFORT)</span>
+        <span>적은 노력 / 즉시 구현 쉬움 (LOW EFFORT) ▶</span>
+      </div>
+
+      <!-- Bottom: Final Selection -->
+      <div class="selection-bar">
+        <span class="selection-tag">최종 프로토타입 제작 과제 (1개 확정):</span>
+        <span class="selection-input"></span>
+      </div>
+
+      <!-- Footer -->
+      <footer class="ws-footer">
+        <span>Design Thinking Workshop Toolkit &bull; Stage 3 Ideate - 2x2 Matrix</span>
+        <span>* 투표 룰: 1인당 스티커 3장 부여 &bull; 가장 표를 많이 받은 아이디어 1개를 확정하여 프로토타입 제작에 돌입합니다.</span>
+        <span>electronicnomad.net/dtw</span>
+      </footer>
+    </div>
+  </div>
+
+</body>
+</html>

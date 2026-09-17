@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worksheet 05 - Storyboard & Prototype Sheet | Design Thinking Workshop</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <style>
+    :root {
+      --primary: #e11d48;
+      --primary-light: #ffe4e6;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #cbd5e1;
+      --border-dark: #94a3b8;
+      --bg-box: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: var(--text);
+      background-color: #f1f5f9;
+      line-height: 1.35;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Screen Toolbar */
+    .screen-toolbar {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      gap: 10px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 8px 14px;
+      border-radius: 9999px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-tool {
+      background: #e11d48;
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: background 140ms ease;
+    }
+
+    .btn-tool:hover {
+      background: #be123c;
+    }
+
+    .btn-tool.secondary {
+      background: #ffffff;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-tool.secondary:hover {
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    /* A4 Landscape Page Container */
+    .page-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .a4-landscape {
+      width: 281mm;
+      height: 198mm;
+      max-height: 198mm;
+      background: #ffffff;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+      border-radius: 4px;
+      padding: 6mm 8mm;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    /* Header */
+    header.ws-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+
+    .title-group h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-stage {
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .title-group p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .meta-fields {
+      display: flex;
+      gap: 14px;
+      font-size: 0.78rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .meta-label {
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .meta-line {
+      display: inline-block;
+      min-width: 65px;
+      border-bottom: 1.5px solid var(--border-dark);
+      height: 15px;
+    }
+
+    /* Solution Info Bar */
+    .solution-bar {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 10px;
+      background: #fff1f2;
+      border: 1.5px solid #fecdd3;
+      border-radius: 6px;
+      padding: 5px 12px;
+      margin-bottom: 6px;
+      font-size: 0.78rem;
+      flex-shrink: 0;
+    }
+
+    .solution-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .solution-item strong {
+      color: var(--primary);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* 6-Frame Storyboard Grid (3 cols x 2 rows) - Stretches fully */
+    .storyboard-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 1fr 1fr;
+      gap: 6px;
+      min-height: 0;
+    }
+
+    .story-frame {
+      background: #ffffff;
+      border: 1.5px solid var(--border-dark);
+      border-radius: 6px;
+      padding: 5px 8px;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .frame-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 2px;
+      flex-shrink: 0;
+    }
+
+    .frame-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+
+    .frame-title {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .frame-canvas {
+      flex: 1;
+      border: 1px dashed #cbd5e1;
+      border-radius: 4px;
+      background-color: #fafbfc;
+      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+      background-size: 10px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      font-size: 0.65rem;
+      min-height: 0;
+    }
+
+    .frame-desc-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .desc-line {
+      border-bottom: 1px dotted #cbd5e1;
+      height: 12px;
+    }
+
+    /* Bottom: Team Roles & Materials */
+    .roles-materials-bar {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 8px;
+      margin-top: 6px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 0.7rem;
+      flex-shrink: 0;
+    }
+
+    .role-group {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .role-badge {
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    /* Footer */
+    footer.ws-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      border-top: 1px solid #e2e8f0;
+      padding-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Print Styles */
+    @page {
+      size: A4 landscape;
+      margin: 6mm 8mm 6mm 8mm;
+    }
+
+    @media print {
+      *, *:before, *:after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      html, body {
+        width: 281mm !important;
+        height: 198mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        overflow: hidden !important;
+      }
+      .screen-toolbar {
+        display: none !important;
+      }
+      .page-wrap {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 281mm !important;
+        height: 198mm !important;
+      }
+      .a4-landscape {
+        width: 281mm !important;
+        height: 198mm !important;
+        max-height: 198mm !important;
+        min-height: 198mm !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen Toolbar -->
+  <div class="screen-toolbar no-print">
+    <a href="index.html" class="btn-tool secondary">&larr; 서식 전체 목록</a>
+    <button onclick="window.print()" class="btn-tool">인쇄 / PDF 저장</button>
+  </div>
+
+  <div class="page-wrap">
+    <div class="a4-landscape">
+      <!-- Header -->
+      <header class="ws-header">
+        <div class="title-group">
+          <h1>
+            <span class="badge-stage">Stage 4: Prototype</span>
+            스토리보드 & 프로토타입 설계 시트
+          </h1>
+          <p>사용자가 솔루션을 만나는 전 과정을 6컷의 이야기로 설계하고, 실물 모형으로 만듭니다.</p>
+        </div>
+        <div class="meta-fields">
+          <div class="meta-item"><span class="meta-label">조 번호:</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">작성 일자:</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">제한 시간:</span><span style="font-weight:700; color:var(--primary);">25분</span></div>
+        </div>
+      </header>
+
+      <!-- Solution Info Bar -->
+      <div class="solution-bar">
+        <div class="solution-item">
+          <strong>제작할 솔루션 명칭:</strong>
+          <span style="border-bottom: 1.5px solid var(--border-dark); flex: 1; height: 16px;"></span>
+        </div>
+        <div class="solution-item">
+          <strong>프로토타입 형태:</strong>
+          <span style="border-bottom: 1.5px solid var(--border-dark); flex: 1; height: 16px;"></span>
+        </div>
+      </div>
+
+      <!-- 6 Story Frames -->
+      <div class="storyboard-grid">
+        <!-- Frame 1 -->
+        <div class="story-frame">
+          <div class="frame-header">
+            <span class="frame-tag">Frame 1</span>
+            <span class="frame-title">1. 문제 발생 맥락</span>
+          </div>
+          <div class="frame-canvas">[스케치: 사용자의 답답한 일상]</div>
+          <div class="frame-desc-lines">
+            <div class="desc-line"></div>
+            <div class="desc-line"></div>
+          </div>
+        </div>
+
+        <!-- Frame 2 -->
+        <div class="story-frame">
+          <div class="frame-header">
+            <span class="frame-tag">Frame 2</span>
+            <span class="frame-title">2. 솔루션과의 첫 만남</span>
+          </div>
+          <div class="frame-canvas">[스케치: 솔루션 발견/알림 수신]</div>
+          <div class="frame-desc-lines">
+            <div class="desc-line"></div>
+            <div class="desc-line"></div>
+          </div>
+        </div>
+
+        <!-- Frame 3 -->
+        <div class="story-frame">
+          <div class="frame-header">
+            <span class="frame-tag">Frame 3</span>
+            <span class="frame-title">3. 핵심 상호작용 (UI)</span>
+          </div>
+          <div class="frame-canvas">[스케치: 핵심 인터페이스 작동]</div>
+          <div class="frame-desc-lines">
+            <div class="desc-line"></div>
+            <div class="desc-line"></div>
+          </div>
+        </div>
+
+        <!-- Frame 4 -->
+        <div class="story-frame">
+          <div class="frame-header">
+            <span class="frame-tag">Frame 4</span>
+            <span class="frame-title">4. 문제 해결 조치</span>
+          </div>
+          <div class="frame-canvas">[스케치: 장애물 해소 및 기능 수행]</div>
+          <div class="frame-desc-lines">
+            <div class="desc-line"></div>
+            <div class="desc-line"></div>
+          </div>
+        </div>
+
+        <!-- Frame 5 -->
+        <div class="story-frame">
+          <div class="frame-header">
+            <span class="frame-tag">Frame 5</span>
+            <span class="frame-title">5. 사용자의 반응 (감정선)</span>
+          </div>
+          <div class="frame-canvas">[스케치: 안도감, 기쁨, 시간 절약]</div>
+          <div class="frame-desc-lines">
+            <div class="desc-line"></div>
+            <div class="desc-line"></div>
+          </div>
+        </div>
+
+        <!-- Frame 6 -->
+        <div class="story-frame">
+          <div class="frame-header">
+            <span class="frame-tag">Frame 6</span>
+            <span class="frame-title">6. 최종 긍정적 결과</span>
+          </div>
+          <div class="frame-canvas">[스케치: 업무/일상의 긍정적 변화]</div>
+          <div class="frame-desc-lines">
+            <div class="desc-line"></div>
+            <div class="desc-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom: Team Roles & Materials -->
+      <div class="roles-materials-bar">
+        <div class="role-group">
+          <span class="role-badge">역할 분담:</span>
+          <span>제작자(2명): A4/포스트잇 가공</span>
+          <span>시연자(1명): 테스터 안내</span>
+          <span>기록자(1명): 피드백 그리드 작성</span>
+        </div>
+        <div>
+          <span class="role-badge">주요 재료:</span> A4 용지, 유성 매직, 색상별 포스트잇, 투명 테이프
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="ws-footer">
+        <span>Design Thinking Workshop Toolkit &bull; Stage 4 Prototype Storyboard</span>
+        <span>* 핵심: 프로토타입의 목적은 '완성'이 아니라 '테스터의 반응을 이끌어내는 질문 던지기'입니다.</span>
+        <span>electronicnomad.net/dtw</span>
+      </footer>
+    </div>
+  </div>
+
+</body>
+</html>

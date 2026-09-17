@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worksheet 03 - Crazy 8s Worksheet | Design Thinking Workshop</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <style>
+    :root {
+      --primary: #d97706;
+      --primary-light: #fef3c7;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #cbd5e1;
+      --border-dark: #94a3b8;
+      --bg-box: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: var(--text);
+      background-color: #f1f5f9;
+      line-height: 1.35;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Screen Toolbar */
+    .screen-toolbar {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      gap: 10px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 8px 14px;
+      border-radius: 9999px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-tool {
+      background: #d97706;
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: background 140ms ease;
+    }
+
+    .btn-tool:hover {
+      background: #b45309;
+    }
+
+    .btn-tool.secondary {
+      background: #ffffff;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-tool.secondary:hover {
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    /* A4 Landscape Page Container */
+    .page-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .a4-landscape {
+      width: 281mm;
+      height: 198mm;
+      max-height: 198mm;
+      background: #ffffff;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+      border-radius: 4px;
+      padding: 6mm 8mm;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    /* Header */
+    header.ws-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+
+    .title-group h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-stage {
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .title-group p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .meta-fields {
+      display: flex;
+      gap: 14px;
+      font-size: 0.78rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .meta-label {
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .meta-line {
+      display: inline-block;
+      min-width: 65px;
+      border-bottom: 1.5px solid var(--border-dark);
+      height: 15px;
+    }
+
+    /* Target HMW Question Bar */
+    .hmw-topic-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fffbeb;
+      border: 1.5px solid #fde68a;
+      border-radius: 6px;
+      padding: 5px 12px;
+      margin-bottom: 6px;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .hmw-topic-tag {
+      font-weight: 800;
+      color: #b45309;
+      background: #fef3c7;
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-size: 0.72rem;
+    }
+
+    .hmw-topic-input {
+      flex: 1;
+      border-bottom: 1px dashed #d97706;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      padding-left: 6px;
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* 8 Sketch Boxes Grid (4 columns x 2 rows) - Stretches to fill page */
+    .crazy8-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1fr 1fr;
+      gap: 6px;
+      min-height: 0;
+    }
+
+    .sketch-box {
+      background: #ffffff;
+      border: 1.5px solid var(--border-dark);
+      border-radius: 6px;
+      padding: 6px 8px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      min-height: 0;
+    }
+
+    .box-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 3px;
+      flex-shrink: 0;
+    }
+
+    .box-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+
+    .box-title-input {
+      flex: 1;
+      border-bottom: 1px dotted #cbd5e1;
+      height: 14px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .canvas-area {
+      flex: 1;
+      border: 1px dashed #e2e8f0;
+      border-radius: 4px;
+      background-color: #fafbfc;
+      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+      background-size: 10px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 4px 6px;
+      min-height: 0;
+    }
+
+    .canvas-caption-line {
+      border-bottom: 1px dotted #cbd5e1;
+      height: 14px;
+      margin-top: 2px;
+    }
+
+    /* 4 Golden Rules */
+    .rules-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 6px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .rule-item strong {
+      color: var(--primary);
+    }
+
+    /* Footer */
+    footer.ws-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      border-top: 1px solid #e2e8f0;
+      padding-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Print Styles */
+    @page {
+      size: A4 landscape;
+      margin: 6mm 8mm 6mm 8mm;
+    }
+
+    @media print {
+      *, *:before, *:after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      html, body {
+        width: 281mm !important;
+        height: 198mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        overflow: hidden !important;
+      }
+      .screen-toolbar {
+        display: none !important;
+      }
+      .page-wrap {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 281mm !important;
+        height: 198mm !important;
+      }
+      .a4-landscape {
+        width: 281mm !important;
+        height: 198mm !important;
+        max-height: 198mm !important;
+        min-height: 198mm !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen Toolbar -->
+  <div class="screen-toolbar no-print">
+    <a href="index.html" class="btn-tool secondary">&larr; 서식 전체 목록</a>
+    <button onclick="window.print()" class="btn-tool">인쇄 / PDF 저장</button>
+  </div>
+
+  <div class="page-wrap">
+    <div class="a4-landscape">
+      <!-- Header -->
+      <header class="ws-header">
+        <div class="title-group">
+          <h1>
+            <span class="badge-stage">Stage 3: Ideate</span>
+            Crazy 8s 개인 아이디어 발산 시트
+          </h1>
+          <p>8분 동안 1분마다 1칸씩, 머릿속에 떠오르는 솔루션을 글과 간단한 그림으로 빠르게 쏟아냅니다.</p>
+        </div>
+        <div class="meta-fields">
+          <div class="meta-item"><span class="meta-label">작성자:</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">조 번호:</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">제한 시간:</span><span style="font-weight:700; color:var(--primary);">8분 (1분/칸)</span></div>
+        </div>
+      </header>
+
+      <!-- HMW Topic Banner -->
+      <div class="hmw-topic-bar">
+        <span class="hmw-topic-tag">해결할 HMW 질문:</span>
+        <span style="font-weight: 700; color: #b45309; font-size: 0.8rem;">우리가 어떻게 하면</span>
+        <span style="border-bottom: 1.5px solid #d97706; flex: 1; height: 16px;"></span>
+      </div>
+
+      <!-- 8 Sketch Boxes Grid (4 cols x 2 rows) -->
+      <div class="crazy8-grid">
+        <!-- Box 1 -->
+        <div class="sketch-box">
+          <div class="box-header">
+            <span class="box-num"># 1</span>
+            <div class="box-title-input">아이디어 1: </div>
+          </div>
+          <div class="canvas-area">
+            <div class="canvas-caption-line"></div>
+          </div>
+        </div>
+
+        <!-- Box 2 -->
+        <div class="sketch-box">
+          <div class="box-header">
+            <span class="box-num"># 2</span>
+            <div class="box-title-input">아이디어 2: </div>
+          </div>
+          <div class="canvas-area">
+            <div class="canvas-caption-line"></div>
+          </div>
+        </div>
+
+        <!-- Box 3 -->
+        <div class="sketch-box">
+          <div class="box-header">
+            <span class="box-num"># 3</span>
+            <div class="box-title-input">아이디어 3: </div>
+          </div>
+          <div class="canvas-area">
+            <div class="canvas-caption-line"></div>
+          </div>
+        </div>
+
+        <!-- Box 4 -->
+        <div class="sketch-box">
+          <div class="box-header">
+            <span class="box-num"># 4</span>
+            <div class="box-title-input">아이디어 4: </div>
+          </div>
+          <div class="canvas-area">
+            <div class="canvas-caption-line"></div>
+          </div>
+        </div>
+
+        <!-- Box 5 -->
+        <div class="sketch-box">
+          <div class="box-header">
+            <span class="box-num"># 5</span>
+            <div class="box-title-input">아이디어 5: </div>
+          </div>
+          <div class="canvas-area">
+            <div class="canvas-caption-line"></div>
+          </div>
+        </div>
+
+        <!-- Box 6 -->
+        <div class="sketch-box">
+          <div class="box-header">
+            <span class="box-num"># 6</span>
+            <div class="box-title-input">아이디어 6: </div>
+          </div>
+          <div class="canvas-area">
+            <div class="canvas-caption-line"></div>
+          </div>
+        </div>
+
+        <!-- Box 7 -->
+        <div class="sketch-box">
+          <div class="box-header">
+            <span class="box-num"># 7</span>
+            <div class="box-title-input">아이디어 7: </div>
+          </div>
+          <div class="canvas-area">
+            <div class="canvas-caption-line"></div>
+          </div>
+        </div>
+
+        <!-- Box 8 -->
+        <div class="sketch-box">
+          <div class="box-header">
+            <span class="box-num"># 8</span>
+            <div class="box-title-input">아이디어 8: </div>
+          </div>
+          <div class="canvas-area">
+            <div class="canvas-caption-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Golden Rules -->
+      <div class="rules-bar">
+        <div class="rule-item"><strong>1. 잘 그릴 필요 없음:</strong> 졸라맨, 박스면 충분</div>
+        <div class="rule-item"><strong>2. 비판 및 검열 금지:</strong> 뻔한 생각 버리기</div>
+        <div class="rule-item"><strong>3. 1칸당 1분 엄수:</strong> 멈추지 않고 손 움직이기</div>
+        <div class="rule-item"><strong>4. 황당한 발상 환영:</strong> 극단적 아이디어 허용</div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="ws-footer">
+        <span>Design Thinking Workshop Toolkit &bull; Stage 3 Ideate - Crazy 8s</span>
+        <span>* 완료 후 팀원들에게 칸당 30초씩 돌아가며 아이디어를 피칭하고 투표 보드로 이동합니다.</span>
+        <span>electronicnomad.net/dtw</span>
+      </footer>
+    </div>
+  </div>
+
+</body>
+</html>

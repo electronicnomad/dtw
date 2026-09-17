@@ -13,23 +13,21 @@
 │   └── workflows/
 │       └── deploy.yml            # GitHub Pages 자동 배포 워크플로우 (Actions 기반)
 ├── server/
-│   ├── index.html                # 메인 프레젠테이션 및 진행자 뷰 (29 슬라이드)
+│   ├── index.html                # 메인 프레젠테이션 및 진행자 뷰 (31 슬라이드)
 │   ├── guide_workshop_facilitation.html  # 실전 워크숍 진행자 통합 운영 가이드 (HTML)
 │   ├── guide_workshop_facilitation.md    # 실전 워크숍 진행자 통합 운영 가이드 (Markdown)
 │   ├── guide_dschool_bootleg.html        # 스탠퍼드 d.school 38종 부트레그 툴킷 (HTML)
 │   ├── guide_ideou_framework.html        # IDEO U 디자인 씽킹 마스터 가이드 (HTML)
 │   ├── guide_ideou_framework.md          # IDEO U 디자인 씽킹 마스터 가이드 (Markdown)
 │   ├── export_presentation.py            # Headless Chrome 기반 PPTX/PDF 자동 추출기
-│   ├── export_slides/                    # 16:9 4K 슬라이드 캡처 이미지 (29장)
+│   ├── export_slides/                    # 16:9 4K 슬라이드 캡처 이미지 (31장)
 │   ├── design-thinking-process.png       # 5단계 프로세스 다이어그램
 │   ├── dtw-actions.jpg                   # 팀 활동 키 비주얼
 │   ├── dtw-logo.jpg                      # DTW 로고
-│   ├── dtw_presentation.pptx            # 16:9 와이드스크린 PowerPoint 문서 (웹 다운로드용)
-│   ├── dtw_presentation.pdf             # 고해상도 PDF 발표 문서 (웹 다운로드용)
+│   ├── dtw_presentation.pptx            # 16:9 와이드스크린 PowerPoint 발표 문서
+│   ├── dtw_presentation.pdf             # 고해상도 PDF 발표 문서
 │   ├── robots.txt                        # 검색엔진 크롤링 차단 설정 (배포 루트)
 │   └── README.md                         # 서버 디렉터리 안내
-├── dtw_presentation.pptx         # 루트 배포용 PowerPoint 프레젠테이션
-├── dtw_presentation.pdf          # 루트 배포용 PDF 프레젠테이션 문서
 ├── robots.txt                    # 검색엔진 크롤링 차단 설정
 ├── server.sh                     # 로컬 실행 스크립트 (Python HTTP Server)
 ├── .gitignore                    # Git 관리 제외 파일 정의
@@ -58,50 +56,52 @@
   * 참가자 화면 대형 온스크린 카운트다운 위젯 (`T` 키)
   * 1분 미만 잔여 시 시각적 긴급 경고 애니메이션
 * **전체 슬라이드 조망 (Overview Grid):**
-  * `O` 키를 눌러 29개 전체 슬라이드를 한눈에 보고 원하는 단계로 즉시 점프 가능
+  * `O` 키를 눌러 31개 전체 슬라이드를 한눈에 보고 원하는 단계로 즉시 점프 가능
 * **검색엔진 노출 및 아카이빙 완전 차단:**
   * 비공개 사내 워크숍 콘텐츠 보호를 위해 모든 웹 페이지에 `noindex, nofollow, noarchive` 메타 태그 및 `robots.txt`가 적용되어 있습니다.
 
 ---
 
-## 3. 슬라이드 구성 체계 (총 29개 슬라이드)
+## 3. 슬라이드 구성 체계 (총 31개 슬라이드)
 
-1. **오프닝 & 그라운드 룰 / 환경 준비 (슬라이드 1 ~ 6)**
+1. **오프닝 & 그라운드 룰 / 환경 준비 (슬라이드 1 ~ 7)**
    - 01: 디자인 씽킹 워크숍 인트로 표지 (DTW 로고 키 비주얼)
-   - 02: 워크숍 개요 및 핵심 3대 가치 (인간 중심, 행동 지향, 반복 진화)
-   - 03: 창의적 협업을 위한 5가지 그라운드 룰 (판단 유예, 양에 집중 등)
-   - 04: Design Thinking 5단계 프로세스 전체 맵
-   - 05: 디자인 씽킹의 본질: 인피니티 루프 프레임워크 (지속적 순환과 반복)
-   - 06: 디자인 씽킹 실전 액션 및 팀 상호작용 가이드
-2. **Stage 1. Empathize (공감, 슬라이드 7 ~ 10)**
-   - 07: 공감의 3대 접근법 (관찰, 인터뷰, 몰입)
-   - 08: 공감 인터뷰 황금률 (Why 파고들기, 유도 질문 금지)
-   - 09: [실습] 페르소나 및 4분면 공감 맵 작성 (30분)
-   - 10: **[실전 예시] 3년 차 마케팅 기획자 김지호 매니저의 페르소나 & 4분면 공감 맵 (슬라이드 10)**
-3. **Stage 2. Define (문제 정의, 슬라이드 11 ~ 14)**
-   - 11: 현상(Fact)과 인사이트(Insight)의 명확한 분리
-   - 12: POV(Point of View) 공식 및 HMW(How Might We) 질문법
-   - 13: [실습] 핵심 POV 문장 및 단일 HMW 질문 확정 (20분)
-   - 14: **[실전 예시] 김지호 매니저의 Fact vs Insight 분리 및 최종 POV/HMW 문장 (슬라이드 14)**
-4. **Stage 3. Ideate (아이디어 발상, 슬라이드 15 ~ 18)**
-   - 15: 브레인스토밍 핵심 규칙 (판단 유예, 엉뚱한 발상 환영)
-   - 16: 발산(Crazy 8s)과 수렴(Impact vs Effort 2x2 매트릭스) 기법
-   - 17: [실습] Crazy 8s 스케치 및 핵심 솔루션 1개 선정 (30분)
-   - 18: **[실전 예시] Crazy 8s 8칸 아이디어 손스케치 & 2x2 매트릭스 선별 결과 (슬라이드 18)**
-5. **Stage 4. Prototype (시각화 및 구현, 슬라이드 19 ~ 22)**
-   - 19: 저충실도(Low-Fi) 프로토타입 철학과 가설 검증 원칙
-   - 20: 상황별 형태 (페이퍼 와이어프레임, 스토리보드, 롤플레잉)
-   - 21: [실습] 30분 초고속 실물 프로토타입 제작 (30분)
-   - 22: **[실전 예시] A4 용지 3장과 포스트잇으로 20분 만에 만든 페이퍼 모바일 목업 (슬라이드 22)**
-6. **Stage 5. Test (테스트 및 피드백, 슬라이드 23 ~ 26)**
-   - 23: 테스트 황금률: Show, Don't Tell (설명하지 말고 관찰하라)
-   - 24: 피드백 캡처 그리드 4분면 (+Likes, -Criticisms, ?Questions, !Ideas)
-   - 25: [실습] 크로스 팀 상호 교차 테스트 (25분)
-   - 26: **[실전 예시] 실제 동료가 손가락으로 누르고 남긴 피드백 캡처 그리드 (슬라이드 26)**
-7. **클로징 & 현업 실행 (슬라이드 27 ~ 29)**
-   - 27: 3분 스토리텔링 피칭 가이드
-   - 28: I Like, I Wish, What If 회고
-   - 29: 워크숍 이후 1주일 스프린트 액션 플랜 (사내 혁신 후속 조치)
+   - 02: Design Thinking Workshop이란? (다학제 팀, 심층 공감, 실습 중심 공동 창출)
+   - 03: 워크숍 개요 및 핵심 3대 가치 (인간 중심, 행동 지향, 반복 진화)
+   - 04: 창의적 협업을 위한 4가지 그라운드 룰 (판단 유예, 양에 집중 등)
+   - 05: Design Thinking 5단계 프로세스 전체 맵
+   - 06: 디자인 씽킹의 본질: 인피니티 루프 프레임워크 (지속적 순환과 반복)
+   - 07: 디자인 씽킹 실전 액션 및 팀 상호작용 가이드
+2. **Stage 1. Empathize (공감, 슬라이드 8 ~ 11)**
+   - 08: 공감의 3대 접근법 (관찰, 인터뷰, 몰입)
+   - 09: 공감 인터뷰 황금률 (Why 파고들기, 유도 질문 금지)
+   - 10: [실습] 페르소나 및 4분면 공감 맵 작성 (30분)
+   - 11: **[실전 예시] 3년 차 마케팅 기획자 김지호 매니저의 페르소나 & 4분면 공감 맵 (슬라이드 11)**
+3. **Stage 2. Define (문제 정의, 슬라이드 12 ~ 15)**
+   - 12: 현상(Fact)과 인사이트(Insight)의 명확한 분리
+   - 13: POV(Point of View) 공식 및 HMW(How Might We) 질문법
+   - 14: [실습] 핵심 POV 문장 및 단일 HMW 질문 확정 (20분)
+   - 15: **[실전 예시] 김지호 매니저의 Fact vs Insight 분리 및 최종 POV/HMW 문장 (슬라이드 15)**
+4. **Stage 3. Ideate (아이디어 발상, 슬라이드 16 ~ 19)**
+   - 16: 브레인스토밍 핵심 규칙 (판단 유예, 엉뚱한 발상 환영)
+   - 17: 발산(Crazy 8s)과 수렴(Impact vs Effort 2x2 매트릭스) 기법
+   - 18: [실습] Crazy 8s 스케치 및 핵심 솔루션 1개 선정 (30분)
+   - 19: **[실전 예시] Crazy 8s 8칸 아이디어 손스케치 & 2x2 매트릭스 선별 결과 (슬라이드 19)**
+5. **Stage 4. Prototype (시각화 및 구현, 슬라이드 20 ~ 23)**
+   - 20: 저충실도(Low-Fi) 프로토타입 철학과 가설 검증 원칙
+   - 21: 상황별 형태 (페이퍼 와이어프레임, 스토리보드, 롤플레잉)
+   - 22: [실습] 30분 초고속 실물 프로토타입 제작 (30분)
+   - 23: **[실전 예시] A4 용지 3장과 포스트잇으로 20분 만에 만든 페이퍼 모바일 목업 (슬라이드 23)**
+6. **Stage 5. Test (테스트 및 피드백, 슬라이드 24 ~ 27)**
+   - 24: 테스트 황금률: Show, Don't Tell (설명하지 말고 관찰하라)
+   - 25: 피드백 캡처 그리드 4분면 (+Likes, -Criticisms, ?Questions, !Ideas)
+   - 26: [실습] 크로스 팀 상호 교차 테스트 (25분)
+   - 27: **[실전 예시] 실제 동료가 손가락으로 누르고 남긴 피드백 캡처 그리드 (슬라이드 27)**
+7. **클로징 & 현업 실행 (슬라이드 28 ~ 31)**
+   - 28: 3분 스토리텔링 피칭 가이드
+   - 29: I Like, I Wish, What If 회고
+   - 30: 워크숍 이후 1주일 스프린트 액션 플랜 (사내 혁신 후속 조치)
+   - 31: 웹 프레젠테이션 링크 (electronicnomad.net/dtw)
 
 ---
 
@@ -121,7 +121,7 @@ python3 -m http.server 8080 --directory server
 ### 3) GitHub Pages 배포
 이 저장소에는 GitHub Actions 배포 워크플로우([.github/workflows/deploy.yml](.github/workflows/deploy.yml))가 탑재되어 있습니다.
 
-* **배포 URL:** `https://electronicnomad.github.io/dtw/`
+* **배포 URL:** `https://electronicnomad.net/dtw` (또는 `https://electronicnomad.github.io/dtw/`)
 * **배포 경로:** 저장소 루트가 아닌 프레젠테이션 및 가이드 문서가 포함된 `./server` 디렉터리가 배포 타깃입니다.
 * **초기 설정 (1회):**
   1. GitHub 저장소의 **Settings > Pages** 메뉴로 이동합니다.
@@ -172,15 +172,15 @@ python3 -m http.server 8080 --directory server
 
 ## 7. 프레젠테이션 파일 다운로드 (PowerPoint / Google Slides / PDF)
 
-웹 발표자료의 상단 메뉴 바와 하단 카운터를 제외한 클린 16:9 프레젠테이션 파일이 생성되어 있습니다:
+웹 발표자료의 상단 메뉴 바와 하단 카운터를 제외한 클린 16:9 프레젠테이션 파일이 `./server` 디렉터리에 생성되어 있습니다:
 
-* **[PowerPoint 프레젠테이션 (`dtw_presentation.pptx`)](dtw_presentation.pptx)** (16:9 와이드스크린, 29슬라이드 완비)
-* **[PDF 프레젠테이션 문서 (`dtw_presentation.pdf`)](dtw_presentation.pdf)** (16:9 고해상도 29페이지 완비)
+* **[PowerPoint 프레젠테이션 (`server/dtw_presentation.pptx`)](server/dtw_presentation.pptx)** (16:9 와이드스크린, 31슬라이드 완비)
+* **[PDF 프레젠테이션 문서 (`server/dtw_presentation.pdf`)](server/dtw_presentation.pdf)** (16:9 고해상도 31페이지 완비)
 
 ### Google Slides 및 Microsoft PowerPoint 활용 방법
-1. **Microsoft PowerPoint:** `dtw_presentation.pptx` 파일을 열어 슬라이드 쇼(F5)를 진행합니다.
-2. **Google Slides:** Google Drive에 `dtw_presentation.pptx`를 업로드 후 'Google 프레젠테이션으로 열기'를 선택하거나, **파일 > 슬라이드 가져오기**를 통해 가져올 수 있습니다.
-3. **슬라이드 수정 후 재추출:** 슬라이드 HTML을 수정한 후 `python3 server/export_presentation.py`를 실행하면 최신 화면이 반영된 PPTX와 PDF가 자동 생성됩니다.
+1. **Microsoft PowerPoint:** `server/dtw_presentation.pptx` 파일을 열어 슬라이드 쇼(F5)를 진행합니다.
+2. **Google Slides:** Google Drive에 `server/dtw_presentation.pptx`를 업로드 후 'Google 프레젠테이션으로 열기'를 선택하거나, **파일 > 슬라이드 가져오기**를 통해 가져올 수 있습니다.
+3. **슬라이드 수정 후 재추출:** 슬라이드 HTML을 수정한 후 `python3 server/export_presentation.py`를 실행하면 최신 화면이 반영된 PPTX와 PDF가 `server/` 디렉터리에 자동 생성됩니다.
 
 ---
 
