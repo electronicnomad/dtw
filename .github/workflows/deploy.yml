@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - master
   workflow_dispatch:
 
 permissions:
@@ -29,10 +28,17 @@ jobs:
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
 
+      - name: Stage Web Artifacts
+        run: |
+          mkdir -p _site
+          cp -R server/* _site/
+          # 배포 대상이 아닌 빌드 스크립트, 마크다운 문서 및 임시 이미지 제외
+          rm -rf _site/export_presentation.py _site/export_slides _site/README.md _site/guide_*.md
+
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './server'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment

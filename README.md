@@ -14,21 +14,30 @@
 │       └── deploy.yml            # GitHub Pages 자동 배포 워크플로우 (Actions 기반)
 ├── server/
 │   ├── index.html                # 메인 프레젠테이션 및 진행자 뷰 (31 슬라이드)
+│   ├── worksheets/               # A4 1장 출력용 실전 워크시트 (8종 + 인덱스)
+│   │   ├── index.html            # 워크시트 종합 인덱스 및 일괄 인쇄 안내
+│   │   ├── 01_empathy_map.html   # 1단계: 4분면 공감 맵 (A4 가로)
+│   │   ├── 02_pov_hmw.html       # 2단계: POV 및 HMW 정의 (A4 세로)
+│   │   ├── 03_crazy8s.html       # 3단계: Crazy 8s 8분 손스케치 (A4 가로)
+│   │   ├── 04_idea_matrix.html   # 3단계: Impact vs Effort 2x2 매트릭스 (A4 가로)
+│   │   ├── 05_storyboard.html    # 4단계: 3컷 스토리보드 (A4 가로)
+│   │   ├── 06_feedback_grid.html # 5단계: 피드백 캡처 그리드 (A4 가로)
+│   │   ├── 07_retrospective.html # 회고: I Like, I Wish, What If (A4 세로)
+│   │   └── 08_action_sprint.html # 후속: 1주일 스프린트 실행 계획서 (A4 세로)
 │   ├── guide_workshop_facilitation.html  # 실전 워크숍 진행자 통합 운영 가이드 (HTML)
 │   ├── guide_workshop_facilitation.md    # 실전 워크숍 진행자 통합 운영 가이드 (Markdown)
-│   ├── guide_dschool_bootleg.html        # 스탠퍼드 d.school 38종 부트레그 툴킷 (HTML)
+│   ├── guide_dschool_bootleg.html        # 스탠퍼드 d.school 38종 부트레그 툴킷 해설서 (HTML)
 │   ├── guide_ideou_framework.html        # IDEO U 디자인 씽킹 마스터 가이드 (HTML)
 │   ├── guide_ideou_framework.md          # IDEO U 디자인 씽킹 마스터 가이드 (Markdown)
 │   ├── export_presentation.py            # Headless Chrome 기반 PPTX/PDF 자동 추출기
-│   ├── export_slides/                    # 16:9 4K 슬라이드 캡처 이미지 (31장)
+│   ├── export_slides/                    # 16:9 1080p 슬라이드 캡처 이미지 (31장)
 │   ├── design-thinking-process.png       # 5단계 프로세스 다이어그램
 │   ├── dtw-actions.jpg                   # 팀 활동 키 비주얼
 │   ├── dtw-logo.jpg                      # DTW 로고
 │   ├── dtw_presentation.pptx            # 16:9 와이드스크린 PowerPoint 발표 문서
 │   ├── dtw_presentation.pdf             # 고해상도 PDF 발표 문서
-│   ├── robots.txt                        # 검색엔진 크롤링 차단 설정 (배포 루트)
 │   └── README.md                         # 서버 디렉터리 안내
-├── robots.txt                    # 검색엔진 크롤링 차단 설정
+├── NOTICE.md                     # 제3자 저작권, 라이선스 범위 및 출처 안내
 ├── server.sh                     # 로컬 실행 스크립트 (Python HTTP Server)
 ├── .gitignore                    # Git 관리 제외 파일 정의
 ├── LICENSE                       # MIT License
@@ -43,22 +52,25 @@
   * 밝은 세미나룸, 회의실, 빔 프로젝터 환경에서 색 바램(wash out) 없이 선명하게 보이도록 고대비 테마(`--bg-slate: #f8fafc`, 카드: `#ffffff`, 텍스트: `#0f172a`)가 적용되어 있습니다.
 * **초심자를 위한 5단계 관통형 실무 예시 (Single-Threaded Case Study):**
   * "타 부서 업무 협조 요청 및 진행 현황 확인 병목"이라는 사내 협업 문제를 설정하여, 1단계 공감부터 5단계 테스트까지 일관되게 연결되는 실물 산출물 예시를 제시합니다.
-* **듀얼 뷰(Dual View) 실시간 동기화:**
+* **듀얼 뷰(Dual View) 실시간 양방향 동기화:**
   * 프로젝터 화면(참가자 뷰)과 발표자 모니터(진행자 뷰)를 분리하여 운용할 수 있습니다.
   * 브라우저의 `BroadcastChannel` API를 기반으로 별도 네트워크 설정 없이 슬라이드 넘김 및 타이머가 두 화면 간에 즉시 동기화됩니다.
 * **진행자 전용 지원 시스템 (Presenter View):**
   * 슬라이드별 구어체 진행 멘트(Verbatim Narration)
   * 완벽주의 해체 및 갈등 중재 팁(Coaching & Troubleshooting)
   * 현장 물품 및 산출물 점검 체크리스트
+  * 슬라이드별 권장 타이머 원클릭 가동 및 직접 제어 패널
   * 현재 슬라이드 및 다음 슬라이드 미리보기
 * **통합 워크숍 인터랙티브 타이머:**
-  * 활동 권장 시간 프리셋 (3분, 5분, 10분, 15분, 20분, 30분)
+  * 활동별 맞춤 권장 시간 자동 세팅 (또는 3분, 5분, 10분, 15분, 20분, 30분 프리셋)
   * 참가자 화면 대형 온스크린 카운트다운 위젯 (`T` 키)
   * 1분 미만 잔여 시 시각적 긴급 경고 애니메이션
-* **전체 슬라이드 조망 (Overview Grid):**
-  * `O` 키를 눌러 31개 전체 슬라이드를 한눈에 보고 원하는 단계로 즉시 점프 가능
-* **검색엔진 노출 및 아카이빙 완전 차단:**
-  * 비공개 사내 워크숍 콘텐츠 보호를 위해 모든 웹 페이지에 `noindex, nofollow, noarchive` 메타 태그 및 `robots.txt`가 적용되어 있습니다.
+* **반응형 16:9 슬라이드 캔버스:**
+  * 화면 해상도에 맞춰 1920x1080 16:9 비율이 자동으로 스케일링되어 어떤 프로젝터나 모니터에서도 내용이 잘리거나 넘치지 않습니다.
+* **A4 1장 출력 최적화 실전 워크시트 (8종):**
+  * 브라우저 인쇄(`Ctrl+P` / `Cmd+P`) 시 정확히 A4 1장에 맞춰 출력되도록 여백과 레이아웃이 설계되어 있습니다.
+* **검색엔진 노출 방지 (SEO & Noindex):**
+  * 비공개 사내 교육 또는 폐쇄형 배포를 위해 모든 웹 페이지에 `<meta name="robots" content="noindex, nofollow, noarchive">`가 적용되어 있어 구글, 네이버 등 검색 결과에 페이지가 인덱싱되지 않습니다.
 
 ---
 
@@ -101,7 +113,7 @@
    - 28: 3분 스토리텔링 피칭 가이드
    - 29: I Like, I Wish, What If 회고
    - 30: 워크숍 이후 1주일 스프린트 액션 플랜 (사내 혁신 후속 조치)
-   - 31: 웹 프레젠테이션 링크 (electronicnomad.net/dtw)
+   - 31: 웹 프레젠테이션 링크 및 저작권 안내 (`electronicnomad.net/dtw`)
 
 ---
 
@@ -122,18 +134,10 @@ python3 -m http.server 8080 --directory server
 이 저장소에는 GitHub Actions 배포 워크플로우([.github/workflows/deploy.yml](.github/workflows/deploy.yml))가 탑재되어 있습니다.
 
 * **배포 URL:** `https://electronicnomad.net/dtw` (또는 `https://electronicnomad.github.io/dtw/`)
-* **배포 경로:** 저장소 루트가 아닌 프레젠테이션 및 가이드 문서가 포함된 `./server` 디렉터리가 배포 타깃입니다.
-* **초기 설정 (1회):**
-  1. GitHub 저장소의 **Settings > Pages** 메뉴로 이동합니다.
-  2. **Build and deployment > Source**를 **GitHub Actions**로 선택합니다.
-  3. `main` 브랜치에 코드가 푸시되면 자동으로 GitHub Actions가 실행되어 웹 사이트가 배포됩니다.
+* **배포 경로:** 저장소 루트의 `server/` 디렉터리가 정적 호스팅 타깃입니다.
+* **배포 트리거:** `main` 브랜치에 코드가 푸시되면 자동으로 빌드 아티팩트가 생성되어 배포됩니다.
 
-### 4) 검색엔진 노출 방지 (SEO & 크롤러 차단)
-사내 교육 및 워크숍 자료 보호를 위해 이중 차단 설정이 적용되어 있습니다:
-* **`robots.txt`**: 배포 루트 디렉터리에 `Disallow: /` 규칙을 적용하여 모든 웹 크롤러의 접근을 차단합니다.
-* **HTML Meta 태그**: 모든 HTML 문서(`<head>`)에 `<meta name="robots" content="noindex, nofollow, noarchive">` 태그를 삽입하여 검색 결과 노출 및 캐싱 저장을 방지합니다.
-
-### 5) 듀얼 모니터 세팅 (프로젝터 + 발표자 노트북)
+### 4) 듀얼 모니터 세팅 (프로젝터 + 발표자 노트북)
 1. 노트북을 프로젝터나 외부 모니터에 연결하고 디스플레이 설정을 **"화면 확장"**으로 지정합니다.
 2. 메인 브라우저 창을 프로젝터 화면으로 이동시킨 후 `F` 키를 눌러 전체화면으로 전환합니다.
 3. 상단의 **"진행자 뷰"** 버튼을 클릭하거나 `P` 키를 눌러 팝업 창을 엽니다.
@@ -155,35 +159,43 @@ python3 -m http.server 8080 --directory server
 | `Esc` | 오버뷰 또는 팝업 모달 닫기 |
 | `?` | 단축키 안내 창 토글 |
 
----
-
-## 6. 참고자료 및 레퍼런스 가이드 문서 안내
-
-워크숍을 준비하고 진행할 때 활용할 수 있도록, 글로벌 혁신 교육 기관들의 공식 가이드라인을 한국어로 종합 정리한 단독 HTML/Markdown 레퍼런스 문서를 함께 제공합니다:
-
-1. **[실전 워크숍 진행자 통합 운영 가이드](server/guide_workshop_facilitation.html) ([Markdown 버전](server/guide_workshop_facilitation.md))**
-   * **주요 내용:** 1일 완성 표준 타임테이블(09:00~16:45 9단계), 핵심 3대 역할(퍼실리테이터, 디사이더, 코어 팀), 3대 아이스브레이킹 게임, 4분면 공감 맵(Says/Thinks/Does/Feels), POV/HMW 공식, 최악의 아이디어 기법(Worst Possible Idea), 사용자 여정 맵(User Journey Map), 피드백 캡처 그리드(+/-/?/!) 및 임원 돌발 행동 중재 노하우 수록.
-2. **[스탠퍼드 d.school Design Thinking 툴킷 완벽 해설서](server/guide_dschool_bootleg.html)**
-   * **주요 내용:** 스탠퍼드 d.school 38개 핵심 도구(공감 8선, 정의 8선, 발상 6선, 프로토타입 8선, 테스트 8선) 전수 수록. 도구별 목적, 구체적 실행법, 초심자 퍼실리테이션 팁 및 모드별 실시간 필터링 기능 탑재.
-3. **[IDEO U 디자인 씽킹 마스터 실전 운영 가이드](server/guide_ideou_framework.html) ([Markdown 버전](server/guide_ideou_framework.md))**
-   * **주요 내용:** 혁신의 3대 렌즈(DVF), 5대 크리에이티브 마인드셋, Brendan Boyle의 우주 탐사 시각화 웜업(1분), 이종 산업 유추 탐색(Analogous Inspiration: 세포라 사례), 고객 여정 맵 및 Build-to-Think 신속 프로토타이핑 4대 기법 완벽 정리.
+*(주의: `Cmd+L`, `Ctrl+F` 등 브라우저 기본 기능 및 입력 폼 조작 시에는 단축키 동작이 방해되지 않도록 처리되어 있습니다.)*
 
 ---
 
-## 7. 프레젠테이션 파일 다운로드 (PowerPoint / Google Slides / PDF)
+## 6. 워크시트 및 레퍼런스 가이드 문서 안내
 
-웹 발표자료의 상단 메뉴 바와 하단 카운터를 제외한 클린 16:9 프레젠테이션 파일이 `./server` 디렉터리에 생성되어 있습니다:
+### 1) 실전 인쇄용 A4 워크시트 (`server/worksheets/`)
+모든 워크시트는 데스크톱 브라우저에서 인쇄할 때 깔끔하게 A4 1장으로 출력되도록 최적화되어 있습니다:
+* [종합 인덱스 (워크시트 목록 및 일괄 인쇄 안내)](server/worksheets/index.html)
+* [01. 페르소나 & 4분면 공감 맵 (A4 가로)](server/worksheets/01_empathy_map.html)
+* [02. POV & How Might We 정의서 (A4 세로)](server/worksheets/02_pov_hmw.html)
+* [03. Crazy 8s 8분 손스케치 시트 (A4 가로)](server/worksheets/03_crazy8s.html)
+* [04. Impact vs Effort 2x2 매트릭스 (A4 가로)](server/worksheets/04_idea_matrix.html)
+* [05. 3컷 고객 스토리보드 (A4 가로)](server/worksheets/05_storyboard.html)
+* [06. 피드백 캡처 그리드 (+ - ? !) (A4 가로)](server/worksheets/06_feedback_grid.html)
+* [07. I Like, I Wish, What If 회고 시트 (A4 세로)](server/worksheets/07_retrospective.html)
+* [08. 1주일 스프린트 실행 계획서 (A4 세로)](server/worksheets/08_action_sprint.html)
+
+### 2) 레퍼런스 가이드 문서
+* **[실전 워크숍 진행자 통합 운영 가이드](server/guide_workshop_facilitation.html) ([Markdown](server/guide_workshop_facilitation.md))**: 1일 타임테이블(9단계), 3대 역할(퍼실리테이터/디사이더/팀), 상황별 트러블슈팅.
+* **[스탠퍼드 d.school 38종 부트레그 툴킷 해설서](server/guide_dschool_bootleg.html)**: d.school 38개 도구 한국어 요약 및 실행 팁, 실시간 모드 필터 (CC BY-NC-SA 4.0 적용).
+* **[IDEO U 디자인 씽킹 마스터 가이드](server/guide_ideou_framework.html) ([Markdown](server/guide_ideou_framework.md))**: DVF 렌즈, 크리에이티브 마인드셋, Brendan Boyle 웜업, 이종 유추 탐색.
+
+---
+
+## 7. 프레젠테이션 파일 다운로드 (PowerPoint / PDF)
 
 * **[PowerPoint 프레젠테이션 (`server/dtw_presentation.pptx`)](server/dtw_presentation.pptx)** (16:9 와이드스크린, 31슬라이드 완비)
 * **[PDF 프레젠테이션 문서 (`server/dtw_presentation.pdf`)](server/dtw_presentation.pdf)** (16:9 고해상도 31페이지 완비)
 
-### Google Slides 및 Microsoft PowerPoint 활용 방법
-1. **Microsoft PowerPoint:** `server/dtw_presentation.pptx` 파일을 열어 슬라이드 쇼(F5)를 진행합니다.
-2. **Google Slides:** Google Drive에 `server/dtw_presentation.pptx`를 업로드 후 'Google 프레젠테이션으로 열기'를 선택하거나, **파일 > 슬라이드 가져오기**를 통해 가져올 수 있습니다.
-3. **슬라이드 수정 후 재추출:** 슬라이드 HTML을 수정한 후 `python3 server/export_presentation.py`를 실행하면 최신 화면이 반영된 PPTX와 PDF가 `server/` 디렉터리에 자동 생성됩니다.
-
 ---
 
-## 8. 라이선스
+## 8. 라이선스 및 제3자 권리 안내
 
-이 프로젝트는 [MIT License](LICENSE)에 따라 자유롭게 사용, 수정 및 배포할 수 있습니다.
+본 프로젝트의 자체 제작 소스코드 및 문서 텍스트는 [MIT License](LICENSE)에 따라 배포됩니다.
+
+단, 본 프로젝트에 포함된 일부 2차적 저작물 및 제3자 자료는 각 원저작자의 라이선스를 따르며 상업적 이용이 제한될 수 있습니다:
+* **스탠퍼드 d.school Bootleg 툴킷 해설서 (`server/guide_dschool_bootleg.html`)**: **CC BY-NC-SA 4.0** 라이선스가 적용되는 2차적 저작물입니다. 영리 목적(유료 강의, 상업적 컨설팅 상품 판매 등)의 이용이 엄격히 금지됩니다.
+* **기타 인용 및 참고 방법론**: IDEO, Facilitator.com, Google Ventures, Christopher Alexander 등의 방법론을 독자적으로 인용·요약하였습니다. 각 상표 및 원저작물의 권리는 해당 원저작자에게 있습니다.
+* 세부적인 출처 표기, 원저작권 정보 및 비제휴 고지는 **[NOTICE.md](NOTICE.md)**를 반드시 확인해 주세요.

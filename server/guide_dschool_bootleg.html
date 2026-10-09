@@ -305,6 +305,34 @@
       display: block;
       margin-bottom: 4px;
     }
+    .license-notice {
+      margin-top: 56px;
+      padding: 28px 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .license-notice h2 {
+      color: var(--text-main);
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+
+    .license-notice p + p {
+      margin-top: 10px;
+    }
+
+    .license-notice a {
+      color: #a78bfa;
+    }
+
+    .license-notice strong {
+      color: var(--text-main);
+    }
   </style>
 </head>
 <body>
@@ -330,7 +358,7 @@
       <h1 class="hero-title">스탠퍼드 d.school Design Thinking 툴킷 완벽 해설서</h1>
       <p class="hero-desc">
         스탠퍼드 대학교 d.school이 실전 디자인 프로젝트와 수업을 위해 고안한 38개 핵심 방법론(Bootleg Cards)을 
-        한국어로 체계화한 도구 해설서입니다. 프로젝트의 목적과 단계에 맞추어 주머니에서 카드를 꺼내듯 적절한 툴을 선택해 활용할 수 있습니다.
+        한국어로 옮기고 해설을 덧붙인 도구 해설서입니다. 원저작물은 CC BY-NC-SA 4.0으로 배포되며, 이 문서도 같은 조건을 따릅니다(<a href="#license" style="color:#a78bfa">출처 및 라이선스</a>). 프로젝트의 목적과 단계에 맞추어 주머니에서 카드를 꺼내듯 적절한 툴을 선택해 활용할 수 있습니다.
       </p>
     </section>
 
@@ -338,10 +366,10 @@
     <div class="filter-bar">
       <button class="filter-btn active" onclick="filterMode('all', this)">전체 보기 (38)</button>
       <button class="filter-btn" onclick="filterMode('empathize', this)">1. 공감 (Empathize, 8)</button>
-      <button class="filter-btn" onclick="filterMode('define', this)">2. 정의 (Define, 8)</button>
+      <button class="filter-btn" onclick="filterMode('define', this)">2. 정의 (Define, 9)</button>
       <button class="filter-btn" onclick="filterMode('ideate', this)">3. 발상 (Ideate, 6)</button>
       <button class="filter-btn" onclick="filterMode('prototype', this)">4. 프로토타입 (Prototype, 8)</button>
-      <button class="filter-btn" onclick="filterMode('test', this)">5. 테스트 (Test, 8)</button>
+      <button class="filter-btn" onclick="filterMode('test', this)">5. 테스트 (Test, 7)</button>
     </div>
 
     <!-- 1. EMPATHIZE MODE -->
@@ -400,7 +428,7 @@
               <span class="tool-id">EM-04</span>
             </div>
             <h3 class="tool-name-ko">공감 인터뷰 진행 기법</h3>
-            <span class="tool-name-en">Interviewing for Empathy</span>
+            <span class="tool-name-en">Interview for Empathy</span>
             <p class="tool-desc">스토리를 끌어내는 질문을 던지고, 어색한 침묵을 견디며 사용자가 속마음을 꺼낼 때까지 기다립니다.</p>
           </div>
           <div class="tool-box">
@@ -471,7 +499,7 @@
     <section class="mode-section" data-mode="define">
       <div class="mode-header">
         <span class="mode-badge mode-define">Mode 02</span>
-        <h2 class="mode-title">정의 (Define) 도구 8선</h2>
+        <h2 class="mode-title">정의 (Define) 도구 9선</h2>
       </div>
       <div class="tools-grid">
 
@@ -587,6 +615,20 @@
           </div>
         </div>
 
+        <div class="tool-card">
+          <div class="tool-card-top">
+            <div class="tool-meta">
+              <span class="tool-id">DF-09</span>
+            </div>
+            <h3 class="tool-name-ko">콘셉트 서술하기</h3>
+            <span class="tool-name-en">Describe Your Concept</span>
+            <p class="tool-desc">브레인스토밍에서 고른 아이디어를 기억이 생생할 때 구체화합니다. 이름, 대상, 대상에게 주는 효과, 작동 방식을 적고 핵심 기능 하나로 압축합니다.</p>
+          </div>
+          <div class="tool-box">
+            <strong>실행 팁:</strong> 콘셉트가 사용자와 연결되지 않거나 판을 바꿀 만한 아이디어가 아니라면, 브레인스토밍 결과로 돌아가 더 사용자 중심적인 아이디어를 다시 고르세요.
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -617,9 +659,9 @@
             <div class="tool-meta">
               <span class="tool-id">ID-02</span>
             </div>
-            <h3 class="tool-name-ko">브레인스토밍 7대 원칙</h3>
-            <span class="tool-name-en">Brainstorming Rules</span>
-            <p class="tool-desc">1. 판단 유예 2. 거친 아이디어 장려 3. 타인 아이디어에 덧붙이기 4. 한 번에 한 명만 발언 5. 시각화하기 6. 주제 집중 7. 양의 추구.</p>
+            <h3 class="tool-name-ko">브레인스토밍</h3>
+            <span class="tool-name-en">Brainstorming</span>
+            <p class="tool-desc">평가는 잠시 끄고 생성에 집중하는 15~30분의 집중 구간입니다. HMW 질문으로 시작해 모든 아이디어를 포스트잇에 빠르게 붙입니다. 널리 쓰이는 7가지 규칙: 1. 판단 유예 2. 엉뚱한 아이디어 장려 3. 타인 아이디어에 덧붙이기 4. 주제 집중 5. 한 번에 한 명씩 6. 시각화하기 7. 양의 추구.</p>
           </div>
           <div class="tool-box">
             <strong>실행 팁:</strong> 7대 원칙을 벽에 크게 붙여두고, 누군가 아이디어를 비판하면 진행자가 원칙 포스터를 가리키며 제지합니다.
@@ -812,7 +854,7 @@
     <section class="mode-section" data-mode="test">
       <div class="mode-header">
         <span class="mode-badge mode-test">Mode 05</span>
-        <h2 class="mode-title">테스트 (Test) 도구 8선</h2>
+        <h2 class="mode-title">테스트 (Test) 도구 7선</h2>
       </div>
       <div class="tools-grid">
 
@@ -849,9 +891,9 @@
             <div class="tool-meta">
               <span class="tool-id">TE-03</span>
             </div>
-            <h3 class="tool-name-ko">피드백 캡처 그리드</h3>
-            <span class="tool-name-en">Feedback Capture Grid</span>
-            <p class="tool-desc">사분면을 나누어 [+ 호평], [- 비판], [? 사용자의 질문], [! 새로운 아이디어]로 체계적으로 실시간 피드백을 기록합니다.</p>
+            <h3 class="tool-name-ko">피드백 캡처 매트릭스</h3>
+            <span class="tool-name-en">Feedback Capture Matrix</span>
+            <p class="tool-desc">종이나 화이트보드를 사분면으로 나누어 좌상 [+ 좋았던 점], 우상 [Δ 건설적 비판], 좌하 [? 질문], 우하 [전구: 새 아이디어]로 실시간 피드백을 기록합니다. (본 워크숍 덱은 Δ와 전구 대신 -와 !를 씁니다.)</p>
           </div>
           <div class="tool-box">
             <strong>실행 팁:</strong> 비판(-)과 질문(?)이 많이 쏟아질수록 차기 버전의 개선 방향이 뚜렷해지므로 대환영해야 합니다.
@@ -914,21 +956,32 @@
           </div>
         </div>
 
-        <div class="tool-card">
-          <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">TE-08</span>
-            </div>
-            <h3 class="tool-name-ko">반복 이터레이션 설계</h3>
-            <span class="tool-name-en">Design Next Steps</span>
-            <p class="tool-desc">테스트 결과를 바탕으로 [폐기 / 수정 / 다음 단계 진입]을 결정하고 다음 2주간의 실험 계획을 수립합니다.</p>
-          </div>
-          <div class="tool-box">
-            <strong>실행 팁:</strong> "실패는 없습니다. 가설이 틀렸다는 사실을 가장 저렴한 비용으로 빠르게 발견했을 뿐입니다."
-          </div>
-        </div>
-
       </div>
+    </section>
+
+    <!-- License & Attribution (required by CC BY-NC-SA 4.0) -->
+    <section class="license-notice" id="license">
+      <h2>출처 및 라이선스</h2>
+      <p>
+        이 문서는 Hasso Plattner Institute of Design at Stanford(d.school)의
+        <a href="https://dschool.stanford.edu/tools/design-thinking-bootleg" target="_blank" rel="noopener noreferrer">Design Thinking Bootleg (2018)</a>을
+        바탕으로 한 2차적 저작물입니다. 원저작물은
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ko" target="_blank" rel="noopener noreferrer">크리에이티브 커먼즈 저작자표시-비영리-동일조건변경허락 4.0 국제 라이선스(CC BY-NC-SA 4.0)</a>로 배포됩니다.
+      </p>
+      <p>
+        <strong>원저작자:</strong> Bootleg 2018 written and produced by Scott Doorley, Sarah Holcomb, Perry Klebahn, Kathryn Segovia, Jeremy Utley.
+        Early Bootleg designers: Dave Baggeroer, Thomas Both, Scott Doorley, Corey Ford, Erica Estrada, Caroline O'Connor, Lia Ramirez, Jeremy Utley, Scott Witthoft.
+      </p>
+      <p>
+        <strong>변경 사항:</strong> 원문 카드 38종을 한국어로 번역·요약하고, 카드별로 표시된 여러 모드 중 하나를 골라 5개 모드로 재분류했으며,
+        "실행 팁"을 새로 작성해 덧붙였습니다. 원문의 사진과 일러스트는 사용하지 않았습니다.
+        이 문서는 d.school의 공식 번역본이 아니며, d.school이 이 문서를 보증하거나 후원하지 않습니다.
+      </p>
+      <p>
+        <strong>이 문서의 라이선스:</strong> 동일조건변경허락 조항에 따라, 이 문서(<code>guide_dschool_bootleg.html</code>)는 저장소의 MIT 라이선스가 아닌
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ko" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a>으로 배포됩니다.
+        영리 목적으로 사용할 수 없습니다.
+      </p>
     </section>
 
   </div>
