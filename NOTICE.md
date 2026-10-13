@@ -80,4 +80,4 @@
 * `server/dtw-logo.jpg`: 메인 타이틀 키 비주얼
 * `server/dtw-actions.jpg`: 실전 액션 가이드 비주얼
 * `server/design-thinking-process.png`: 인피니티 루프 프로세스 다이어그램
-* 위 3개 에셋의 권리 관계는 프로젝트 관리자 확인 중이며, 필요 시 저작권에 문제가 없는 대체 에셋 또는 SVG 벡터 다이어그램으로 교체될 수 있습니다.
+* 위 3개 이미지 에셋들은 AI도구를 활용하여 직접 제작하였습니다.
