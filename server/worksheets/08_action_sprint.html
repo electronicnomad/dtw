@@ -209,10 +209,10 @@
       background: var(--bg-box);
       border: 1px dashed var(--border);
       border-radius: 4px;
-      padding: 8px 12px;
+      padding: 6px 12px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 5px;
     }
 
     .hypo-line {
@@ -245,10 +245,10 @@
     }
 
     .sprint-table td {
-      padding: 5px 6px;
+      padding: 4px 6px;
       border: 1px solid var(--border);
       vertical-align: middle;
-      height: 11.5mm;
+      height: 10mm;
     }
 
     .day-badge {
@@ -411,6 +411,7 @@
         <div class="meta-fields">
           <div class="meta-item"><span class="meta-label">프로젝트:</span><span class="meta-line"></span></div>
           <div class="meta-item"><span class="meta-label">작성 일자:</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">제한 시간:</span><span style="font-weight:700; color:var(--primary);">10분</span></div>
         </div>
       </header>
 
@@ -418,12 +419,12 @@
       <section class="section-card">
         <div class="section-title">
           <span class="step-num">1</span>
-          핵심 검증 가설 및 성공 판단 지표
+          핵심 검증 가설 및 GSM 성공 지표 (Goal &rarr; Signal &rarr; Metric)
         </div>
-        <div class="section-hint">우리가 1주일간 실무 환경에서 파일럿으로 검증하고자 하는 핵심 가설을 정의합니다.</div>
+        <div class="section-hint">1주일간 실무에서 파일럿으로 검증할 가설(목표)과 관찰할 행동 신호(Signal), 측정 지표(Metric)를 정의합니다.</div>
         <div class="hypothesis-box">
           <div class="hypo-line">
-            <span style="font-weight:700; color:var(--primary);">가설:</span>
+            <span style="font-weight:700; color:var(--primary);">가설 (Goal):</span>
             <span>우리는</span>
             <span class="hypo-input"></span>
             <span>을(를) 제공하면,</span>
@@ -435,9 +436,14 @@
             <span>효과가 생길 것이라 믿는다.</span>
           </div>
           <div class="hypo-line" style="margin-top: 2px;">
-            <span style="font-weight:700; color:#15803d;">성공 지표 (Metric):</span>
+            <span style="font-weight:700; color:#0369a1;">행동 신호 (Signal):</span>
             <span class="hypo-input"></span>
-            <span style="font-size:0.65rem; color:#64748b;">(예: 타 부서 1차 회신 소요 시간 48시간 → 6시간 단축)</span>
+            <span style="font-size:0.65rem; color:#64748b;">(예: 전화 독촉 대신 상태 위젯으로 직접 확인)</span>
+          </div>
+          <div class="hypo-line" style="margin-top: 2px;">
+            <span style="font-weight:700; color:#15803d;">측정 지표 (Metric):</span>
+            <span class="hypo-input"></span>
+            <span style="font-size:0.65rem; color:#64748b;">(예: 타 부서 1차 회신 소요 시간 48시간 &rarr; 6시간 단축)</span>
           </div>
         </div>
       </section>

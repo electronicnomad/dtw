@@ -7,25 +7,26 @@
   <title>실전 Design Thinking Workshop 통합 진행자 마스터 가이드</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-slate: #0b0f19;
-      --bg-surface: #131b2e;
-      --bg-card: #1e293b;
-      --border-color: #334155;
-      --border-light: rgba(255, 255, 255, 0.1);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
+      --bg-slate: #09090b;
+      --bg-surface: #121215;
+      --bg-card: #18181b;
+      --border-color: #27272a;
+      --border-light: rgba(255, 255, 255, 0.08);
+      --text-main: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --text-dim: #71717a;
       --accent: #0284c7;
-      --accent-bg: rgba(2, 132, 199, 0.15);
-      --accent-border: rgba(2, 132, 199, 0.4);
+      --accent-bg: rgba(2, 132, 199, 0.12);
+      --accent-border: rgba(2, 132, 199, 0.35);
       --highlight: #38bdf8;
       --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
       --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
     }
 
     * {
@@ -35,7 +36,9 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      letter-spacing: -0.015em;
+      word-break: keep-all;
       background-color: var(--bg-slate);
       color: var(--text-main);
       line-height: 1.65;
@@ -51,7 +54,7 @@
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid var(--border-light);
-      background: rgba(11, 15, 25, 0.85);
+      background: rgba(9, 9, 11, 0.88);
       backdrop-filter: blur(16px);
       z-index: 50;
     }
@@ -136,14 +139,12 @@
     }
 
     .hero-title {
-      font-size: 2.5rem;
+      font-size: 2.35rem;
       font-weight: 800;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
       line-height: 1.25;
       margin-bottom: 16px;
-      background: linear-gradient(135deg, #ffffff 0%, #38bdf8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--text-main);
     }
 
     .hero-desc {
@@ -469,7 +470,7 @@
       <div class="meta-pills">
         <div class="meta-pill"><strong>기반 레퍼런스:</strong> 글로벌 디자인 스프린트 &amp; 디자인 씽킹 실전 워크숍 표준 가이드</div>
         <div class="meta-pill"><strong>프레젠테이션 연동:</strong> 메인 슬라이드 29개 전체 단계 매핑 완료</div>
-        <div class="meta-pill"><strong>주요 탑재 도구:</strong> 3대 아이스브레이킹, 4분면 공감 맵, HMW 공식, Crazy 8s, 최악의 아이디어, 여정 맵, 피드백 그리드</div>
+        <div class="meta-pill"><strong>주요 탑재 도구:</strong> 3대 아이스브레이킹, 4분면 공감 맵, HMW 공식, Lightning Demos, Crazy 8s, 2x2 매트릭스, 6컷 스토리보드, 피드백 그리드, GSM 실행 계획</div>
       </div>
     </section>
 
@@ -559,7 +560,7 @@
       </div>
 
       <ul class="bullet-list">
-        <li><strong>단호한 시간 관리 (Assertive Timeboxing):</strong> 시간이 넘치면 토론이 늘어집니다. 참가자가 약간 촉박하다고 느낄 정도로 정해진 타임박스를 단호하게 지켜야 집중력이 극대화됩니다.</li>
+        <li><strong>단호한 시간 관리 (Assertive Timeboxing):</strong> 시간이 넘치면 논의가 늘어집니다. 참가자가 약간 촉박하다고 느낄 정도로 정해진 타임박스를 지켜야 집중도가 유지됩니다.</li>
         <li><strong>명확하고 간결한 디렉션 (Precise Direction):</strong> 이론을 길게 설명하지 마세요. "지금부터 5분 동안 각자 포스트잇에 1장당 1개씩 작성합니다"와 같이 행동 중심의 지시를 전달해야 합니다.</li>
         <li><strong>판단 없는 중립성 (Neutral Facilitation):</strong> "그 아이디어 좋네요" 같은 특정 의견 지지를 삼가고, "매우 흥미로운 관점입니다. 보드에 붙이고 다음으로 넘어가죠"와 같이 절차적 피드백을 유지하세요.</li>
         <li><strong>침묵 작업의 조율 (Together, Alone):</strong> 말을 많이 하는 사람이 회의를 지배하지 못하도록, 발언 전에 반드시 개인 침묵 작성(Silent Writing) 시간을 3~5분 먼저 부여하세요.</li>
@@ -659,10 +660,10 @@
         <div class="step-item">
           <div class="step-time">13:05 - 14:05<br>(60분)</div>
           <div class="step-body">
-            <h5>6. [Stage 3 Part 1] 아이디어 발상 &amp; 최악의 아이디어 기법</h5>
+            <h5>6. [Stage 3 Part 1] 아이디어 발산: 번개 데모(Lightning Demos) &amp; Crazy 8s</h5>
             <p>
-              - <strong>최악의 아이디어 (Worst Possible Idea, 10분):</strong> 문제를 악화시키는 최악의 아이디어를 적어 심리적 압박 해소.<br>
-              - <strong>반전 솔루션 도출 (10분):</strong> 최악의 아이디어를 정반대로 뒤집어 혁신적 해결책으로 재탄생 &rarr; 단일 솔루션 스케치.
+              - <strong>번개 데모 (Lightning Demos, 15분):</strong> 타 도메인 우수 사례의 핵심 메커니즘을 3분씩 공유하여 백지상태의 막막함 해소.<br>
+              - <strong>Crazy 8s 손스케치 (45분):</strong> A4 8칸에 1분당 1개씩 8개 대안 스케치(워크시트 03) &rarr; 팀 내 포스트잇 아이디어 확장.
             </p>
           </div>
         </div>
@@ -670,8 +671,8 @@
         <div class="step-item">
           <div class="step-time">14:05 - 15:05<br>(60분)</div>
           <div class="step-body">
-            <h5>7. [Stage 3 Part 2] 사용자 여정 맵 (User Journey Map) 작성</h5>
-            <p>사용자 행동 단계 나열(15분) &rarr; 3~7개 페이즈 그룹화(10분) &rarr; 각 단계별 목표(Goals)와 고통(Pain-points) 매핑(15분) &rarr; 전체 리뷰. (직후 15분 휴식)</p>
+            <h5>7. [Stage 3 Part 2] 아이디어 수렴: Note-and-Vote &amp; 2x2 우선순위 매트릭스</h5>
+            <p>침묵 속에서 스케치 열람 및 도트 스티커 투표(Note-and-Vote, 20분) &rarr; Impact vs Effort 2x2 매트릭스 보드(워크시트 04) 배치(25분) &rarr; 최종 프로토타입 제작 과제 1개 확정. (직후 15분 휴식)</p>
           </div>
         </div>
 
@@ -724,15 +725,15 @@
       <div class="info-card" style="margin-bottom: 20px;">
         <h4>3단계. 발상 (Ideate, 슬라이드 16 ~ 19, 30~40분)</h4>
         <p><strong>슬라이드 구성:</strong> 16. 브레인스토밍 규칙 &rarr; 17. Crazy 8s &amp; 2x2 매트릭스 &rarr; 18. 아이디어 발산 실습 &rarr; 19. [실전 예시] 8칸 손스케치 &amp; 2x2 매트릭스</p>
-        <p><strong>핵심 활동:</strong> 8분 동안 8개 아이디어를 그리는 Crazy 8s 손스케치, 묵음 아이디어 작성, 도트 스티커 투표, Impact vs Effort 2x2 매트릭스 수렴.</p>
-        <p style="color: var(--highlight);"><strong>진행자 팁:</strong> Crazy 8s 시작 전, "글씨 대신 졸라맨과 박스로 그려도 100점입니다. 못 그린 그림이 최고의 아이디어가 됩니다"라고 안심시키세요.</p>
+        <p><strong>핵심 활동:</strong> 타 도메인 메커니즘을 참고하는 번개 데모(Lightning Demos), 8분 동안 8개 아이디어를 그리는 Crazy 8s 손스케치, 구두 논쟁 없이 투표하는 Note-and-Vote, Impact vs Effort 2x2 매트릭스 수렴.</p>
+        <p style="color: var(--highlight);"><strong>진행자 팁:</strong> Crazy 8s 시작 전, "글씨 대신 졸라맨과 박스로 그려도 100점입니다. 처음 3칸은 뻔한 생각이니 4번째 칸부터는 정반대 접근이나 두 아이디어를 합쳐보세요"라고 유도하세요.</p>
       </div>
 
       <div class="info-card" style="margin-bottom: 20px;">
         <h4>4단계. 프로토타입 (Prototype, 슬라이드 20 ~ 23, 40~60분)</h4>
         <p><strong>슬라이드 구성:</strong> 20. 프로토타입 철학 &rarr; 21. 3가지 형태(페이퍼/스토리보드/롤플레잉) &rarr; 22. 초고속 실물 제작 실습 &rarr; 23. [실전 예시] 페이퍼 모바일 목업</p>
-        <p><strong>핵심 활동:</strong> A4 용지와 포스트잇으로 만드는 페이퍼 모바일/웹 목업, 3컷 스토리보드, 서비스 롤플레잉 연기 소품 제작.</p>
-        <p style="color: var(--highlight);"><strong>진행자 팁:</strong> 화려한 그래픽 툴(피그마 등)을 켜지 못하게 하세요. 손으로 20분 만에 찢고 붙여 만든 종이 모형이 질문을 훨씬 많이 이끌어냅니다.</p>
+        <p><strong>핵심 활동:</strong> A4 용지와 포스트잇으로 만드는 페이퍼 모바일/웹 목업, 6컷 스토리보드(워크시트 05), 서비스 롤플레잉 연기 소품 제작.</p>
+        <p style="color: var(--highlight);"><strong>진행자 팁:</strong> 화려한 그래픽 툴(피그마 등)을 켜지 못하게 하세요. 화면 속 버튼이나 안내 문구를 적을 때는 UX Writing 3원칙(Clear, Concise, Useful)에 따라 단순 '확인' 대신 사용자가 얻게 될 행동 결과를 동사로 적게 코칭하세요.</p>
       </div>
 
       <div class="info-card" style="margin-bottom: 20px;">
@@ -745,8 +746,8 @@
       <div class="info-card">
         <h4>6단계. 클로징 &amp; 현업 실행 (Closing, 슬라이드 28 ~ 31, 20~30분)</h4>
         <p><strong>슬라이드 구성:</strong> 28. 3분 스토리텔링 피칭 &rarr; 29. I Like, I Wish, What If 회고 &rarr; 30. 1주일 스프린트 액션 플랜 &rarr; 31. 웹 프레젠테이션 링크</p>
-        <p><strong>핵심 활동:</strong> 조별 3분 피칭 및 Q&amp;A, I Like / I Wish 건설적 피드백 회고, 다음 주 실행할 가장 작은 1가지 액션 확정 및 기념사진 촬영.</p>
-        <p style="color: var(--highlight);"><strong>진행자 팁:</strong> 워크숍 결과물이 서랍 속으로 들어가지 않도록, 내일 당장 팀 채널에 사진을 공유하고 디사이더의 스폰서십을 요청하도록 독려하세요.</p>
+        <p><strong>핵심 활동:</strong> 조별 3분 피칭 및 Q&amp;A, I Like / I Wish / What If 건설적 피드백 회고(워크시트 07), 1-Week 실행 계획서(워크시트 08)에 GSM(목표-행동신호-측정지표) 기준 확정 및 기념사진 촬영.</p>
+        <p style="color: var(--highlight);"><strong>진행자 팁:</strong> 실행 계획서의 성공 지표를 적을 때 막연한 다짐 대신 관찰 가능한 행동 신호(Signal)와 측정 지표(Metric)를 적게 하고, 내일 당장 팀 채널에 산출물 사진을 공유하도록 독려하세요.</p>
       </div>
     </section>
 

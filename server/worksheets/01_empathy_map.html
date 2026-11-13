@@ -24,6 +24,10 @@
       padding: 0;
     }
 
+    html {
+      font-size: 20px;
+    }
+
     body {
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       color: var(--text);
@@ -79,17 +83,17 @@
       color: #0f172a;
     }
 
-    /* A4 Landscape Page Container */
+    /* A3 Landscape Team Board Container */
     .page-wrap {
       display: flex;
       justify-content: center;
       padding: 24px 16px;
     }
 
-    .a4-landscape {
-      width: 281mm;
-      height: 198mm;
-      max-height: 198mm;
+    .a3-landscape {
+      width: 404mm;
+      height: 285mm;
+      max-height: 285mm;
       background: #ffffff;
       box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
       border-radius: 4px;
@@ -276,32 +280,51 @@
     .quadrant-body {
       flex: 1;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
+      grid-template-columns: 76mm 76mm 1fr;
+      gap: 3mm;
+      align-items: start;
       min-height: 0;
     }
 
-    .postit-zone {
-      border: 1px dashed #cbd5e1;
-      border-radius: 4px;
-      background: rgba(248, 250, 252, 0.6);
+    /* Right-hand quadrants mirror the layout so the center avatar sits over the note column */
+    .q-right .quadrant-body {
+      grid-template-columns: 1fr 76mm 76mm;
+    }
+
+    /* 3x3 inch (76mm) sticky-note placement guide */
+    .postit-slot {
+      width: 76mm;
+      height: 76mm;
+      flex-shrink: 0;
+      border: 1px dashed rgba(0, 0, 0, 0.28);
+      border-radius: 2mm;
+      background: rgba(255, 255, 255, 0.85);
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 6px;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.62rem;
+      color: #94a3b8;
+      text-align: center;
+    }
+
+    /* Ruled free-writing column beside the sticky-note guides */
+    .note-zone {
+      align-self: stretch;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      border-radius: 2mm;
+      padding: 2mm 3mm;
+      background-color: rgba(255, 255, 255, 0.6);
+      background-image: linear-gradient(to bottom, transparent 7.6mm, #cbd5e1 7.6mm, #cbd5e1 8mm);
+      background-size: 100% 8mm;
+      background-origin: content-box;
+      background-clip: content-box;
+      font-size: 0.62rem;
+      color: #94a3b8;
     }
 
     .zone-guide {
       font-size: 0.65rem;
       color: #94a3b8;
-    }
-
-    .zone-lines {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: auto;
-      margin-bottom: 4px;
     }
 
     .guide-line {
@@ -315,7 +338,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 8px;
       margin-top: 6px;
-      height: 34mm;
+      height: 50mm;
       flex-shrink: 0;
     }
 
@@ -380,13 +403,14 @@
     .box-slot {
       border: 1px dashed rgba(0, 0, 0, 0.15);
       border-radius: 4px;
-      background: rgba(255, 255, 255, 0.8);
       padding: 4px 6px;
       font-size: 0.65rem;
       color: #94a3b8;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      background-color: rgba(255, 255, 255, 0.8);
+      background-image: linear-gradient(to bottom, transparent 7.6mm, #cbd5e1 7.6mm, #cbd5e1 8mm);
+      background-size: 100% 8mm;
+      background-origin: content-box;
+      background-clip: content-box;
     }
 
     /* Footer Note */
@@ -402,9 +426,17 @@
       flex-shrink: 0;
     }
 
+    /* A3 is wider than most laptop screens: shrink the on-screen preview only */
+    @media screen and (max-width: 1640px) {
+      .a3-landscape { zoom: 0.75; }
+    }
+    @media screen and (max-width: 1240px) {
+      .a3-landscape { zoom: 0.55; }
+    }
+
     /* Print Styles */
     @page {
-      size: A4 landscape;
+      size: A3 landscape;
       margin: 6mm 8mm 6mm 8mm;
     }
 
@@ -414,8 +446,8 @@
         print-color-adjust: exact !important;
       }
       html, body {
-        width: 281mm !important;
-        height: 198mm !important;
+        width: 404mm !important;
+        height: 285mm !important;
         margin: 0 !important;
         padding: 0 !important;
         background: #ffffff !important;
@@ -427,14 +459,14 @@
       .page-wrap {
         padding: 0 !important;
         margin: 0 !important;
-        width: 281mm !important;
-        height: 198mm !important;
+        width: 404mm !important;
+        height: 285mm !important;
       }
-      .a4-landscape {
-        width: 281mm !important;
-        height: 198mm !important;
-        max-height: 198mm !important;
-        min-height: 198mm !important;
+      .a3-landscape {
+        width: 404mm !important;
+        height: 285mm !important;
+        max-height: 285mm !important;
+        min-height: 285mm !important;
         padding: 0 !important;
         margin: 0 !important;
         box-shadow: none !important;
@@ -455,7 +487,7 @@
   </div>
 
   <div class="page-wrap">
-    <div class="a4-landscape">
+    <div class="a3-landscape">
       <!-- Header -->
       <header class="ws-header">
         <div class="title-group">
@@ -507,19 +539,14 @@
             <span class="quadrant-desc">인터뷰 중 들은 실제 발언 (예: "매뉴얼 찾는 데 30분 걸려요")</span>
           </div>
           <div class="quadrant-body">
-            <div class="postit-zone">
-              <span class="zone-guide">[포스트잇 부착 / 자유 필기 구역 1]</span>
-              <div class="zone-lines"><div class="guide-line"></div><div class="guide-line"></div><div class="guide-line"></div></div>
-            </div>
-            <div class="postit-zone">
-              <span class="zone-guide">[포스트잇 부착 / 자유 필기 구역 2]</span>
-              <div class="zone-lines"><div class="guide-line"></div><div class="guide-line"></div><div class="guide-line"></div></div>
-            </div>
+            <div class="postit-slot">3x3 포스트잇</div>
+            <div class="postit-slot">3x3 포스트잇</div>
+            <div class="note-zone">자유 필기</div>
           </div>
         </div>
 
         <!-- 2. THINK (생각한 것) -->
-        <div class="quadrant">
+        <div class="quadrant q-right">
           <div class="quadrant-header">
             <div class="quadrant-title">
               2. THINK <span class="en-sub">(속으로 생각한 것)</span>
@@ -527,14 +554,9 @@
             <span class="quadrant-desc">겉으로 말하지 않았지만 짐작되는 신념 (예: '내 책임이 될까 봐 두렵다')</span>
           </div>
           <div class="quadrant-body">
-            <div class="postit-zone">
-              <span class="zone-guide">[포스트잇 부착 / 자유 필기 구역 1]</span>
-              <div class="zone-lines"><div class="guide-line"></div><div class="guide-line"></div><div class="guide-line"></div></div>
-            </div>
-            <div class="postit-zone">
-              <span class="zone-guide">[포스트잇 부착 / 자유 필기 구역 2]</span>
-              <div class="zone-lines"><div class="guide-line"></div><div class="guide-line"></div><div class="guide-line"></div></div>
-            </div>
+            <div class="note-zone">자유 필기</div>
+            <div class="postit-slot">3x3 포스트잇</div>
+            <div class="postit-slot">3x3 포스트잇</div>
           </div>
         </div>
 
@@ -547,19 +569,14 @@
             <span class="quadrant-desc">관찰된 신체적 동작, 회피 행동 (예: 모니터에 단축키 포스트잇 도배)</span>
           </div>
           <div class="quadrant-body">
-            <div class="postit-zone">
-              <span class="zone-guide">[포스트잇 부착 / 자유 필기 구역 1]</span>
-              <div class="zone-lines"><div class="guide-line"></div><div class="guide-line"></div><div class="guide-line"></div></div>
-            </div>
-            <div class="postit-zone">
-              <span class="zone-guide">[포스트잇 부착 / 자유 필기 구역 2]</span>
-              <div class="zone-lines"><div class="guide-line"></div><div class="guide-line"></div><div class="guide-line"></div></div>
-            </div>
+            <div class="postit-slot">3x3 포스트잇</div>
+            <div class="postit-slot">3x3 포스트잇</div>
+            <div class="note-zone">자유 필기</div>
           </div>
         </div>
 
         <!-- 4. FEEL (느낀 감정선) -->
-        <div class="quadrant">
+        <div class="quadrant q-right">
           <div class="quadrant-header">
             <div class="quadrant-title">
               4. FEEL <span class="en-sub">(느끼는 감정)</span>
@@ -567,14 +584,9 @@
             <span class="quadrant-desc">겪고 있는 감정 상태 (예: 마감 직전의 막막함, 반복 업무의 무기력)</span>
           </div>
           <div class="quadrant-body">
-            <div class="postit-zone">
-              <span class="zone-guide">[포스트잇 부착 / 자유 필기 구역 1]</span>
-              <div class="zone-lines"><div class="guide-line"></div><div class="guide-line"></div><div class="guide-line"></div></div>
-            </div>
-            <div class="postit-zone">
-              <span class="zone-guide">[포스트잇 부착 / 자유 필기 구역 2]</span>
-              <div class="zone-lines"><div class="guide-line"></div><div class="guide-line"></div><div class="guide-line"></div></div>
-            </div>
+            <div class="note-zone">자유 필기</div>
+            <div class="postit-slot">3x3 포스트잇</div>
+            <div class="postit-slot">3x3 포스트잇</div>
           </div>
         </div>
       </div>
@@ -590,20 +602,17 @@
               </svg>
               PAIN (핵심 고통 & 걸림돌)
             </span>
-            <span class="box-desc">가장 큰 좌절감, 시간 낭비, 두려움 (포스트잇 부착 또는 필기)</span>
+            <span class="box-desc">가장 큰 좌절감, 시간 낭비, 두려움 (굵은 펜으로 요약 필기)</span>
           </div>
           <div class="box-body">
             <div class="box-slot">
               <span>[Pain 1]</span>
-              <div class="guide-line"></div>
             </div>
             <div class="box-slot">
               <span>[Pain 2]</span>
-              <div class="guide-line"></div>
             </div>
             <div class="box-slot">
               <span>[Pain 3]</span>
-              <div class="guide-line"></div>
             </div>
           </div>
         </div>
@@ -617,20 +626,17 @@
               </svg>
               GAIN (소망 & 성취 가치)
             </span>
-            <span class="box-desc">달성하고 싶은 궁극적 성공 기준, 기대하는 희열 (포스트잇 부착 또는 필기)</span>
+            <span class="box-desc">달성하고 싶은 궁극적 성공 기준, 기대하는 희열 (굵은 펜으로 요약 필기)</span>
           </div>
           <div class="box-body">
             <div class="box-slot">
               <span>[Gain 1]</span>
-              <div class="guide-line"></div>
             </div>
             <div class="box-slot">
               <span>[Gain 2]</span>
-              <div class="guide-line"></div>
             </div>
             <div class="box-slot">
               <span>[Gain 3]</span>
-              <div class="guide-line"></div>
             </div>
           </div>
         </div>

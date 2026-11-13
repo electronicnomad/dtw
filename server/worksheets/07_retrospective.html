@@ -24,6 +24,10 @@
       padding: 0;
     }
 
+    html {
+      font-size: 20px;
+    }
+
     body {
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       color: var(--text);
@@ -79,17 +83,17 @@
       color: #0f172a;
     }
 
-    /* A4 Landscape Page Container */
+    /* A3 Landscape Team Board Container */
     .page-wrap {
       display: flex;
       justify-content: center;
       padding: 24px 16px;
     }
 
-    .a4-landscape {
-      width: 281mm;
-      height: 198mm;
-      max-height: 198mm;
+    .a3-landscape {
+      width: 404mm;
+      height: 285mm;
+      max-height: 285mm;
       background: #ffffff;
       box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
       border-radius: 4px;
@@ -189,20 +193,23 @@
       white-space: nowrap;
     }
 
-    /* 3 Deep Columns Grid - Stretches fully */
+    /* 3 Horizontal Bands - each holds one row of 3x3 sticky notes */
     .retro-grid {
       flex: 1;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, 1fr);
       gap: 8px;
       min-height: 0;
     }
 
     .retro-column {
       border-radius: 6px;
-      padding: 6px 10px;
+      padding: 4px 10px;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      align-items: center;
+      gap: 4mm;
       min-height: 0;
     }
 
@@ -225,12 +232,14 @@
     }
 
     .col-header {
+      width: 46mm;
+      align-self: stretch;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 4px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-      padding-bottom: 3px;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      border-right: 1px solid rgba(0, 0, 0, 0.08);
+      padding-right: 3mm;
       flex-shrink: 0;
     }
 
@@ -250,27 +259,43 @@
     /* Deep Column Canvas for Post-its */
     .col-canvas {
       flex: 1;
-      border: 1px dashed rgba(0, 0, 0, 0.15);
-      border-radius: 4px;
-      padding: 6px;
-      background: rgba(255, 255, 255, 0.8);
       display: flex;
-      flex-direction: column;
-      gap: 6px;
-      min-height: 0;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3mm;
+      min-width: 0;
     }
 
-    .col-slot {
-      flex: 1;
-      border: 1px dotted rgba(0, 0, 0, 0.2);
-      border-radius: 3px;
+    /* 3x3 inch (76mm) sticky-note placement guide */
+    .postit-slot {
+      width: 76mm;
+      height: 76mm;
+      flex-shrink: 0;
+      border: 1px dashed rgba(0, 0, 0, 0.28);
+      border-radius: 2mm;
+      background: rgba(255, 255, 255, 0.85);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       color: #94a3b8;
       text-align: center;
-      min-height: 24mm;
+    }
+
+    /* Ruled free-writing column beside the sticky-note guides */
+    .note-zone {
+      align-self: stretch;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      border-radius: 2mm;
+      padding: 2mm 3mm;
+      background-color: rgba(255, 255, 255, 0.6);
+      background-image: linear-gradient(to bottom, transparent 7.6mm, #cbd5e1 7.6mm, #cbd5e1 8mm);
+      background-size: 100% 8mm;
+      background-origin: content-box;
+      background-clip: content-box;
+      font-size: 0.62rem;
+      color: #94a3b8;
     }
 
     /* Retrospective Rules Bar */
@@ -305,9 +330,17 @@
       flex-shrink: 0;
     }
 
+    /* A3 is wider than most laptop screens: shrink the on-screen preview only */
+    @media screen and (max-width: 1640px) {
+      .a3-landscape { zoom: 0.75; }
+    }
+    @media screen and (max-width: 1240px) {
+      .a3-landscape { zoom: 0.55; }
+    }
+
     /* Print Styles */
     @page {
-      size: A4 landscape;
+      size: A3 landscape;
       margin: 6mm 8mm 6mm 8mm;
     }
 
@@ -317,8 +350,8 @@
         print-color-adjust: exact !important;
       }
       html, body {
-        width: 281mm !important;
-        height: 198mm !important;
+        width: 404mm !important;
+        height: 285mm !important;
         margin: 0 !important;
         padding: 0 !important;
         background: #ffffff !important;
@@ -330,14 +363,14 @@
       .page-wrap {
         padding: 0 !important;
         margin: 0 !important;
-        width: 281mm !important;
-        height: 198mm !important;
+        width: 404mm !important;
+        height: 285mm !important;
       }
-      .a4-landscape {
-        width: 281mm !important;
-        height: 198mm !important;
-        max-height: 198mm !important;
-        min-height: 198mm !important;
+      .a3-landscape {
+        width: 404mm !important;
+        height: 285mm !important;
+        max-height: 285mm !important;
+        min-height: 285mm !important;
         padding: 0 !important;
         margin: 0 !important;
         box-shadow: none !important;
@@ -358,7 +391,7 @@
   </div>
 
   <div class="page-wrap">
-    <div class="a4-landscape">
+    <div class="a3-landscape">
       <!-- Header -->
       <header class="ws-header">
         <div class="title-group">
@@ -371,7 +404,7 @@
         <div class="meta-fields">
           <div class="meta-item"><span class="meta-label">조 번호:</span><span class="meta-line"></span></div>
           <div class="meta-item"><span class="meta-label">작성 일자:</span><span class="meta-line"></span></div>
-          <div class="meta-item"><span class="meta-label">제한 시간:</span><span style="font-weight:700; color:var(--primary);">10분</span></div>
+          <div class="meta-item"><span class="meta-label">제한 시간:</span><span style="font-weight:700; color:var(--primary);">15분</span></div>
         </div>
       </header>
 
@@ -398,9 +431,10 @@
             <span class="col-desc">협업 과정, 팀의 태도, 깨달음</span>
           </div>
           <div class="col-canvas">
-            <div class="col-slot">[포스트잇 부착 또는 필기 1]</div>
-            <div class="col-slot">[포스트잇 부착 또는 필기 2]</div>
-            <div class="col-slot">[포스트잇 부착 또는 필기 3]</div>
+            <div class="postit-slot">3x3 포스트잇</div>
+            <div class="postit-slot">3x3 포스트잇</div>
+            <div class="postit-slot">3x3 포스트잇</div>
+            <div class="postit-slot">3x3 포스트잇</div>
           </div>
         </div>
 
@@ -413,9 +447,10 @@
             <span class="col-desc">비난이 아닌 아쉬움과 보완 희망</span>
           </div>
           <div class="col-canvas">
-            <div class="col-slot">[포스트잇 부착 또는 필기 1]</div>
-            <div class="col-slot">[포스트잇 부착 또는 필기 2]</div>
-            <div class="col-slot">[포스트잇 부착 또는 필기 3]</div>
+            <div class="postit-slot">3x3 포스트잇</div>
+            <div class="postit-slot">3x3 포스트잇</div>
+            <div class="postit-slot">3x3 포스트잇</div>
+            <div class="postit-slot">3x3 포스트잇</div>
           </div>
         </div>
 
@@ -428,24 +463,19 @@
             <span class="col-desc">"만약 ~한다면?" 실무 적용 아이디어</span>
           </div>
           <div class="col-canvas">
-            <div class="col-slot">[포스트잇 부착 또는 필기 1]</div>
-            <div class="col-slot">[포스트잇 부착 또는 필기 2]</div>
-            <div class="col-slot">[포스트잇 부착 또는 필기 3]</div>
+            <div class="postit-slot">3x3 포스트잇</div>
+            <div class="postit-slot">3x3 포스트잇</div>
+            <div class="postit-slot">3x3 포스트잇</div>
+            <div class="postit-slot">3x3 포스트잇</div>
           </div>
         </div>
       </div>
 
-      <!-- Retrospective Rules -->
-      <div class="retro-rules">
-        <div class="rule-item"><strong>심리적 안전감:</strong> 어떤 의견도 평가하거나 책망하지 않습니다.</div>
-        <div class="rule-item"><strong>개인 비난 금지:</strong> 사람이 아닌 프로세스와 결과물에 집중합니다.</div>
-        <div class="rule-item"><strong>실행 연결:</strong> What If에 나온 아이디어를 실무 액션으로 잇습니다.</div>
-      </div>
 
       <!-- Footer -->
       <footer class="ws-footer">
         <span>Design Thinking Workshop Toolkit &bull; Stage 5 Wrap-up Retrospective</span>
-        <span>* 작성된 회고 포스트잇을 바탕으로 각 조 1분씩 소감을 공유하며 워크숍을 마무리합니다.</span>
+        <span>* 룰: 평가하지 않기 &bull; 사람이 아닌 프로세스에 집중 &bull; What If는 실무 액션으로 연결</span>
         <span>electronicnomad.net/dtw</span>
       </footer>
     </div>

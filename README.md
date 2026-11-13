@@ -165,16 +165,16 @@ python3 -m http.server 8080 --directory server
 
 ## 6. 워크시트 및 레퍼런스 가이드 문서 안내
 
-### 1) 실전 인쇄용 A4 워크시트 (`server/worksheets/`)
-모든 워크시트는 데스크톱 브라우저에서 인쇄할 때 깔끔하게 A4 1장으로 출력되도록 최적화되어 있습니다:
+### 1) 실전 인쇄용 워크시트 (`server/worksheets/`)
+모든 워크시트는 데스크톱 브라우저에서 인쇄할 때 1장으로 출력되도록 최적화되어 있습니다. 팀이 함께 포스트잇을 붙이는 공용 보드(01, 04, 06, 07)는 3x3인치 포스트잇 칸을 실측 크기로 담기 위해 **A3 가로**, 개인/소그룹 시트는 **A4**입니다. 인쇄 창에서 용지 크기를 서식에 맞게 선택하고 '배경 그래픽 포함'에 체크하세요:
 * [종합 인덱스 (워크시트 목록 및 일괄 인쇄 안내)](server/worksheets/index.html)
-* [01. 페르소나 & 4분면 공감 맵 (A4 가로)](server/worksheets/01_empathy_map.html)
+* [01. 페르소나 & 4분면 공감 맵 (A3 가로, 팀 보드)](server/worksheets/01_empathy_map.html)
 * [02. POV & How Might We 정의서 (A4 세로)](server/worksheets/02_pov_hmw.html)
 * [03. Crazy 8s 8분 손스케치 시트 (A4 가로)](server/worksheets/03_crazy8s.html)
-* [04. Impact vs Effort 2x2 매트릭스 (A4 가로)](server/worksheets/04_idea_matrix.html)
-* [05. 3컷 고객 스토리보드 (A4 가로)](server/worksheets/05_storyboard.html)
-* [06. 피드백 캡처 그리드 (+ - ? !) (A4 가로)](server/worksheets/06_feedback_grid.html)
-* [07. I Like, I Wish, What If 회고 시트 (A4 세로)](server/worksheets/07_retrospective.html)
+* [04. Impact vs Effort 2x2 매트릭스 (A3 가로, 팀 보드)](server/worksheets/04_idea_matrix.html)
+* [05. 6컷 고객 스토리보드 (A4 가로)](server/worksheets/05_storyboard.html)
+* [06. 피드백 캡처 그리드 (+ - ? !) (A3 가로, 팀 보드)](server/worksheets/06_feedback_grid.html)
+* [07. I Like, I Wish, What If 회고 보드 (A3 가로, 팀 보드)](server/worksheets/07_retrospective.html)
 * [08. 1주일 스프린트 실행 계획서 (A4 세로)](server/worksheets/08_action_sprint.html)
 
 ### 2) 레퍼런스 가이드 문서

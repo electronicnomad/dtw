@@ -24,6 +24,10 @@
       padding: 0;
     }
 
+    html {
+      font-size: 20px;
+    }
+
     body {
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       color: var(--text);
@@ -79,17 +83,17 @@
       color: #0f172a;
     }
 
-    /* A4 Landscape Page Container */
+    /* A3 Landscape Team Board Container */
     .page-wrap {
       display: flex;
       justify-content: center;
       padding: 24px 16px;
     }
 
-    .a4-landscape {
-      width: 281mm;
-      height: 198mm;
-      max-height: 198mm;
+    .a3-landscape {
+      width: 404mm;
+      height: 285mm;
+      max-height: 285mm;
       background: #ffffff;
       box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
       border-radius: 4px;
@@ -264,21 +268,41 @@
       padding: 6px;
       background: rgba(255, 255, 255, 0.75);
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
+      grid-template-columns: 76mm 76mm 1fr;
+      gap: 3mm;
+      align-items: start;
       min-height: 0;
     }
 
-    .f-slot {
-      border: 1px dotted rgba(0, 0, 0, 0.2);
-      border-radius: 3px;
+    /* 3x3 inch (76mm) sticky-note placement guide */
+    .postit-slot {
+      width: 76mm;
+      height: 76mm;
+      flex-shrink: 0;
+      border: 1px dashed rgba(0, 0, 0, 0.28);
+      border-radius: 2mm;
+      background: rgba(255, 255, 255, 0.85);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       color: #94a3b8;
       text-align: center;
-      padding: 2px;
+    }
+
+    /* Ruled free-writing column beside the sticky-note guides */
+    .note-zone {
+      align-self: stretch;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      border-radius: 2mm;
+      padding: 2mm 3mm;
+      background-color: rgba(255, 255, 255, 0.6);
+      background-image: linear-gradient(to bottom, transparent 7.6mm, #cbd5e1 7.6mm, #cbd5e1 8mm);
+      background-size: 100% 8mm;
+      background-origin: content-box;
+      background-clip: content-box;
+      font-size: 0.62rem;
+      color: #94a3b8;
     }
 
     /* 3 Testing Rules Bar */
@@ -313,9 +337,17 @@
       flex-shrink: 0;
     }
 
+    /* A3 is wider than most laptop screens: shrink the on-screen preview only */
+    @media screen and (max-width: 1640px) {
+      .a3-landscape { zoom: 0.75; }
+    }
+    @media screen and (max-width: 1240px) {
+      .a3-landscape { zoom: 0.55; }
+    }
+
     /* Print Styles */
     @page {
-      size: A4 landscape;
+      size: A3 landscape;
       margin: 6mm 8mm 6mm 8mm;
     }
 
@@ -325,8 +357,8 @@
         print-color-adjust: exact !important;
       }
       html, body {
-        width: 281mm !important;
-        height: 198mm !important;
+        width: 404mm !important;
+        height: 285mm !important;
         margin: 0 !important;
         padding: 0 !important;
         background: #ffffff !important;
@@ -338,14 +370,14 @@
       .page-wrap {
         padding: 0 !important;
         margin: 0 !important;
-        width: 281mm !important;
-        height: 198mm !important;
+        width: 404mm !important;
+        height: 285mm !important;
       }
-      .a4-landscape {
-        width: 281mm !important;
-        height: 198mm !important;
-        max-height: 198mm !important;
-        min-height: 198mm !important;
+      .a3-landscape {
+        width: 404mm !important;
+        height: 285mm !important;
+        max-height: 285mm !important;
+        min-height: 285mm !important;
         padding: 0 !important;
         margin: 0 !important;
         box-shadow: none !important;
@@ -366,7 +398,7 @@
   </div>
 
   <div class="page-wrap">
-    <div class="a4-landscape">
+    <div class="a3-landscape">
       <!-- Header -->
       <header class="ws-header">
         <div class="title-group">
@@ -406,12 +438,9 @@
             <span class="f-sub">직관적이고 유용하다고 칭찬한 부분</span>
           </div>
           <div class="f-body">
-            <div class="f-slot" style="background:#f0fdf4;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#f0fdf4;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#f0fdf4;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#f0fdf4;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#f0fdf4;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#f0fdf4;">[포스트잇 부착]</div>
+            <div class="postit-slot" style="background:#f0fdf4;">3x3 포스트잇</div>
+            <div class="postit-slot" style="background:#f0fdf4;">3x3 포스트잇</div>
+            <div class="note-zone">관찰 메모</div>
           </div>
         </div>
 
@@ -424,12 +453,9 @@
             <span class="f-sub">주저하거나 막힌 지점, 의구심, 취약점</span>
           </div>
           <div class="f-body">
-            <div class="f-slot" style="background:#fef2f2;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#fef2f2;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#fef2f2;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#fef2f2;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#fef2f2;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#fef2f2;">[포스트잇 부착]</div>
+            <div class="postit-slot" style="background:#fef2f2;">3x3 포스트잇</div>
+            <div class="postit-slot" style="background:#fef2f2;">3x3 포스트잇</div>
+            <div class="note-zone">관찰 메모</div>
           </div>
         </div>
 
@@ -442,12 +468,9 @@
             <span class="f-sub">사용자가 작동 방식을 물어보거나 이해 못 한 점</span>
           </div>
           <div class="f-body">
-            <div class="f-slot" style="background:#eff6ff;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#eff6ff;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#eff6ff;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#eff6ff;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#eff6ff;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#eff6ff;">[포스트잇 부착]</div>
+            <div class="postit-slot" style="background:#eff6ff;">3x3 포스트잇</div>
+            <div class="postit-slot" style="background:#eff6ff;">3x3 포스트잇</div>
+            <div class="note-zone">관찰 메모</div>
           </div>
         </div>
 
@@ -460,12 +483,9 @@
             <span class="f-sub">테스터가 직접 제안한 번뜩이는 아이디어</span>
           </div>
           <div class="f-body">
-            <div class="f-slot" style="background:#fffbeb;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#fffbeb;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#fffbeb;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#fffbeb;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#fffbeb;">[포스트잇 부착]</div>
-            <div class="f-slot" style="background:#fffbeb;">[포스트잇 부착]</div>
+            <div class="postit-slot" style="background:#fffbeb;">3x3 포스트잇</div>
+            <div class="postit-slot" style="background:#fffbeb;">3x3 포스트잇</div>
+            <div class="note-zone">관찰 메모</div>
           </div>
         </div>
       </div>
