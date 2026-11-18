@@ -4,30 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Worksheet 08 - 1-Week Action Sprint Plan | Design Thinking Workshop</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <title>Worksheet 08 - 1-Week 현업 검증 실행 계획서 | Design Thinking Workshop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap">
   <style>
     :root {
-      --primary: #0284c7;
-      --primary-light: #e0f2fe;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --border: #cbd5e1;
-      --border-dark: #94a3b8;
-      --bg-box: #f8fafc;
+      --ink: #18181b;
+      --ink-secondary: #27272a;
+      --text-muted: #52525b;
+      --text-faint: #71717a;
+      --rule-strong: #27272a;
+      --rule: #d4d4d8;
+      --rule-dashed: #a1a1aa;
+      --paper: #ffffff;
+      --surface-subtle: #fafafa;
+      --screen-bg: #e4e4e7;
+      --accent: #0369a1;
+      --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Pretendard Variable', Pretendard, monospace;
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
     body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      color: var(--text);
-      background-color: #f1f5f9;
+      font-family: var(--font-sans);
+      letter-spacing: -0.015em;
+      word-break: keep-all;
+      color: var(--ink);
+      background-color: var(--screen-bg);
       line-height: 1.35;
       -webkit-font-smoothing: antialiased;
     }
@@ -38,45 +48,50 @@
       top: 16px;
       right: 16px;
       display: flex;
-      gap: 10px;
+      gap: 6px;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
-      padding: 8px 14px;
-      border-radius: 9999px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-      border: 1px solid #cbd5e1;
+      background: rgba(255, 255, 255, 0.96);
+      padding: 6px;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--rule);
     }
 
     .btn-tool {
-      background: #0284c7;
+      font-family: var(--font-sans);
+      background: var(--ink);
       color: #ffffff;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 9999px;
-      font-size: 0.85rem;
-      font-weight: 700;
+      border: 1px solid var(--ink);
+      padding: 7px 14px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       text-decoration: none;
-      transition: background 140ms ease;
+      transition: background-color 140ms ease;
     }
 
     .btn-tool:hover {
-      background: #0369a1;
+      background: #3f3f46;
     }
 
     .btn-tool.secondary {
-      background: #ffffff;
-      color: #475569;
-      border: 1px solid #cbd5e1;
+      background: var(--paper);
+      color: var(--ink-secondary);
+      border: 1px solid var(--rule);
     }
 
     .btn-tool.secondary:hover {
-      background: #f8fafc;
-      color: #0f172a;
+      background: var(--surface-subtle);
+      color: var(--ink);
+    }
+
+    .btn-tool:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
     }
 
     /* A4 Portrait Page Container */
@@ -90,15 +105,13 @@
       width: 194mm;
       height: 281mm;
       max-height: 281mm;
-      background: #ffffff;
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-      border-radius: 4px;
+      background: var(--paper);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       padding: 6mm 8mm;
       display: flex;
       flex-direction: column;
       position: relative;
-      overflow: hidden;
-      box-sizing: border-box;
+      overflow: clip;
     }
 
     /* Header */
@@ -106,47 +119,53 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      border-bottom: 2px solid var(--primary);
-      padding-bottom: 4px;
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 5px;
       margin-bottom: 6px;
       flex-shrink: 0;
+      gap: 12px;
     }
 
-    .title-group h1 {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--text);
+    .stage-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      margin-bottom: 2px;
     }
 
-    .badge-stage {
-      background: var(--primary);
-      color: #ffffff;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .ws-code { color: var(--ink); }
+    .stage-sep { color: var(--rule); }
+    .stage-label { color: var(--accent); }
+
+    .title-group h1 {
+      font-size: 1.16rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.02em;
     }
 
     .title-group p {
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
-      margin-top: 1px;
+      margin-top: 2px;
     }
 
     .meta-fields {
       display: flex;
       gap: 12px;
-      font-size: 0.78rem;
+      font-size: 0.74rem;
+      align-items: baseline;
+      flex-shrink: 0;
     }
 
     .meta-item {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       gap: 4px;
     }
 
@@ -157,59 +176,72 @@
 
     .meta-line {
       display: inline-block;
-      min-width: 55px;
-      border-bottom: 1.5px solid var(--border-dark);
-      height: 15px;
+      min-width: 48px;
+      border-bottom: 1px solid var(--rule-strong);
+      height: 14px;
+    }
+
+    .meta-time {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--ink);
     }
 
     /* Section Cards */
     .section-card {
-      background: #ffffff;
-      border: 1.5px solid var(--border-dark);
-      border-radius: 6px;
+      background: var(--paper);
+      border: 1.5px solid var(--rule-strong);
+      border-radius: 2px;
       padding: 6px 10px;
       margin-bottom: 6px;
       display: flex;
       flex-direction: column;
     }
 
+    .section-card.roadmap-card {
+      flex: 1;
+      min-height: 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 3px;
+      margin-bottom: 5px;
+      flex-shrink: 0;
+    }
+
     .section-title {
       font-size: 0.82rem;
       font-weight: 800;
-      color: var(--text);
+      color: var(--ink);
       display: flex;
       align-items: center;
       gap: 6px;
-      margin-bottom: 2px;
-      flex-shrink: 0;
     }
 
     .step-num {
-      background: var(--primary);
-      color: #ffffff;
-      width: 17px;
-      height: 17px;
-      border-radius: 50%;
+      font-family: var(--font-mono);
       font-size: 0.68rem;
-      font-weight: 800;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      font-weight: 700;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0 5px;
+      border-radius: 2px;
+      line-height: 1.25;
     }
 
     .section-hint {
-      font-size: 0.67rem;
+      font-size: 0.65rem;
       color: var(--text-muted);
-      margin-bottom: 4px;
-      flex-shrink: 0;
     }
 
-    /* Hypothesis Box */
+    /* Step 01: Hypothesis & GSM */
     .hypothesis-box {
-      background: var(--bg-box);
-      border: 1px dashed var(--border);
-      border-radius: 4px;
-      padding: 6px 12px;
       display: flex;
       flex-direction: column;
       gap: 5px;
@@ -217,51 +249,73 @@
 
     .hypo-line {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       gap: 6px;
-      font-size: 0.74rem;
+      font-size: 0.73rem;
+    }
+
+    .gsm-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--ink);
+      background: var(--surface-subtle);
+      border: 1px solid var(--rule);
+      padding: 1px 6px;
+      border-radius: 2px;
+      white-space: nowrap;
     }
 
     .hypo-input {
       flex: 1;
-      border-bottom: 1px dotted var(--border-dark);
-      height: 18px;
+      border-bottom: 1px dotted var(--rule-dashed);
+      height: 16px;
     }
 
-    /* Sprint Table */
-    .sprint-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.72rem;
-    }
-
-    .sprint-table th {
-      background: #f1f5f9;
-      color: var(--text);
-      font-weight: 700;
-      padding: 5px 6px;
-      border: 1px solid var(--border);
-      text-align: left;
-    }
-
-    .sprint-table td {
-      padding: 4px 6px;
-      border: 1px solid var(--border);
-      vertical-align: middle;
-      height: 10mm;
-    }
-
-    .day-badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-      color: var(--primary);
-      background: var(--primary-light);
-      padding: 2px 5px;
-      border-radius: 3px;
+    .hypo-example {
+      font-size: 0.63rem;
+      color: var(--text-faint);
       white-space: nowrap;
     }
 
-    /* RACI Matrix */
+    /* Step 02: 7-Day Sprint Table */
+    .sprint-table {
+      width: 100%;
+      flex: 1;
+      border-collapse: collapse;
+      font-size: 0.71rem;
+    }
+
+    .sprint-table th {
+      background: var(--surface-subtle);
+      color: var(--ink);
+      font-weight: 700;
+      padding: 4px 6px;
+      border: 1px solid var(--rule);
+      text-align: left;
+      font-size: 0.68rem;
+    }
+
+    .sprint-table td {
+      padding: 3px 6px;
+      border: 1px solid var(--rule);
+      vertical-align: middle;
+    }
+
+    .col-day { width: 14%; }
+    .col-task { width: 48%; }
+    .col-owner { width: 17%; }
+    .col-output { width: 21%; color: var(--text-muted); font-size: 0.67rem; }
+
+    .day-badge {
+      font-family: var(--font-mono);
+      font-size: 0.67rem;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    /* Step 03: RACI Matrix */
     .raci-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -269,43 +323,92 @@
     }
 
     .raci-item {
-      border: 1px dashed var(--border);
-      border-radius: 4px;
-      background: var(--bg-box);
-      padding: 6px 8px;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      background: var(--paper);
+      padding: 5px 7px;
       display: flex;
       flex-direction: column;
-      gap: 4px;
-      min-height: 22mm;
+      gap: 2px;
+      min-height: 20mm;
     }
 
     .raci-tag {
-      font-size: 0.72rem;
-      font-weight: 800;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .raci-desc {
+      font-size: 0.61rem;
+      color: var(--text-muted);
     }
 
     .raci-input {
-      border-bottom: 1px dotted var(--border-dark);
-      height: 22px;
+      border-bottom: 1px dotted var(--rule-dashed);
+      height: 18px;
       margin-top: auto;
     }
 
-    /* Pledge & Signatures */
-    .pledge-box {
-      background: #f0fdf4;
-      border: 1.5px solid #86efac;
-      border-radius: 6px;
+    /* Step 04: Check-in & Sign-off (Replaces student pledge) */
+    .signoff-card {
+      background: var(--paper);
+      border: 1.5px solid var(--ink);
+      border-radius: 2px;
       padding: 6px 10px;
       display: flex;
       flex-direction: column;
       gap: 6px;
+      flex-shrink: 0;
     }
 
-    .pledge-text {
-      font-size: 0.72rem;
-      color: #166534;
-      font-weight: 600;
-      text-align: center;
+    .checkin-row {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 10px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 5px 8px;
+      font-size: 0.69rem;
+    }
+
+    .checkin-field {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .checkin-field strong {
+      color: var(--ink);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .checkin-blank {
+      flex: 1;
+      border-bottom: 1px dotted var(--rule-dashed);
+      height: 14px;
+    }
+
+    .decision-options {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 0.66rem;
+    }
+
+    .opt-box {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border: 1px solid var(--rule-strong);
+      border-radius: 1px;
+      background: var(--paper);
+      vertical-align: -1px;
+      margin-right: 3px;
     }
 
     .sig-grid {
@@ -317,19 +420,20 @@
     .sig-slot {
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 2px;
     }
 
     .sig-line {
       width: 100%;
-      border-bottom: 1px solid #86efac;
-      height: 18px;
+      border-bottom: 1px solid var(--rule-strong);
+      height: 16px;
     }
 
     .sig-label {
-      font-size: 0.65rem;
-      color: #15803d;
+      font-family: var(--font-mono);
+      font-size: 0.61rem;
+      color: var(--text-muted);
+      text-align: center;
     }
 
     /* Footer */
@@ -338,11 +442,16 @@
       justify-content: space-between;
       align-items: center;
       margin-top: 4px;
-      font-size: 0.65rem;
+      font-size: 0.61rem;
       color: var(--text-muted);
-      border-top: 1px solid #e2e8f0;
+      border-top: 1px solid var(--rule);
       padding-top: 3px;
       flex-shrink: 0;
+    }
+
+    .footer-mono {
+      font-family: var(--font-mono);
+      color: var(--text-faint);
     }
 
     /* Print Styles */
@@ -352,7 +461,7 @@
     }
 
     @media print {
-      *, *:before, *:after {
+      *, *::before, *::after {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
@@ -362,7 +471,7 @@
         margin: 0 !important;
         padding: 0 !important;
         background: #ffffff !important;
-        overflow: hidden !important;
+        overflow: clip !important;
       }
       .screen-toolbar {
         display: none !important;
@@ -391,188 +500,210 @@
 </head>
 <body>
 
-  <!-- Screen Toolbar -->
-  <div class="screen-toolbar no-print">
-    <a href="index.html" class="btn-tool secondary">&larr; 서식 전체 목록</a>
-    <button onclick="window.print()" class="btn-tool">인쇄 / PDF 저장</button>
+  <div class="screen-toolbar">
+    <a href="index.html" class="btn-tool secondary">&larr; 서식 목록</a>
+    <button type="button" onclick="window.print()" class="btn-tool">인쇄 / PDF 저장</button>
   </div>
 
   <div class="page-wrap">
     <div class="a4-portrait">
-      <!-- Header -->
       <header class="ws-header">
         <div class="title-group">
-          <h1>
-            <span class="badge-stage">Appendix</span>
-            1-Week 액션 스프린트 실행 계획서 (Action Sprint)
-          </h1>
-          <p>워크숍 아이디어가 서랍 속에 묻히지 않도록, 향후 7일간의 검증 실행 계획과 역할을 확정합니다.</p>
+          <div class="stage-kicker">
+            <span class="ws-code">WS 08</span>
+            <span class="stage-sep">/</span>
+            <span class="stage-label">Action Sprint &middot; 1-Week Plan</span>
+          </div>
+          <h1>1-Week 현업 검증 실행 계획서</h1>
+          <p>향후 7일간 실무에서 프로토타입을 검증할 가설, 일정, 담당자를 확정합니다.</p>
         </div>
         <div class="meta-fields">
-          <div class="meta-item"><span class="meta-label">프로젝트:</span><span class="meta-line"></span></div>
-          <div class="meta-item"><span class="meta-label">작성 일자:</span><span class="meta-line"></span></div>
-          <div class="meta-item"><span class="meta-label">제한 시간:</span><span style="font-weight:700; color:var(--primary);">10분</span></div>
+          <div class="meta-item"><span class="meta-label">과제명</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">작성 일자</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">소요 시간</span><span class="meta-time">10분</span></div>
         </div>
       </header>
 
-      <!-- Step 1: Hypothesis & Metrics -->
+      <!-- Step 01: Hypothesis & GSM -->
       <section class="section-card">
-        <div class="section-title">
-          <span class="step-num">1</span>
-          핵심 검증 가설 및 GSM 성공 지표 (Goal &rarr; Signal &rarr; Metric)
+        <div class="section-header">
+          <div class="section-title">
+            <span class="step-num">01</span>
+            <span>검증 가설 및 GSM 성공 지표 (Goal &middot; Signal &middot; Metric)</span>
+          </div>
+          <span class="section-hint">파일럿 기간에 확인할 목표 가설, 행동 신호, 측정 지표를 한 줄씩 정의합니다.</span>
         </div>
-        <div class="section-hint">1주일간 실무에서 파일럿으로 검증할 가설(목표)과 관찰할 행동 신호(Signal), 측정 지표(Metric)를 정의합니다.</div>
         <div class="hypothesis-box">
           <div class="hypo-line">
-            <span style="font-weight:700; color:var(--primary);">가설 (Goal):</span>
-            <span>우리는</span>
+            <span class="gsm-tag">가설 (Goal)</span>
+            <span>우리가</span>
             <span class="hypo-input"></span>
-            <span>을(를) 제공하면,</span>
+            <span>을(를) 적용하면,</span>
           </div>
           <div class="hypo-line">
             <span class="hypo-input"></span>
             <span>사용자에게</span>
             <span class="hypo-input"></span>
-            <span>효과가 생길 것이라 믿는다.</span>
+            <span>변화가 나타날 것이다.</span>
           </div>
-          <div class="hypo-line" style="margin-top: 2px;">
-            <span style="font-weight:700; color:#0369a1;">행동 신호 (Signal):</span>
+          <div class="hypo-line">
+            <span class="gsm-tag">행동 신호 (Signal)</span>
             <span class="hypo-input"></span>
-            <span style="font-size:0.65rem; color:#64748b;">(예: 전화 독촉 대신 상태 위젯으로 직접 확인)</span>
+            <span class="hypo-example">예: 전화 확인 대신 상태 화면 직접 조회</span>
           </div>
-          <div class="hypo-line" style="margin-top: 2px;">
-            <span style="font-weight:700; color:#15803d;">측정 지표 (Metric):</span>
+          <div class="hypo-line">
+            <span class="gsm-tag">측정 지표 (Metric)</span>
             <span class="hypo-input"></span>
-            <span style="font-size:0.65rem; color:#64748b;">(예: 타 부서 1차 회신 소요 시간 48시간 &rarr; 6시간 단축)</span>
+            <span class="hypo-example">예: 1차 회신 소요 시간 48시간 &rarr; 6시간 단축</span>
           </div>
         </div>
       </section>
 
-      <!-- Step 2: 7-Day Sprint Roadmap -->
-      <section class="section-card" style="flex: 1; display: flex; flex-direction: column;">
-        <div class="section-title">
-          <span class="step-num">2</span>
-          7-Day 스프린트 상세 실행 일정 (Timeline)
+      <!-- Step 02: 7-Day Sprint Roadmap -->
+      <section class="section-card roadmap-card">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="step-num">02</span>
+            <span>7-Day 파일럿 실행 일정</span>
+          </div>
+          <span class="section-hint">일자별 과업과 담당자를 지정해 1주일 안에 실무 테스트와 의사결정을 마칩니다.</span>
         </div>
-        <div class="section-hint">단 1주일 안에 실무 파일럿 테스트를 완료하기 위한 일자별 마일스톤입니다.</div>
-        <table class="sprint-table" style="flex: 1; height: 100%;">
+        <table class="sprint-table">
           <thead>
             <tr>
-              <th style="width: 14%;">일자</th>
-              <th style="width: 48%;">실행 과업 (Action Task)</th>
-              <th style="width: 18%;">담당자</th>
-              <th style="width: 20%;">완료 산출물</th>
+              <th class="col-day">일자</th>
+              <th class="col-task">실행 과업 (Action Task)</th>
+              <th class="col-owner">담당자</th>
+              <th class="col-output">산출물</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><span class="day-badge">Day 1 (월)</span></td>
-              <td>워크숍 피드백 반영 및 프로토타입 수정 스펙 확정</td>
+              <td>워크숍 테스트 피드백 반영 및 파일럿 범위 확정</td>
               <td></td>
-              <td>수정 요구사항 정의서</td>
+              <td class="col-output">수정 요구사항 메모</td>
             </tr>
             <tr>
               <td><span class="day-badge">Day 2 (화)</span></td>
-              <td>실제 업무용 디지털 목업/간이 도구 제작 (Figma/스프레드시트)</td>
+              <td>업무 검증용 간이 도구·화면 제작 (문서·시트·목업)</td>
               <td></td>
-              <td>클릭 가능한 디지털 목업</td>
+              <td class="col-output">테스트용 간이 화면</td>
             </tr>
             <tr>
               <td><span class="day-badge">Day 3 (수)</span></td>
-              <td>부서 내 핵심 이해관계자(팀장/유관부서) 1차 내부 리뷰</td>
+              <td>유관 실무자·리더 대상 1차 내부 점검</td>
               <td></td>
-              <td>이해관계자 피드백 메모</td>
+              <td class="col-output">내부 점검 코멘트</td>
             </tr>
             <tr>
               <td><span class="day-badge">Day 4 (목)</span></td>
-              <td>실제 타깃 사용자 3~5인 대상 2차 업무 파일럿 테스트 진행</td>
+              <td>실제 타깃 사용자 3~5명 대상 업무 파일럿 테스트</td>
               <td></td>
-              <td>실사용 관찰 기록지</td>
+              <td class="col-output">관찰 기록지</td>
             </tr>
             <tr>
               <td><span class="day-badge">Day 5 (금)</span></td>
-              <td>파일럿 데이터 분석 및 핵심 지표 달성 여부 평가</td>
+              <td>관찰 결과 및 GSM 측정 지표 달성 여부 집계</td>
               <td></td>
-              <td>정량/정성 성과 분석표</td>
+              <td class="col-output">지표 결과 요약</td>
             </tr>
             <tr>
               <td><span class="day-badge">Day 6 (월)</span></td>
-              <td>임원/경영진 보고용 1-Page 스프린트 결과 요약서 작성</td>
+              <td>의사결정 공유용 1페이지 결과 요약서 작성</td>
               <td></td>
-              <td>1-Page 의사결정 보고서</td>
+              <td class="col-output">1-Page 결과 요약</td>
             </tr>
             <tr>
               <td><span class="day-badge">Day 7 (화)</span></td>
-              <td>최종 의사결정 회의: 본 프로젝트 채택(Go) / 수정(Pivot) / 폐기(Drop)</td>
+              <td>결과 체크인 리뷰: 본 과제 전환(Go) · 보완(Pivot) · 종료(Drop)</td>
               <td></td>
-              <td>공식 추진 의사결정안</td>
+              <td class="col-output">후속 추진 결정안</td>
             </tr>
           </tbody>
         </table>
       </section>
 
-      <!-- Step 3: RACI Matrix -->
+      <!-- Step 03: RACI Matrix -->
       <section class="section-card">
-        <div class="section-title">
-          <span class="step-num">3</span>
-          실행 추진 조직 및 RACI 역할 분담
+        <div class="section-header">
+          <div class="section-title">
+            <span class="step-num">03</span>
+            <span>RACI 역할 및 책임 분담</span>
+          </div>
+          <span class="section-hint">실행 주체와 의사결정권자를 명확히 구분해 병목을 줄입니다.</span>
         </div>
-        <div class="section-hint">모호한 업무 분장을 방지하기 위해 4가지 책임을 명확히 지정합니다.</div>
         <div class="raci-grid">
           <div class="raci-item">
-            <span class="raci-tag" style="color: #0284c7;">R (실행 책임자)</span>
-            <span style="font-size:0.62rem; color:var(--text-muted);">실제 스프린트를 리드하는 주체</span>
+            <span class="raci-tag">R &middot; 실행 리드</span>
+            <span class="raci-desc">파일럿 실무를 주도하는 담당자</span>
             <div class="raci-input"></div>
           </div>
           <div class="raci-item">
-            <span class="raci-tag" style="color: #7c3aed;">A (최종 승인자)</span>
-            <span style="font-size:0.62rem; color:var(--text-muted);">결과에 대한 최종 결재권자</span>
+            <span class="raci-tag">A &middot; 의사결정자</span>
+            <span class="raci-desc">Go/Pivot/Drop 최종 승인권자</span>
             <div class="raci-input"></div>
           </div>
           <div class="raci-item">
-            <span class="raci-tag" style="color: #d97706;">C (자문 제공자)</span>
-            <span style="font-size:0.62rem; color:var(--text-muted);">전문 지식/피드백을 줄 유관자</span>
+            <span class="raci-tag">C &middot; 실무 자문</span>
+            <span class="raci-desc">도메인·기술 검토 협조자</span>
             <div class="raci-input"></div>
           </div>
           <div class="raci-item">
-            <span class="raci-tag" style="color: #059669;">I (정보 공유 대상)</span>
-            <span style="font-size:0.62rem; color:var(--text-muted);">진행 상황을 공유받을 부서</span>
+            <span class="raci-tag">I &middot; 진행 공유</span>
+            <span class="raci-desc">결과를 공유받을 유관 부서</span>
             <div class="raci-input"></div>
           </div>
         </div>
       </section>
 
-      <!-- Step 4: Pledge & Signatures -->
-      <section class="pledge-box">
-        <div class="pledge-text">
-          "우리 팀은 디자인 씽킹 워크숍에서 도출한 혁신 아이디어를 사장시키지 않고,<br>
-          향후 7일간 약속된 스프린트 과업을 성실히 수행하여 실질적인 비즈니스 가치로 검증해 낼 것을 서약합니다."
+      <!-- Step 04: Check-in & Sign-off -->
+      <section class="signoff-card">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="step-num">04</span>
+            <span>1주 후 결과 리뷰 일정 및 담당 확인 (Check-in &amp; Sign-off)</span>
+          </div>
+          <span class="section-hint">자리를 떠나기 전 체크인 미팅 일시를 먼저 확정합니다.</span>
+        </div>
+        <div class="checkin-row">
+          <div class="checkin-field">
+            <strong>체크인 일시·장소</strong>
+            <span class="checkin-blank"></span>
+          </div>
+          <div class="checkin-field">
+            <strong>Day 7 판단</strong>
+            <div class="decision-options">
+              <span><span class="opt-box"></span>Go</span>
+              <span><span class="opt-box"></span>Pivot</span>
+              <span><span class="opt-box"></span>Drop</span>
+            </div>
+          </div>
         </div>
         <div class="sig-grid">
           <div class="sig-slot">
             <div class="sig-line"></div>
-            <span class="sig-label">팀원 1 (서명)</span>
+            <span class="sig-label">실행 리드 (R) 확인</span>
           </div>
           <div class="sig-slot">
             <div class="sig-line"></div>
-            <span class="sig-label">팀원 2 (서명)</span>
+            <span class="sig-label">참여 구성원 확인</span>
           </div>
           <div class="sig-slot">
             <div class="sig-line"></div>
-            <span class="sig-label">팀원 3 (서명)</span>
+            <span class="sig-label">참여 구성원 확인</span>
           </div>
           <div class="sig-slot">
             <div class="sig-line"></div>
-            <span class="sig-label">팀원 4 (서명)</span>
+            <span class="sig-label">의사결정자 (A) 확인</span>
           </div>
         </div>
       </section>
 
-      <!-- Footer -->
-      <footer class="ws-footer" style="font-size: 0.62rem;">
-        <span>Design Thinking Workshop Toolkit &bull; 1-Week Action Sprint Plan</span>
-        <span>* 작성된 계획서는 촬영 후 메신저로 팀 전체에 즉시 공유합니다.</span>
-        <span>electronicnomad.net/dtw</span>
+      <footer class="ws-footer">
+        <span class="footer-mono">DTW &middot; WS 08 Action Sprint (A4)</span>
+        <span>작성 후 촬영하여 참여 구성원·의사결정자의 메신저와 캘린더에 바로 등록합니다.</span>
+        <span class="footer-mono">electronicnomad.net/dtw</span>
       </footer>
     </div>
   </div>

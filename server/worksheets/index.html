@@ -4,35 +4,49 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Design Thinking Workshop - A3/A4 워크시트 서식 툴킷 (Worksheet Toolkit)</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <title>Design Thinking Workshop - 워크숍 실습 워크시트 (전 8종)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap">
   <style>
     :root {
-      --primary: #0284c7;
-      --primary-dark: #0369a1;
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-      --radius: 12px;
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
-      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.08);
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --surface-subtle: #f4f4f5;
+      --ink: #18181b;
+      --ink-secondary: #27272a;
+      --text-muted: #52525b;
+      --text-faint: #71717a;
+      --border: #e4e4e7;
+      --border-strong: #d4d4d8;
+      --border-hover: #a1a1aa;
+      --radius: 8px;
+      --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Pretendard Variable', Pretendard, monospace;
+
+      --dot-empathize: #0369a1;
+      --dot-define: #047857;
+      --dot-ideate: #b45309;
+      --dot-prototype: #be123c;
+      --dot-test: #3730a3;
+      --dot-wrap: #3730a3;
+      --dot-action: #0369a1;
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
     body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-family: var(--font-sans);
+      letter-spacing: -0.015em;
+      word-break: keep-all;
       background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
+      color: var(--ink);
+      line-height: 1.55;
       padding: 40px 20px 80px;
       -webkit-font-smoothing: antialiased;
     }
@@ -44,168 +58,185 @@
 
     /* Header */
     header.dashboard-header {
-      background: var(--card-bg);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 32px 36px;
-      margin-bottom: 32px;
-      box-shadow: var(--shadow-sm);
+      padding: 28px 32px;
+      margin-bottom: 16px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-end;
       flex-wrap: wrap;
       gap: 20px;
     }
 
-    .header-text h1 {
-      font-size: 1.75rem;
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: -0.02em;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .header-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-faint);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
     }
 
-    .header-badge {
-      background: #e0f2fe;
-      color: #0284c7;
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 9999px;
+    .header-text h1 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.025em;
+      line-height: 1.25;
     }
 
     .header-text p {
       color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-top: 6px;
+      font-size: 0.92rem;
+      margin-top: 8px;
       max-width: 680px;
     }
 
     .header-actions {
       display: flex;
-      gap: 12px;
-    }
-
-    .btn-main {
-      background: var(--primary);
-      color: #ffffff;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
-      transition: background 140ms ease, transform 140ms ease;
-    }
-
-    .btn-main:hover {
-      background: var(--primary-dark);
-      transform: translateY(-1px);
+      gap: 10px;
     }
 
     .btn-sub {
-      background: #ffffff;
-      color: var(--text);
-      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink);
+      border: 1px solid var(--border-strong);
       text-decoration: none;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-size: 0.9rem;
+      padding: 9px 16px;
+      border-radius: 6px;
+      font-size: 0.86rem;
       font-weight: 600;
-      transition: background 140ms ease;
+      transition: background-color 140ms ease, border-color 140ms ease;
     }
 
     .btn-sub:hover {
-      background: #f1f5f9;
+      background: var(--surface-subtle);
+      border-color: var(--border-hover);
     }
 
-    /* Stage Filter / Overview Banner */
-    .info-banner {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      border-radius: var(--radius);
-      padding: 16px 24px;
+    .btn-sub:focus-visible,
+    .ws-btn-view:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+    }
+
+    /* Print Specification Notice Bar */
+    .spec-banner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--ink);
+      border-radius: 6px;
+      padding: 14px 20px;
       margin-bottom: 28px;
       display: flex;
-      align-items: center;
+      align-items: baseline;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 12px;
-      font-size: 0.88rem;
-      color: #166534;
+      font-size: 0.85rem;
+      color: var(--text-muted);
     }
 
-    .info-banner strong {
-      color: #14532d;
+    .spec-banner strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .spec-qty {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--ink-secondary);
+      white-space: nowrap;
     }
 
     /* Grid of Worksheets */
     .worksheet-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      grid-auto-rows: auto auto 1fr auto auto;
+      gap: 16px;
     }
 
     .ws-card {
-      background: var(--card-bg);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow-sm);
-      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
-      position: relative;
+      padding: 22px;
+      grid-row: span 5;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto auto;
+      grid-template-rows: subgrid;
+      row-gap: 0;
+      transition: border-color 140ms ease;
     }
 
     .ws-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-lg);
-      border-color: #cbd5e1;
+      border-color: var(--border-hover);
     }
 
     .ws-card-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
+      gap: 8px;
       margin-bottom: 12px;
     }
 
-    .ws-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 4px;
+    .ws-stage {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--ink-secondary);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
     }
 
+    .stage-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 1px;
+      background: var(--ink);
+      flex-shrink: 0;
+    }
+
+    .dot-empathize { background: var(--dot-empathize); }
+    .dot-define { background: var(--dot-define); }
+    .dot-ideate { background: var(--dot-ideate); }
+    .dot-prototype { background: var(--dot-prototype); }
+    .dot-test { background: var(--dot-test); }
+    .dot-wrap { background: var(--dot-wrap); }
+    .dot-action { background: var(--dot-action); }
+
     .ws-layout-badge {
+      font-family: var(--font-mono);
       font-size: 0.72rem;
-      font-weight: 700;
-      padding: 2px 8px;
+      font-weight: 500;
+      padding: 2px 7px;
       border-radius: 4px;
-      background: #f1f5f9;
-      color: #475569;
+      background: var(--surface-subtle);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
     }
 
     .ws-card h2 {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--text);
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--ink);
       margin-bottom: 8px;
       line-height: 1.35;
+      letter-spacing: -0.02em;
     }
 
     .ws-card p {
       font-size: 0.84rem;
       color: var(--text-muted);
-      line-height: 1.5;
-      flex: 1;
+      line-height: 1.55;
       margin-bottom: 16px;
     }
 
@@ -213,85 +244,61 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 8px;
       padding-top: 12px;
       border-top: 1px solid var(--border);
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-bottom: 16px;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--text-faint);
+      margin-bottom: 14px;
     }
 
     .ws-card-footer {
       display: flex;
-      gap: 8px;
     }
 
     .ws-btn-view {
       flex: 1;
       text-align: center;
-      background: var(--primary);
+      background: var(--ink);
       color: #ffffff;
       padding: 9px 12px;
       border-radius: 6px;
       font-size: 0.82rem;
-      font-weight: 700;
+      font-weight: 600;
       text-decoration: none;
-      transition: background 140ms ease;
+      transition: background-color 140ms ease;
     }
 
     .ws-btn-view:hover {
-      background: var(--primary-dark);
+      background: #3f3f46;
     }
-
-    .ws-btn-print {
-      text-align: center;
-      background: #ffffff;
-      color: #334155;
-      border: 1px solid var(--border);
-      padding: 9px 14px;
-      border-radius: 6px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 140ms ease;
-    }
-
-    .ws-btn-print:hover {
-      background: #f8fafc;
-      color: var(--text);
-    }
-
-    /* Stage-specific Colors */
-    .stage-empathize { background: #e0f2fe; color: #0284c7; }
-    .stage-define { background: #dcfce7; color: #059669; }
-    .stage-ideate { background: #fef3c7; color: #d97706; }
-    .stage-prototype { background: #ffe4e6; color: #e11d48; }
-    .stage-test { background: #ede9fe; color: #7c3aed; }
-    .stage-wrap { background: #e0e7ff; color: #4f46e5; }
-    .stage-action { background: #e0f2fe; color: #0284c7; }
 
     /* Footer */
     footer.dashboard-footer {
-      margin-top: 60px;
-      text-align: center;
-      font-size: 0.82rem;
-      color: var(--text-muted);
+      margin-top: 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-faint);
       border-top: 1px solid var(--border);
-      padding-top: 24px;
+      padding-top: 20px;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- Header -->
     <header class="dashboard-header">
       <div class="header-text">
-        <h1>
-          Design Thinking 워크시트 서식 툴킷
-          <span class="header-badge">총 8종 세트</span>
-        </h1>
+        <div class="header-kicker">Design Thinking Workshop &middot; Printable Toolkit</div>
+        <h1>워크숍 실습 워크시트 (전 8종)</h1>
         <p>
-          디자인 씽킹 워크숍의 5단계 실습 및 회고/실행에 필요한 표준 워크시트입니다. 브라우저에서 바로 열람하거나 <strong>[인쇄하기]</strong>를 눌러 깨끗한 A3/A4 규격(PDF/종이 출력물)으로 배포할 수 있습니다.
+          5단계 실습과 회고·현업 실행에 사용하는 A3/A4 인쇄용 표준 서식입니다. 각 서식을 열어 브라우저 인쇄 기능(PDF 저장 포함)으로 바로 출력할 수 있습니다.
         </p>
       </div>
       <div class="header-actions">
@@ -299,160 +306,156 @@
       </div>
     </header>
 
-    <!-- Info Banner -->
-    <div class="info-banner">
+    <div class="spec-banner">
       <div>
-        <strong>인쇄 안내:</strong> 팀 공용 보드(01, 04, 06, 07)는 <strong>A3 가로</strong>, 개인/소그룹 시트(02, 03, 05, 08)는 <strong>A4</strong> 규격입니다. 인쇄 창에서 용지 크기를 서식에 맞게 선택하고 <em>'배경 그래픽 포함'</em>에 체크하세요. A3 보드는 3x3인치 포스트잇 기준 칸이 실측 크기로 인쇄됩니다.
+        <strong>출력 규격 안내:</strong> 팀 공용 보드(01, 04, 06, 07)는 <strong>A3 가로</strong>, 개인·소그룹 시트(02, 03, 05, 08)는 <strong>A4</strong> 규격입니다. 인쇄 설정에서 용지 크기를 맞추고 <strong>배경 그래픽 포함</strong>을 선택하면 76&times;76mm 포스트잇 가이드와 필기 눈금이 선명하게 인쇄됩니다.
       </div>
-      <div>
-        <strong>권장 배포:</strong> 팀당 1세트 (단, Crazy 8s는 개인당 1장씩 배포)
-      </div>
+      <div class="spec-qty">권장 수량: 조당 1세트 (03번만 인원수대로 출력)</div>
     </div>
 
-    <!-- 8 Worksheets Grid -->
     <div class="worksheet-grid">
 
       <!-- 01: Empathy Map -->
       <div class="ws-card">
         <div class="ws-card-header">
-          <span class="ws-num stage-empathize">Stage 1. Empathize</span>
-          <span class="ws-layout-badge">A3 가로형 (팀 공용 보드)</span>
+          <span class="ws-stage"><span class="stage-dot dot-empathize"></span>Stage 1 &middot; Empathize</span>
+          <span class="ws-layout-badge">A3 가로 &middot; 팀 보드</span>
         </div>
-        <h2>01. 페르소나 &amp; 공감 맵 캔버스</h2>
-        <p>인터뷰를 통해 수집된 관찰 내용을 Say(말한 것), Think(생각한 것), Do(행동한 것), Feel(느낀 감정) 4분면과 Pain &amp; Gain으로 구조화하는 핵심 캔버스입니다.</p>
+        <h2>01. 페르소나 및 공감 맵 캔버스</h2>
+        <p>인터뷰에서 직접 듣고 관찰한 내용을 Say(발언), Think(속마음), Do(행동), Feel(감정) 4분면과 Pain·Gain 항목으로 사실 위주로 구조화합니다.</p>
         <div class="ws-meta-row">
-          <span>매칭 슬라이드: Slide 10, 11</span>
-          <span>권장 시간: 30분 (인터뷰 20분 + 작성 10분)</span>
+          <span>Slide 10, 11</span>
+          <span>30분 (인터뷰 20 + 정리 10)</span>
         </div>
         <div class="ws-card-footer">
-          <a href="01_empathy_map.html" class="ws-btn-view" target="_blank">서식 열기 &amp; 인쇄 &nearr;</a>
+          <a href="01_empathy_map.html" class="ws-btn-view" target="_blank">서식 열기 및 인쇄 &nearr;</a>
         </div>
       </div>
 
       <!-- 02: POV & HMW -->
       <div class="ws-card">
         <div class="ws-card-header">
-          <span class="ws-num stage-define">Stage 2. Define</span>
-          <span class="ws-layout-badge">A4 세로형 (Portrait)</span>
+          <span class="ws-stage"><span class="stage-dot dot-define"></span>Stage 2 &middot; Define</span>
+          <span class="ws-layout-badge">A4 세로</span>
         </div>
-        <h2>02. POV 문제 정의 &amp; HMW 질문 도출 시트</h2>
-        <p>[사용자]는 [니즈]가 필요한데 왜냐하면 [인사이트]이기 때문이다 공식을 완성하고, 팀의 발산을 이끌 "우리가 어떻게 하면 ~할 수 있을까?" 질문 1개를 엄선합니다.</p>
+        <h2>02. POV 문제 정의 및 HMW 질문 시트</h2>
+        <p>[사용자]는 [니즈]가 필요하다. 왜냐하면 [인사이트]이기 때문이다 — 문장으로 문제를 정의하고, 해결 방향을 여는 HMW 질문 1개를 선정합니다.</p>
         <div class="ws-meta-row">
-          <span>매칭 슬라이드: Slide 14, 15</span>
-          <span>권장 시간: 20분</span>
+          <span>Slide 14, 15</span>
+          <span>20분</span>
         </div>
         <div class="ws-card-footer">
-          <a href="02_pov_hmw.html" class="ws-btn-view" target="_blank">서식 열기 &amp; 인쇄 &nearr;</a>
+          <a href="02_pov_hmw.html" class="ws-btn-view" target="_blank">서식 열기 및 인쇄 &nearr;</a>
         </div>
       </div>
 
       <!-- 03: Crazy 8s -->
       <div class="ws-card">
         <div class="ws-card-header">
-          <span class="ws-num stage-ideate">Stage 3. Ideate</span>
-          <span class="ws-layout-badge">A4 가로형 (Landscape)</span>
+          <span class="ws-stage"><span class="stage-dot dot-ideate"></span>Stage 3 &middot; Ideate</span>
+          <span class="ws-layout-badge">A4 가로 &middot; 개인용</span>
         </div>
-        <h2>03. Crazy 8s 개인 아이디어 발산 시트</h2>
-        <p>종이를 8칸으로 나누어 1분마다 1칸씩 총 8분 동안 머릿속의 솔루션 스케치와 핵심 설명을 쏟아내는 개인 발산 프레임워크입니다. (참가자 개인당 1장씩 배포)</p>
+        <h2>03. Crazy 8s 개인 아이디어 스케치 시트</h2>
+        <p>종이를 8칸으로 나누어 1분마다 1칸씩 총 8분 동안 해결 방안을 도형, 화살표, 짧은 메모로 빠르게 기록하는 개인 발산 시트입니다.</p>
         <div class="ws-meta-row">
-          <span>매칭 슬라이드: Slide 17, 18, 19</span>
-          <span>권장 시간: 8분</span>
+          <span>Slide 17, 18, 19</span>
+          <span>8분 (1분 &times; 8칸)</span>
         </div>
         <div class="ws-card-footer">
-          <a href="03_crazy8s.html" class="ws-btn-view" target="_blank">서식 열기 &amp; 인쇄 &nearr;</a>
+          <a href="03_crazy8s.html" class="ws-btn-view" target="_blank">서식 열기 및 인쇄 &nearr;</a>
         </div>
       </div>
 
       <!-- 04: Idea Matrix -->
       <div class="ws-card">
         <div class="ws-card-header">
-          <span class="ws-num stage-ideate">Stage 3. Ideate</span>
-          <span class="ws-layout-badge">A3 가로형 (팀 공용 보드)</span>
+          <span class="ws-stage"><span class="stage-dot dot-ideate"></span>Stage 3 &middot; Ideate</span>
+          <span class="ws-layout-badge">A3 가로 &middot; 팀 보드</span>
         </div>
-        <h2>04. 아이디어 우선순위 2x2 매트릭스 &amp; 투표 보드</h2>
-        <p>쏟아져 나온 아이디어를 '실행 노력(Effort)'과 '사용자 임팩트(Impact)' 축으로 분류하고, 스티커 투표(Dot-voting)를 통해 최종 프로토타이핑 과제를 수렴합니다.</p>
+        <h2>04. 아이디어 우선순위 2&times;2 매트릭스 보드</h2>
+        <p>도출된 아이디어를 사용자 임팩트(Impact)와 구현 부담(Effort) 기준으로 배치하고, 점 투표(1인 3표)를 거쳐 프로토타입 과제를 확정합니다.</p>
         <div class="ws-meta-row">
-          <span>매칭 슬라이드: Slide 17, 18, 19</span>
-          <span>권장 시간: 10분 (수렴)</span>
+          <span>Slide 17, 18, 19</span>
+          <span>10분</span>
         </div>
         <div class="ws-card-footer">
-          <a href="04_idea_matrix.html" class="ws-btn-view" target="_blank">서식 열기 &amp; 인쇄 &nearr;</a>
+          <a href="04_idea_matrix.html" class="ws-btn-view" target="_blank">서식 열기 및 인쇄 &nearr;</a>
         </div>
       </div>
 
       <!-- 05: Storyboard -->
       <div class="ws-card">
         <div class="ws-card-header">
-          <span class="ws-num stage-prototype">Stage 4. Prototype</span>
-          <span class="ws-layout-badge">A4 가로형 (Landscape)</span>
+          <span class="ws-stage"><span class="stage-dot dot-prototype"></span>Stage 4 &middot; Prototype</span>
+          <span class="ws-layout-badge">A4 가로</span>
         </div>
-        <h2>05. 스토리보드 &amp; 프로토타입 설계 시트</h2>
-        <p>사용자가 솔루션을 만나는 문제 맥락부터 해결과 감정 변화까지를 6컷 시나리오로 시각화하고, 팀원 간의 역할 분담과 실물 모형 제작 계획을 수립합니다.</p>
+        <h2>05. 사용자 경험 6컷 스토리보드 시트</h2>
+        <p>사용자가 문제를 겪는 상황부터 솔루션을 사용해 해결하기까지의 전 과정을 6장면으로 설계하고, 제작·시연·기록 역할을 분담합니다.</p>
         <div class="ws-meta-row">
-          <span>매칭 슬라이드: Slide 21, 22, 23</span>
-          <span>권장 시간: 30분 (제작 20분 + 준비 10분)</span>
+          <span>Slide 21, 22, 23</span>
+          <span>30분 (제작 20 + 준비 10)</span>
         </div>
         <div class="ws-card-footer">
-          <a href="05_storyboard.html" class="ws-btn-view" target="_blank">서식 열기 &amp; 인쇄 &nearr;</a>
+          <a href="05_storyboard.html" class="ws-btn-view" target="_blank">서식 열기 및 인쇄 &nearr;</a>
         </div>
       </div>
 
       <!-- 06: Feedback Grid -->
       <div class="ws-card">
         <div class="ws-card-header">
-          <span class="ws-num stage-test">Stage 5. Test</span>
-          <span class="ws-layout-badge">A3 가로형 (팀 공용 보드)</span>
+          <span class="ws-stage"><span class="stage-dot dot-test"></span>Stage 5 &middot; Test</span>
+          <span class="ws-layout-badge">A3 가로 &middot; 팀 보드</span>
         </div>
-        <h2>06. 피드백 캡처 그리드 (Feedback Capture Grid)</h2>
-        <p>다른 조의 참가자(사용자)에게 프로토타입을 시연하며 관찰된 피드백을 + Likes, - Criticisms, ? Questions, ! Ideas 4개 사분면에 실시간으로 기록합니다.</p>
+        <h2>06. 테스트 피드백 캡처 그리드</h2>
+        <p>테스터가 프로토타입을 직접 조작할 때 관찰된 반응을 + 좋았던 점, &minus; 막힌 점, ? 질문, ! 개선 아이디어 4개 영역에 기록합니다.</p>
         <div class="ws-meta-row">
-          <span>매칭 슬라이드: Slide 25, 26, 27</span>
-          <span>권장 시간: 25분</span>
+          <span>Slide 25, 26, 27</span>
+          <span>25분 (2라운드)</span>
         </div>
         <div class="ws-card-footer">
-          <a href="06_feedback_grid.html" class="ws-btn-view" target="_blank">서식 열기 &amp; 인쇄 &nearr;</a>
+          <a href="06_feedback_grid.html" class="ws-btn-view" target="_blank">서식 열기 및 인쇄 &nearr;</a>
         </div>
       </div>
 
       <!-- 07: Retrospective -->
       <div class="ws-card">
         <div class="ws-card-header">
-          <span class="ws-num stage-wrap">Debrief &amp; Wrap-up</span>
-          <span class="ws-layout-badge">A3 가로형 (팀 공용 보드)</span>
+          <span class="ws-stage"><span class="stage-dot dot-wrap"></span>Wrap-up &middot; Retro</span>
+          <span class="ws-layout-badge">A3 가로 &middot; 팀 보드</span>
         </div>
-        <h2>07. I Like, I Wish, What If 회고 시트</h2>
-        <p>오늘의 워크숍 경험을 좋았던 점(I Like), 아쉬웠던 점(I Wish), 앞으로의 상상과 기대(What If) 3개 가로 영역으로 정리하여 팀과 개인의 배움을 솔직하게 언어화합니다.</p>
+        <h2>07. I Like &middot; I Wish &middot; What If 회고 보드</h2>
+        <p>워크숍 경험을 좋았던 점(I Like), 보완할 점(I Wish), 실무 적용 아이디어(What If) 3개 가로 영역에 포스트잇으로 정리합니다.</p>
         <div class="ws-meta-row">
-          <span>매칭 슬라이드: Slide 29</span>
-          <span>권장 시간: 15분</span>
+          <span>Slide 29</span>
+          <span>15분</span>
         </div>
         <div class="ws-card-footer">
-          <a href="07_retrospective.html" class="ws-btn-view" target="_blank">서식 열기 &amp; 인쇄 &nearr;</a>
+          <a href="07_retrospective.html" class="ws-btn-view" target="_blank">서식 열기 및 인쇄 &nearr;</a>
         </div>
       </div>
 
       <!-- 08: Action Sprint -->
       <div class="ws-card">
         <div class="ws-card-header">
-          <span class="ws-num stage-action">Action Sprint</span>
-          <span class="ws-layout-badge">A4 세로형 (Portrait)</span>
+          <span class="ws-stage"><span class="stage-dot dot-action"></span>Action Sprint</span>
+          <span class="ws-layout-badge">A4 세로</span>
         </div>
-        <h2>08. 1-Week 현업 실행 계획서 (Action Sprint)</h2>
-        <p>내일부터 7일 동안 사내에서 검증할 가장 작은 가설 실험 1개, GSM(목표-행동신호-측정지표) 성공 기준, 7일간의 초소형 로드맵, RACI 역할 분담, 팀 실행 서약을 작성하는 현업 실행 계획서입니다.</p>
+        <h2>08. 1-Week 현업 검증 실행 계획서</h2>
+        <p>향후 7일간 실무에서 검증할 가설과 GSM(목표-행동신호-측정지표) 기준, 일자별 과업, RACI 담당자, 1주 후 결과 리뷰 일정을 확정합니다.</p>
         <div class="ws-meta-row">
-          <span>매칭 슬라이드: Slide 30</span>
-          <span>권장 시간: 10분</span>
+          <span>Slide 30</span>
+          <span>10분</span>
         </div>
         <div class="ws-card-footer">
-          <a href="08_action_sprint.html" class="ws-btn-view" target="_blank">서식 열기 &amp; 인쇄 &nearr;</a>
+          <a href="08_action_sprint.html" class="ws-btn-view" target="_blank">서식 열기 및 인쇄 &nearr;</a>
         </div>
       </div>
 
     </div>
 
-    <!-- Footer -->
     <footer class="dashboard-footer">
-      <p>Design Thinking Workshop Standard Toolkit &bull; electronicnomad.net/dtw</p>
+      <span>Design Thinking Workshop Printable Toolkit</span>
+      <span>electronicnomad.net/dtw</span>
     </footer>
   </div>
 

@@ -4,30 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Worksheet 03 - Crazy 8s Worksheet | Design Thinking Workshop</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <title>Worksheet 03 - Crazy 8s 개인 아이디어 스케치 시트 | Design Thinking Workshop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap">
   <style>
     :root {
-      --primary: #d97706;
-      --primary-light: #fef3c7;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --border: #cbd5e1;
-      --border-dark: #94a3b8;
-      --bg-box: #f8fafc;
+      --ink: #18181b;
+      --ink-secondary: #27272a;
+      --text-muted: #52525b;
+      --text-faint: #71717a;
+      --rule-strong: #27272a;
+      --rule: #d4d4d8;
+      --rule-dashed: #a1a1aa;
+      --paper: #ffffff;
+      --surface-subtle: #fafafa;
+      --screen-bg: #e4e4e7;
+      --accent: #b45309;
+      --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Pretendard Variable', Pretendard, monospace;
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
     body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      color: var(--text);
-      background-color: #f1f5f9;
+      font-family: var(--font-sans);
+      letter-spacing: -0.015em;
+      word-break: keep-all;
+      color: var(--ink);
+      background-color: var(--screen-bg);
       line-height: 1.35;
       -webkit-font-smoothing: antialiased;
     }
@@ -38,45 +48,50 @@
       top: 16px;
       right: 16px;
       display: flex;
-      gap: 10px;
+      gap: 6px;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
-      padding: 8px 14px;
-      border-radius: 9999px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-      border: 1px solid #cbd5e1;
+      background: rgba(255, 255, 255, 0.96);
+      padding: 6px;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--rule);
     }
 
     .btn-tool {
-      background: #d97706;
+      font-family: var(--font-sans);
+      background: var(--ink);
       color: #ffffff;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 9999px;
-      font-size: 0.85rem;
-      font-weight: 700;
+      border: 1px solid var(--ink);
+      padding: 7px 14px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       text-decoration: none;
-      transition: background 140ms ease;
+      transition: background-color 140ms ease;
     }
 
     .btn-tool:hover {
-      background: #b45309;
+      background: #3f3f46;
     }
 
     .btn-tool.secondary {
-      background: #ffffff;
-      color: #475569;
-      border: 1px solid #cbd5e1;
+      background: var(--paper);
+      color: var(--ink-secondary);
+      border: 1px solid var(--rule);
     }
 
     .btn-tool.secondary:hover {
-      background: #f8fafc;
-      color: #0f172a;
+      background: var(--surface-subtle);
+      color: var(--ink);
+    }
+
+    .btn-tool:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
     }
 
     /* A4 Landscape Page Container */
@@ -90,15 +105,13 @@
       width: 281mm;
       height: 198mm;
       max-height: 198mm;
-      background: #ffffff;
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-      border-radius: 4px;
+      background: var(--paper);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       padding: 6mm 8mm;
       display: flex;
       flex-direction: column;
       position: relative;
-      overflow: hidden;
-      box-sizing: border-box;
+      overflow: clip;
     }
 
     /* Header */
@@ -106,48 +119,52 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      border-bottom: 2px solid var(--primary);
-      padding-bottom: 4px;
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 5px;
       margin-bottom: 6px;
       flex-shrink: 0;
     }
 
-    .title-group h1 {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text);
+    .stage-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      margin-bottom: 2px;
     }
 
-    .badge-stage {
-      background: var(--primary);
-      color: #ffffff;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .ws-code { color: var(--ink); }
+    .stage-sep { color: var(--rule); }
+    .stage-label { color: var(--accent); }
+
+    .title-group h1 {
+      font-size: 1.22rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.02em;
     }
 
     .title-group p {
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       color: var(--text-muted);
-      margin-top: 1px;
+      margin-top: 2px;
     }
 
     .meta-fields {
       display: flex;
       gap: 14px;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
+      align-items: baseline;
     }
 
     .meta-item {
       display: flex;
-      align-items: center;
-      gap: 4px;
+      align-items: baseline;
+      gap: 5px;
     }
 
     .meta-label {
@@ -157,47 +174,54 @@
 
     .meta-line {
       display: inline-block;
-      min-width: 65px;
-      border-bottom: 1.5px solid var(--border-dark);
-      height: 15px;
+      min-width: 60px;
+      border-bottom: 1px solid var(--rule-strong);
+      height: 14px;
+    }
+
+    .meta-time {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--ink);
     }
 
     /* Target HMW Question Bar */
     .hmw-topic-bar {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       gap: 8px;
-      background: #fffbeb;
-      border: 1.5px solid #fde68a;
-      border-radius: 6px;
-      padding: 5px 12px;
+      background: var(--surface-subtle);
+      border: 1.5px solid var(--rule-strong);
+      border-radius: 2px;
+      padding: 5px 10px;
       margin-bottom: 6px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       flex-shrink: 0;
     }
 
     .hmw-topic-tag {
-      font-weight: 800;
-      color: #b45309;
-      background: #fef3c7;
-      padding: 2px 8px;
-      border-radius: 4px;
-      white-space: nowrap;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--ink);
       font-size: 0.72rem;
+      white-space: nowrap;
     }
 
-    .hmw-topic-input {
-      flex: 1;
-      border-bottom: 1px dashed #d97706;
-      height: 18px;
-      display: flex;
-      align-items: center;
-      padding-left: 6px;
-      color: #0f172a;
+    .hmw-topic-prefix {
       font-weight: 600;
+      color: var(--text-muted);
+      font-size: 0.76rem;
+      white-space: nowrap;
     }
 
-    /* 8 Sketch Boxes Grid (4 columns x 2 rows) - Stretches to fill page */
+    .hmw-topic-line {
+      flex: 1;
+      border-bottom: 1px dotted var(--rule-dashed);
+      height: 15px;
+    }
+
+    /* 8 Sketch Boxes Grid (4 columns x 2 rows) */
     .crazy8-grid {
       flex: 1;
       display: grid;
@@ -208,50 +232,46 @@
     }
 
     .sketch-box {
-      background: #ffffff;
-      border: 1.5px solid var(--border-dark);
-      border-radius: 6px;
-      padding: 6px 8px;
+      background: var(--paper);
+      border: 1.5px solid var(--rule-strong);
+      border-radius: 2px;
+      padding: 5px 7px;
       display: flex;
       flex-direction: column;
-      position: relative;
       min-height: 0;
     }
 
     .box-header {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       gap: 6px;
       margin-bottom: 4px;
-      border-bottom: 1px solid #e2e8f0;
+      border-bottom: 1px solid var(--rule);
       padding-bottom: 3px;
       flex-shrink: 0;
     }
 
     .box-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.74rem;
-      font-weight: 800;
-      color: var(--primary);
-      background: var(--primary-light);
-      padding: 1px 6px;
-      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent);
     }
 
     .box-title-input {
       flex: 1;
-      border-bottom: 1px dotted #cbd5e1;
+      border-bottom: 1px dotted var(--rule-dashed);
       height: 14px;
-      font-size: 0.72rem;
-      color: var(--text-muted);
+      font-size: 0.68rem;
+      color: var(--text-faint);
     }
 
     .canvas-area {
       flex: 1;
-      border: 1px dashed #e2e8f0;
-      border-radius: 4px;
-      background-color: #fafbfc;
-      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+      border: 1px solid var(--rule);
+      border-radius: 1px;
+      background-color: var(--paper);
+      background-image: radial-gradient(#d4d4d8 0.9px, transparent 0.9px);
       background-size: 10px 10px;
       display: flex;
       flex-direction: column;
@@ -261,28 +281,30 @@
     }
 
     .canvas-caption-line {
-      border-bottom: 1px dotted #cbd5e1;
+      border-bottom: 1px dotted var(--rule-dashed);
       height: 14px;
-      margin-top: 2px;
+      background: rgba(255, 255, 255, 0.75);
     }
 
-    /* 4 Golden Rules */
+    /* 4 Working Principles */
     .rules-bar {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
+      gap: 8px;
       margin-top: 6px;
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 4px 8px;
-      font-size: 0.68rem;
+      background: var(--surface-subtle);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 4px 10px;
+      font-size: 0.67rem;
       color: var(--text-muted);
       flex-shrink: 0;
     }
 
     .rule-item strong {
-      color: var(--primary);
+      font-family: var(--font-mono);
+      color: var(--ink);
+      margin-right: 3px;
     }
 
     /* Footer */
@@ -291,11 +313,16 @@
       justify-content: space-between;
       align-items: center;
       margin-top: 4px;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       color: var(--text-muted);
-      border-top: 1px solid #e2e8f0;
+      border-top: 1px solid var(--rule);
       padding-top: 3px;
       flex-shrink: 0;
+    }
+
+    .footer-mono {
+      font-family: var(--font-mono);
+      color: var(--text-faint);
     }
 
     /* Print Styles */
@@ -305,7 +332,7 @@
     }
 
     @media print {
-      *, *:before, *:after {
+      *, *::before, *::after {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
@@ -315,7 +342,7 @@
         margin: 0 !important;
         padding: 0 !important;
         background: #ffffff !important;
-        overflow: hidden !important;
+        overflow: clip !important;
       }
       .screen-toolbar {
         display: none !important;
@@ -344,141 +371,113 @@
 </head>
 <body>
 
-  <!-- Screen Toolbar -->
-  <div class="screen-toolbar no-print">
-    <a href="index.html" class="btn-tool secondary">&larr; 서식 전체 목록</a>
-    <button onclick="window.print()" class="btn-tool">인쇄 / PDF 저장</button>
+  <div class="screen-toolbar">
+    <a href="index.html" class="btn-tool secondary">&larr; 서식 목록</a>
+    <button type="button" onclick="window.print()" class="btn-tool">인쇄 / PDF 저장</button>
   </div>
 
   <div class="page-wrap">
     <div class="a4-landscape">
-      <!-- Header -->
       <header class="ws-header">
         <div class="title-group">
-          <h1>
-            <span class="badge-stage">Stage 3: Ideate</span>
-            Crazy 8s 개인 아이디어 발산 시트
-          </h1>
-          <p>8분 동안 1분마다 1칸씩, 머릿속에 떠오르는 솔루션을 글과 간단한 그림으로 빠르게 쏟아냅니다.</p>
+          <div class="stage-kicker">
+            <span class="ws-code">WS 03</span>
+            <span class="stage-sep">/</span>
+            <span class="stage-label">Stage 3 &middot; Ideate</span>
+          </div>
+          <h1>Crazy 8s 개인 아이디어 스케치 시트</h1>
+          <p>8분 동안 1분마다 1칸씩, 떠오르는 해결 방안을 간단한 도형과 짧은 설명으로 빠르게 기록합니다.</p>
         </div>
         <div class="meta-fields">
-          <div class="meta-item"><span class="meta-label">작성자:</span><span class="meta-line"></span></div>
-          <div class="meta-item"><span class="meta-label">조 번호:</span><span class="meta-line"></span></div>
-          <div class="meta-item"><span class="meta-label">제한 시간:</span><span style="font-weight:700; color:var(--primary);">8분 (1분/칸)</span></div>
+          <div class="meta-item"><span class="meta-label">작성자</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">조 번호</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">소요 시간</span><span class="meta-time">8분 (1분 &times; 8칸)</span></div>
         </div>
       </header>
 
-      <!-- HMW Topic Banner -->
       <div class="hmw-topic-bar">
-        <span class="hmw-topic-tag">해결할 HMW 질문:</span>
-        <span style="font-weight: 700; color: #b45309; font-size: 0.8rem;">우리가 어떻게 하면</span>
-        <span style="border-bottom: 1.5px solid #d97706; flex: 1; height: 16px;"></span>
+        <span class="hmw-topic-tag">선정된 HMW 질문</span>
+        <span class="hmw-topic-prefix">우리가 어떻게 하면</span>
+        <span class="hmw-topic-line"></span>
       </div>
 
-      <!-- 8 Sketch Boxes Grid (4 cols x 2 rows) -->
       <div class="crazy8-grid">
-        <!-- Box 1 -->
         <div class="sketch-box">
           <div class="box-header">
-            <span class="box-num"># 1</span>
-            <div class="box-title-input">아이디어 1: </div>
+            <span class="box-num">01</span>
+            <div class="box-title-input">제목:</div>
           </div>
-          <div class="canvas-area">
-            <div class="canvas-caption-line"></div>
-          </div>
+          <div class="canvas-area"><div class="canvas-caption-line"></div></div>
         </div>
 
-        <!-- Box 2 -->
         <div class="sketch-box">
           <div class="box-header">
-            <span class="box-num"># 2</span>
-            <div class="box-title-input">아이디어 2: </div>
+            <span class="box-num">02</span>
+            <div class="box-title-input">제목:</div>
           </div>
-          <div class="canvas-area">
-            <div class="canvas-caption-line"></div>
-          </div>
+          <div class="canvas-area"><div class="canvas-caption-line"></div></div>
         </div>
 
-        <!-- Box 3 -->
         <div class="sketch-box">
           <div class="box-header">
-            <span class="box-num"># 3</span>
-            <div class="box-title-input">아이디어 3: </div>
+            <span class="box-num">03</span>
+            <div class="box-title-input">제목:</div>
           </div>
-          <div class="canvas-area">
-            <div class="canvas-caption-line"></div>
-          </div>
+          <div class="canvas-area"><div class="canvas-caption-line"></div></div>
         </div>
 
-        <!-- Box 4 -->
         <div class="sketch-box">
           <div class="box-header">
-            <span class="box-num"># 4</span>
-            <div class="box-title-input">아이디어 4: </div>
+            <span class="box-num">04</span>
+            <div class="box-title-input">제목:</div>
           </div>
-          <div class="canvas-area">
-            <div class="canvas-caption-line"></div>
-          </div>
+          <div class="canvas-area"><div class="canvas-caption-line"></div></div>
         </div>
 
-        <!-- Box 5 -->
         <div class="sketch-box">
           <div class="box-header">
-            <span class="box-num"># 5</span>
-            <div class="box-title-input">아이디어 5: </div>
+            <span class="box-num">05</span>
+            <div class="box-title-input">제목:</div>
           </div>
-          <div class="canvas-area">
-            <div class="canvas-caption-line"></div>
-          </div>
+          <div class="canvas-area"><div class="canvas-caption-line"></div></div>
         </div>
 
-        <!-- Box 6 -->
         <div class="sketch-box">
           <div class="box-header">
-            <span class="box-num"># 6</span>
-            <div class="box-title-input">아이디어 6: </div>
+            <span class="box-num">06</span>
+            <div class="box-title-input">제목:</div>
           </div>
-          <div class="canvas-area">
-            <div class="canvas-caption-line"></div>
-          </div>
+          <div class="canvas-area"><div class="canvas-caption-line"></div></div>
         </div>
 
-        <!-- Box 7 -->
         <div class="sketch-box">
           <div class="box-header">
-            <span class="box-num"># 7</span>
-            <div class="box-title-input">아이디어 7: </div>
+            <span class="box-num">07</span>
+            <div class="box-title-input">제목:</div>
           </div>
-          <div class="canvas-area">
-            <div class="canvas-caption-line"></div>
-          </div>
+          <div class="canvas-area"><div class="canvas-caption-line"></div></div>
         </div>
 
-        <!-- Box 8 -->
         <div class="sketch-box">
           <div class="box-header">
-            <span class="box-num"># 8</span>
-            <div class="box-title-input">아이디어 8: </div>
+            <span class="box-num">08</span>
+            <div class="box-title-input">제목:</div>
           </div>
-          <div class="canvas-area">
-            <div class="canvas-caption-line"></div>
-          </div>
+          <div class="canvas-area"><div class="canvas-caption-line"></div></div>
         </div>
       </div>
 
-      <!-- 4 Golden Rules -->
       <div class="rules-bar">
-        <div class="rule-item"><strong>1. 잘 그릴 필요 없음:</strong> 졸라맨, 박스면 충분</div>
-        <div class="rule-item"><strong>2. 비판 및 검열 금지:</strong> 뻔한 생각 버리기</div>
-        <div class="rule-item"><strong>3. 1칸당 1분 엄수:</strong> 멈추지 않고 손 움직이기</div>
-        <div class="rule-item"><strong>4. 황당한 발상 환영:</strong> 극단적 아이디어 허용</div>
+        <div class="rule-item"><strong>01 표현 방식</strong> 도형·화살표·짧은 메모면 충분</div>
+        <div class="rule-item"><strong>02 자기검열 보류</strong> 완성도보다 분량과 속도 우선</div>
+        <div class="rule-item"><strong>03 시간 엄수</strong> 1칸당 1분, 신호에 맞춰 다음 칸 이동</div>
+        <div class="rule-item"><strong>04 현실 제약 보류</strong> 엉뚱한 대안도 일단 기록</div>
       </div>
 
-      <!-- Footer -->
       <footer class="ws-footer">
-        <span>Design Thinking Workshop Toolkit &bull; Stage 3 Ideate - Crazy 8s</span>
-        <span>* 완료 후 팀원들에게 칸당 30초씩 돌아가며 아이디어를 피칭하고 투표 보드로 이동합니다.</span>
-        <span>electronicnomad.net/dtw</span>
+        <span class="footer-mono">Design Thinking Workshop &middot; WS 03 Crazy 8s (A4)</span>
+        <span>작성 완료 후 핵심 아이디어를 포스트잇에 옮겨 적고 04번 2&times;2 매트릭스 보드에 배치합니다.</span>
+        <span class="footer-mono">electronicnomad.net/dtw</span>
       </footer>
     </div>
   </div>

@@ -4,21 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Worksheet 06 - Feedback Capture Grid | Design Thinking Workshop</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <title>Worksheet 06 - 테스트 피드백 캡처 그리드 | Design Thinking Workshop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap">
   <style>
     :root {
-      --primary: #7c3aed;
-      --primary-light: #ede9fe;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --border: #cbd5e1;
-      --border-dark: #94a3b8;
-      --bg-box: #f8fafc;
+      --ink: #18181b;
+      --ink-secondary: #27272a;
+      --text-muted: #52525b;
+      --text-faint: #71717a;
+      --rule-strong: #27272a;
+      --rule: #d4d4d8;
+      --rule-dashed: #a1a1aa;
+      --paper: #ffffff;
+      --surface-subtle: #fafafa;
+      --screen-bg: #e4e4e7;
+      --accent: #3730a3;
+      --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Pretendard Variable', Pretendard, monospace;
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -29,9 +37,11 @@
     }
 
     body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      color: var(--text);
-      background-color: #f1f5f9;
+      font-family: var(--font-sans);
+      letter-spacing: -0.015em;
+      word-break: keep-all;
+      color: var(--ink);
+      background-color: var(--screen-bg);
       line-height: 1.35;
       -webkit-font-smoothing: antialiased;
     }
@@ -42,45 +52,50 @@
       top: 16px;
       right: 16px;
       display: flex;
-      gap: 10px;
+      gap: 6px;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
-      padding: 8px 14px;
-      border-radius: 9999px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-      border: 1px solid #cbd5e1;
+      background: rgba(255, 255, 255, 0.96);
+      padding: 6px;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--rule);
     }
 
     .btn-tool {
-      background: #7c3aed;
+      font-family: var(--font-sans);
+      background: var(--ink);
       color: #ffffff;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 9999px;
-      font-size: 0.85rem;
-      font-weight: 700;
+      border: 1px solid var(--ink);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       text-decoration: none;
-      transition: background 140ms ease;
+      transition: background-color 140ms ease;
     }
 
     .btn-tool:hover {
-      background: #6d28d9;
+      background: #3f3f46;
     }
 
     .btn-tool.secondary {
-      background: #ffffff;
-      color: #475569;
-      border: 1px solid #cbd5e1;
+      background: var(--paper);
+      color: var(--ink-secondary);
+      border: 1px solid var(--rule);
     }
 
     .btn-tool.secondary:hover {
-      background: #f8fafc;
-      color: #0f172a;
+      background: var(--surface-subtle);
+      color: var(--ink);
+    }
+
+    .btn-tool:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
     }
 
     /* A3 Landscape Team Board Container */
@@ -94,15 +109,13 @@
       width: 404mm;
       height: 285mm;
       max-height: 285mm;
-      background: #ffffff;
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-      border-radius: 4px;
+      background: var(--paper);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       padding: 6mm 8mm;
       display: flex;
       flex-direction: column;
       position: relative;
-      overflow: hidden;
-      box-sizing: border-box;
+      overflow: clip;
     }
 
     /* Header */
@@ -110,48 +123,52 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      border-bottom: 2px solid var(--primary);
-      padding-bottom: 4px;
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 5px;
       margin-bottom: 6px;
       flex-shrink: 0;
     }
 
-    .title-group h1 {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text);
+    .stage-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      margin-bottom: 2px;
     }
 
-    .badge-stage {
-      background: var(--primary);
-      color: #ffffff;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .ws-code { color: var(--ink); }
+    .stage-sep { color: var(--rule); }
+    .stage-label { color: var(--accent); }
+
+    .title-group h1 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.02em;
     }
 
     .title-group p {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
-      margin-top: 1px;
+      margin-top: 2px;
     }
 
     .meta-fields {
       display: flex;
-      gap: 14px;
-      font-size: 0.78rem;
+      gap: 16px;
+      font-size: 0.74rem;
+      align-items: baseline;
     }
 
     .meta-item {
       display: flex;
-      align-items: center;
-      gap: 4px;
+      align-items: baseline;
+      gap: 5px;
     }
 
     .meta-label {
@@ -161,112 +178,118 @@
 
     .meta-line {
       display: inline-block;
-      min-width: 65px;
-      border-bottom: 1.5px solid var(--border-dark);
-      height: 15px;
+      min-width: 64px;
+      border-bottom: 1px solid var(--rule-strong);
+      height: 14px;
     }
 
-    /* Target Prototype Info Bar */
+    .meta-time {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    /* Target Prototype Strip */
     .target-bar {
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 10px;
-      background: #f5f3ff;
-      border: 1.5px solid #ddd6fe;
-      border-radius: 6px;
-      padding: 5px 12px;
+      grid-template-columns: 1.8fr 1.2fr;
+      border: 1px solid var(--rule-strong);
+      background: var(--surface-subtle);
+      border-radius: 2px;
       margin-bottom: 6px;
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       flex-shrink: 0;
     }
 
     .target-item {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      padding: 5px 10px;
+    }
+
+    .target-item:first-child {
+      border-right: 1px solid var(--rule);
     }
 
     .target-item strong {
-      color: var(--primary);
-      font-size: 0.74rem;
-      text-transform: uppercase;
+      color: var(--ink);
+      font-size: 0.7rem;
+      font-weight: 700;
       white-space: nowrap;
     }
 
-    /* 4-Quadrant Grid - Stretches fully */
+    .field-underline {
+      border-bottom: 1px dotted var(--rule-dashed);
+      flex: 1;
+      height: 15px;
+    }
+
+    /* 4-Quadrant Grid */
     .feedback-grid {
       flex: 1;
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
-      gap: 8px;
-      position: relative;
+      gap: 6px;
       min-height: 0;
     }
 
     .f-quadrant {
-      border-radius: 6px;
+      background: var(--paper);
+      border: 1.5px solid var(--rule-strong);
+      border-radius: 2px;
       padding: 6px 10px;
       display: flex;
       flex-direction: column;
-      position: relative;
       min-height: 0;
-    }
-
-    /* Q1: Likes (+) */
-    .q-likes {
-      background: #f0fdf4;
-      border: 1.5px solid #86efac;
-    }
-
-    /* Q2: Criticisms (-) */
-    .q-criticisms {
-      background: #fef2f2;
-      border: 1.5px solid #fca5a5;
-    }
-
-    /* Q3: Questions (?) */
-    .q-questions {
-      background: #eff6ff;
-      border: 1.5px solid #93c5fd;
-    }
-
-    /* Q4: Ideas (!) */
-    .q-ideas {
-      background: #fffbeb;
-      border: 1.5px solid #fde68a;
     }
 
     .f-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 4px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 5px;
+      border-bottom: 1px solid var(--rule);
       padding-bottom: 3px;
       flex-shrink: 0;
     }
 
     .f-title {
-      font-size: 0.84rem;
+      font-size: 0.8rem;
       font-weight: 800;
+      color: var(--ink);
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
+    .f-symbol {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      width: 19px;
+      height: 19px;
+      border: 1px solid var(--ink);
+      background: var(--surface-subtle);
+      color: var(--ink);
+      border-radius: 2px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
     .f-sub {
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       color: var(--text-muted);
     }
 
-    /* Spacious Post-it Canvas */
+    /* Post-it Canvas */
     .f-body {
       flex: 1;
-      border: 1px dashed rgba(0, 0, 0, 0.15);
-      border-radius: 4px;
-      padding: 6px;
-      background: rgba(255, 255, 255, 0.75);
       display: grid;
       grid-template-columns: 76mm 76mm 1fr;
       gap: 3mm;
@@ -274,54 +297,56 @@
       min-height: 0;
     }
 
-    /* 3x3 inch (76mm) sticky-note placement guide */
     .postit-slot {
       width: 76mm;
       height: 76mm;
       flex-shrink: 0;
-      border: 1px dashed rgba(0, 0, 0, 0.28);
-      border-radius: 2mm;
-      background: rgba(255, 255, 255, 0.85);
+      border: 1px dashed var(--rule-dashed);
+      border-radius: 1px;
+      background: var(--paper);
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.62rem;
-      color: #94a3b8;
-      text-align: center;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 2.5mm 3mm;
+      font-family: var(--font-mono);
+      font-size: 0.56rem;
+      color: var(--text-faint);
     }
 
-    /* Ruled free-writing column beside the sticky-note guides */
     .note-zone {
       align-self: stretch;
-      border: 1px dashed rgba(0, 0, 0, 0.15);
-      border-radius: 2mm;
+      border: 1px solid var(--rule);
+      border-radius: 1px;
       padding: 2mm 3mm;
-      background-color: rgba(255, 255, 255, 0.6);
-      background-image: linear-gradient(to bottom, transparent 7.6mm, #cbd5e1 7.6mm, #cbd5e1 8mm);
+      background-color: var(--paper);
+      background-image: linear-gradient(to bottom, transparent 7.6mm, #e4e4e7 7.6mm, #e4e4e7 8mm);
       background-size: 100% 8mm;
       background-origin: content-box;
       background-clip: content-box;
-      font-size: 0.62rem;
-      color: #94a3b8;
+      font-family: var(--font-mono);
+      font-size: 0.56rem;
+      color: var(--text-faint);
     }
 
     /* 3 Testing Rules Bar */
     .rules-bar {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      gap: 10px;
       margin-top: 6px;
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 6px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
       padding: 5px 10px;
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       color: var(--text-muted);
       flex-shrink: 0;
     }
 
     .rule-item strong {
-      color: var(--primary);
+      font-family: var(--font-mono);
+      color: var(--ink);
+      margin-right: 4px;
     }
 
     /* Footer */
@@ -330,14 +355,18 @@
       justify-content: space-between;
       align-items: center;
       margin-top: 4px;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       color: var(--text-muted);
-      border-top: 1px solid #e2e8f0;
+      border-top: 1px solid var(--rule);
       padding-top: 3px;
       flex-shrink: 0;
     }
 
-    /* A3 is wider than most laptop screens: shrink the on-screen preview only */
+    .footer-mono {
+      font-family: var(--font-mono);
+      color: var(--text-faint);
+    }
+
     @media screen and (max-width: 1640px) {
       .a3-landscape { zoom: 0.75; }
     }
@@ -352,7 +381,7 @@
     }
 
     @media print {
-      *, *:before, *:after {
+      *, *::before, *::after {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
@@ -362,7 +391,7 @@
         margin: 0 !important;
         padding: 0 !important;
         background: #ffffff !important;
-        overflow: hidden !important;
+        overflow: clip !important;
       }
       .screen-toolbar {
         display: none !important;
@@ -391,117 +420,117 @@
 </head>
 <body>
 
-  <!-- Screen Toolbar -->
-  <div class="screen-toolbar no-print">
-    <a href="index.html" class="btn-tool secondary">&larr; 서식 전체 목록</a>
-    <button onclick="window.print()" class="btn-tool">인쇄 / PDF 저장</button>
+  <div class="screen-toolbar">
+    <a href="index.html" class="btn-tool secondary">&larr; 서식 목록</a>
+    <button type="button" onclick="window.print()" class="btn-tool">인쇄 / PDF 저장</button>
   </div>
 
   <div class="page-wrap">
     <div class="a3-landscape">
-      <!-- Header -->
       <header class="ws-header">
         <div class="title-group">
-          <h1>
-            <span class="badge-stage">Stage 5: Test</span>
-            피드백 캡처 그리드 (Feedback Capture Grid)
-          </h1>
-          <p>사용자가 모형을 다룰 때 관찰된 생생한 반응과 피드백을 4개 영역으로 구조화하여 포스트잇으로 기록합니다.</p>
+          <div class="stage-kicker">
+            <span class="ws-code">WS 06</span>
+            <span class="stage-sep">/</span>
+            <span class="stage-label">Stage 5 &middot; Test</span>
+          </div>
+          <h1>테스트 피드백 캡처 그리드</h1>
+          <p>테스터가 프로토타입을 직접 다룰 때 관찰된 발언, 멈칫하는 지점, 질문, 제안을 4개 영역에 기록합니다.</p>
         </div>
         <div class="meta-fields">
-          <div class="meta-item"><span class="meta-label">테스트 조:</span><span class="meta-line"></span></div>
-          <div class="meta-item"><span class="meta-label">테스터 성명:</span><span class="meta-line"></span></div>
-          <div class="meta-item"><span class="meta-label">제한 시간:</span><span style="font-weight:700; color:var(--primary);">25분 (2라운드)</span></div>
+          <div class="meta-item"><span class="meta-label">테스트 조</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">참여 테스터</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">소요 시간</span><span class="meta-time">25분 (2라운드)</span></div>
         </div>
       </header>
 
-      <!-- Target Prototype Bar -->
       <div class="target-bar">
         <div class="target-item">
-          <strong>테스트 대상 프로토타입:</strong>
-          <span style="border-bottom: 1.5px solid var(--border-dark); flex: 1; height: 16px;"></span>
+          <strong>테스트 대상 프로토타입</strong>
+          <span class="field-underline"></span>
         </div>
         <div class="target-item">
-          <strong>테스터 페르소나:</strong>
-          <span style="border-bottom: 1.5px solid var(--border-dark); flex: 1; height: 16px;"></span>
+          <strong>테스터 역할·페르소나</strong>
+          <span class="field-underline"></span>
         </div>
       </div>
 
-      <!-- Main 4-Quadrant Grid -->
       <div class="feedback-grid">
         <!-- Q1: Likes (+) -->
-        <div class="f-quadrant q-likes">
+        <div class="f-quadrant">
           <div class="f-header">
-            <span class="f-title" style="color: #15803d;">
-              + Likes (좋았던 점 &amp; 매력 요소)
+            <span class="f-title">
+              <span class="f-symbol">+</span>
+              <span>LIKES &middot; 좋았던 점</span>
             </span>
-            <span class="f-sub">직관적이고 유용하다고 칭찬한 부분</span>
+            <span class="f-sub">직관적이거나 유용하다고 반응한 부분</span>
           </div>
           <div class="f-body">
-            <div class="postit-slot" style="background:#f0fdf4;">3x3 포스트잇</div>
-            <div class="postit-slot" style="background:#f0fdf4;">3x3 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
             <div class="note-zone">관찰 메모</div>
           </div>
         </div>
 
         <!-- Q2: Criticisms (-) -->
-        <div class="f-quadrant q-criticisms">
+        <div class="f-quadrant">
           <div class="f-header">
-            <span class="f-title" style="color: #b91c1c;">
-              - Criticisms (아쉬운 점 &amp; 걸림돌)
+            <span class="f-title">
+              <span class="f-symbol">&minus;</span>
+              <span>CRITICISMS &middot; 막히거나 아쉬운 점</span>
             </span>
-            <span class="f-sub">주저하거나 막힌 지점, 의구심, 취약점</span>
+            <span class="f-sub">주저한 지점, 혼란스러워한 표현, 우려 사항</span>
           </div>
           <div class="f-body">
-            <div class="postit-slot" style="background:#fef2f2;">3x3 포스트잇</div>
-            <div class="postit-slot" style="background:#fef2f2;">3x3 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
             <div class="note-zone">관찰 메모</div>
           </div>
         </div>
 
         <!-- Q3: Questions (?) -->
-        <div class="f-quadrant q-questions">
+        <div class="f-quadrant">
           <div class="f-header">
-            <span class="f-title" style="color: #1d4ed8;">
-              ? Questions (의문 &amp; 던져진 질문)
+            <span class="f-title">
+              <span class="f-symbol">?</span>
+              <span>QUESTIONS &middot; 의문 및 질문</span>
             </span>
-            <span class="f-sub">사용자가 작동 방식을 물어보거나 이해 못 한 점</span>
+            <span class="f-sub">작동 방식이나 기준을 되물어본 내용</span>
           </div>
           <div class="f-body">
-            <div class="postit-slot" style="background:#eff6ff;">3x3 포스트잇</div>
-            <div class="postit-slot" style="background:#eff6ff;">3x3 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
             <div class="note-zone">관찰 메모</div>
           </div>
         </div>
 
         <!-- Q4: Ideas (!) -->
-        <div class="f-quadrant q-ideas">
+        <div class="f-quadrant">
           <div class="f-header">
-            <span class="f-title" style="color: #b45309;">
-              ! Ideas (새로운 아이디어 &amp; 영감)
+            <span class="f-title">
+              <span class="f-symbol">!</span>
+              <span>IDEAS &middot; 개선 아이디어</span>
             </span>
-            <span class="f-sub">테스터가 직접 제안한 번뜩이는 아이디어</span>
+            <span class="f-sub">테스트 과정에서 나온 구체적인 보완 제안</span>
           </div>
           <div class="f-body">
-            <div class="postit-slot" style="background:#fffbeb;">3x3 포스트잇</div>
-            <div class="postit-slot" style="background:#fffbeb;">3x3 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
             <div class="note-zone">관찰 메모</div>
           </div>
         </div>
       </div>
 
-      <!-- 3 Testing Rules -->
       <div class="rules-bar">
-        <div class="rule-item"><strong>1. 설명하지 말고 관찰하라:</strong> 변명 금지, 사용자의 손짓과 표정에 집중</div>
-        <div class="rule-item"><strong>2. "왜?"라고 파고들기:</strong> 멈칫한 순간 "어떤 생각을 하셨나요?" 질문</div>
-        <div class="rule-item"><strong>3. 비판을 축하하기:</strong> 결함 발견은 곧 수억 원의 개발비 절약</div>
+        <div class="rule-item"><strong>01 설명 대신 관찰하기</strong> 사용법을 미리 설명하지 말고 조작 과정을 지켜봅니다.</div>
+        <div class="rule-item"><strong>02 이유 물어보기</strong> 멈칫한 순간 "어떤 부분 때문에 망설이셨나요?"라고 질문합니다.</div>
+        <div class="rule-item"><strong>03 방어하지 않기</strong> 변명 대신 기록에 집중합니다. 개발 전 결함 발견이 가장 빠른 개선입니다.</div>
       </div>
 
-      <!-- Footer -->
       <footer class="ws-footer">
-        <span>Design Thinking Workshop Toolkit &bull; Stage 5 Test Feedback Grid</span>
-        <span>* 수집된 피드백을 종합하여 3분 스토리텔링 피칭(Slide 28) 및 회고(Slide 29)를 준비합니다.</span>
-        <span>electronicnomad.net/dtw</span>
+        <span class="footer-mono">Design Thinking Workshop &middot; WS 06 Feedback Grid (A3)</span>
+        <span>수집한 피드백을 바탕으로 핵심 개선점 1~2가지를 정리해 팀별 3분 공유(Slide 28)에 반영합니다.</span>
+        <span class="footer-mono">electronicnomad.net/dtw</span>
       </footer>
     </div>
   </div>

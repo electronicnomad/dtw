@@ -4,21 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Worksheet 07 - Retrospective Canvas | Design Thinking Workshop</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <title>Worksheet 07 - I Like, I Wish, What If 회고 보드 | Design Thinking Workshop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap">
   <style>
     :root {
-      --primary: #4f46e5;
-      --primary-light: #e0e7ff;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --border: #cbd5e1;
-      --border-dark: #94a3b8;
-      --bg-box: #f8fafc;
+      --ink: #18181b;
+      --ink-secondary: #27272a;
+      --text-muted: #52525b;
+      --text-faint: #71717a;
+      --rule-strong: #27272a;
+      --rule: #d4d4d8;
+      --rule-dashed: #a1a1aa;
+      --paper: #ffffff;
+      --surface-subtle: #fafafa;
+      --screen-bg: #e4e4e7;
+      --accent: #3730a3;
+      --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Pretendard Variable', Pretendard, monospace;
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -29,9 +37,11 @@
     }
 
     body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      color: var(--text);
-      background-color: #f1f5f9;
+      font-family: var(--font-sans);
+      letter-spacing: -0.015em;
+      word-break: keep-all;
+      color: var(--ink);
+      background-color: var(--screen-bg);
       line-height: 1.35;
       -webkit-font-smoothing: antialiased;
     }
@@ -42,45 +52,50 @@
       top: 16px;
       right: 16px;
       display: flex;
-      gap: 10px;
+      gap: 6px;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
-      padding: 8px 14px;
-      border-radius: 9999px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-      border: 1px solid #cbd5e1;
+      background: rgba(255, 255, 255, 0.96);
+      padding: 6px;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--rule);
     }
 
     .btn-tool {
-      background: #4f46e5;
+      font-family: var(--font-sans);
+      background: var(--ink);
       color: #ffffff;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 9999px;
-      font-size: 0.85rem;
-      font-weight: 700;
+      border: 1px solid var(--ink);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       text-decoration: none;
-      transition: background 140ms ease;
+      transition: background-color 140ms ease;
     }
 
     .btn-tool:hover {
-      background: #4338ca;
+      background: #3f3f46;
     }
 
     .btn-tool.secondary {
-      background: #ffffff;
-      color: #475569;
-      border: 1px solid #cbd5e1;
+      background: var(--paper);
+      color: var(--ink-secondary);
+      border: 1px solid var(--rule);
     }
 
     .btn-tool.secondary:hover {
-      background: #f8fafc;
-      color: #0f172a;
+      background: var(--surface-subtle);
+      color: var(--ink);
+    }
+
+    .btn-tool:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
     }
 
     /* A3 Landscape Team Board Container */
@@ -94,15 +109,13 @@
       width: 404mm;
       height: 285mm;
       max-height: 285mm;
-      background: #ffffff;
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-      border-radius: 4px;
+      background: var(--paper);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       padding: 6mm 8mm;
       display: flex;
       flex-direction: column;
       position: relative;
-      overflow: hidden;
-      box-sizing: border-box;
+      overflow: clip;
     }
 
     /* Header */
@@ -110,48 +123,52 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      border-bottom: 2px solid var(--primary);
-      padding-bottom: 4px;
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 5px;
       margin-bottom: 6px;
       flex-shrink: 0;
     }
 
-    .title-group h1 {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text);
+    .stage-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      margin-bottom: 2px;
     }
 
-    .badge-stage {
-      background: var(--primary);
-      color: #ffffff;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .ws-code { color: var(--ink); }
+    .stage-sep { color: var(--rule); }
+    .stage-label { color: var(--accent); }
+
+    .title-group h1 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.02em;
     }
 
     .title-group p {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
-      margin-top: 1px;
+      margin-top: 2px;
     }
 
     .meta-fields {
       display: flex;
-      gap: 14px;
-      font-size: 0.78rem;
+      gap: 16px;
+      font-size: 0.74rem;
+      align-items: baseline;
     }
 
     .meta-item {
       display: flex;
-      align-items: center;
-      gap: 4px;
+      align-items: baseline;
+      gap: 5px;
     }
 
     .meta-label {
@@ -161,160 +178,133 @@
 
     .meta-line {
       display: inline-block;
-      min-width: 65px;
-      border-bottom: 1.5px solid var(--border-dark);
-      height: 15px;
+      min-width: 64px;
+      border-bottom: 1px solid var(--rule-strong);
+      height: 14px;
     }
 
-    /* Team Summary Bar */
+    .meta-time {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    /* Team Summary Strip */
     .summary-bar {
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 10px;
-      background: #eef2ff;
-      border: 1.5px solid #c7d2fe;
-      border-radius: 6px;
-      padding: 5px 12px;
+      grid-template-columns: 1.8fr 1.2fr;
+      border: 1px solid var(--rule-strong);
+      background: var(--surface-subtle);
+      border-radius: 2px;
       margin-bottom: 6px;
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       flex-shrink: 0;
     }
 
     .summary-item {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      padding: 5px 10px;
+    }
+
+    .summary-item:first-child {
+      border-right: 1px solid var(--rule);
     }
 
     .summary-item strong {
-      color: var(--primary);
-      font-size: 0.74rem;
-      text-transform: uppercase;
+      color: var(--ink);
+      font-size: 0.7rem;
+      font-weight: 700;
       white-space: nowrap;
     }
 
-    /* 3 Horizontal Bands - each holds one row of 3x3 sticky notes */
+    .field-underline {
+      border-bottom: 1px dotted var(--rule-dashed);
+      flex: 1;
+      height: 15px;
+    }
+
+    /* 3 Horizontal Bands - each holds 4 sticky notes */
     .retro-grid {
       flex: 1;
       display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: repeat(3, 1fr);
-      gap: 8px;
+      gap: 6px;
       min-height: 0;
     }
 
-    .retro-column {
-      border-radius: 6px;
-      padding: 4px 10px;
+    .retro-band {
+      background: var(--paper);
+      border: 1.5px solid var(--rule-strong);
+      border-radius: 2px;
       display: flex;
       flex-direction: row;
-      align-items: center;
-      gap: 4mm;
+      align-items: stretch;
       min-height: 0;
     }
 
-    /* Col 1: I Like */
-    .col-like {
-      background: #f0fdf4;
-      border: 1.5px solid #86efac;
-    }
-
-    /* Col 2: I Wish */
-    .col-wish {
-      background: #fffbeb;
-      border: 1.5px solid #fde68a;
-    }
-
-    /* Col 3: What If */
-    .col-whatif {
-      background: #eef2ff;
-      border: 1.5px solid #a5b4fc;
-    }
-
-    .col-header {
-      width: 46mm;
-      align-self: stretch;
+    .band-header {
+      width: 52mm;
+      background: var(--surface-subtle);
+      border-right: 1px solid var(--rule);
+      padding: 8px 12px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 6px;
-      border-right: 1px solid rgba(0, 0, 0, 0.08);
-      padding-right: 3mm;
+      gap: 4px;
       flex-shrink: 0;
     }
 
-    .col-title {
-      font-size: 0.78rem;
-      font-weight: 800;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    .band-index {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.03em;
     }
 
-    .col-desc {
+    .band-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+
+    .band-desc {
       font-size: 0.65rem;
       color: var(--text-muted);
+      line-height: 1.35;
     }
 
-    /* Deep Column Canvas for Post-its */
-    .col-canvas {
+    /* Band Canvas for 4 x 76mm Post-its */
+    .band-canvas {
       flex: 1;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
+      padding: 0 4mm;
       gap: 3mm;
       min-width: 0;
     }
 
-    /* 3x3 inch (76mm) sticky-note placement guide */
     .postit-slot {
       width: 76mm;
       height: 76mm;
       flex-shrink: 0;
-      border: 1px dashed rgba(0, 0, 0, 0.28);
-      border-radius: 2mm;
-      background: rgba(255, 255, 255, 0.85);
+      border: 1px dashed var(--rule-dashed);
+      border-radius: 1px;
+      background: var(--paper);
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.62rem;
-      color: #94a3b8;
-      text-align: center;
-    }
-
-    /* Ruled free-writing column beside the sticky-note guides */
-    .note-zone {
-      align-self: stretch;
-      border: 1px dashed rgba(0, 0, 0, 0.15);
-      border-radius: 2mm;
-      padding: 2mm 3mm;
-      background-color: rgba(255, 255, 255, 0.6);
-      background-image: linear-gradient(to bottom, transparent 7.6mm, #cbd5e1 7.6mm, #cbd5e1 8mm);
-      background-size: 100% 8mm;
-      background-origin: content-box;
-      background-clip: content-box;
-      font-size: 0.62rem;
-      color: #94a3b8;
-    }
-
-    /* Retrospective Rules Bar */
-    .retro-rules {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-top: 6px;
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 5px 10px;
-      font-size: 0.68rem;
-      color: var(--text-muted);
-      flex-shrink: 0;
-    }
-
-    .rule-item strong {
-      color: var(--primary);
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 2.5mm 3mm;
+      font-family: var(--font-mono);
+      font-size: 0.56rem;
+      color: var(--text-faint);
     }
 
     /* Footer */
@@ -323,14 +313,18 @@
       justify-content: space-between;
       align-items: center;
       margin-top: 4px;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       color: var(--text-muted);
-      border-top: 1px solid #e2e8f0;
+      border-top: 1px solid var(--rule);
       padding-top: 3px;
       flex-shrink: 0;
     }
 
-    /* A3 is wider than most laptop screens: shrink the on-screen preview only */
+    .footer-mono {
+      font-family: var(--font-mono);
+      color: var(--text-faint);
+    }
+
     @media screen and (max-width: 1640px) {
       .a3-landscape { zoom: 0.75; }
     }
@@ -345,7 +339,7 @@
     }
 
     @media print {
-      *, *:before, *:after {
+      *, *::before, *::after {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
@@ -355,7 +349,7 @@
         margin: 0 !important;
         padding: 0 !important;
         background: #ffffff !important;
-        overflow: hidden !important;
+        overflow: clip !important;
       }
       .screen-toolbar {
         display: none !important;
@@ -384,99 +378,89 @@
 </head>
 <body>
 
-  <!-- Screen Toolbar -->
-  <div class="screen-toolbar no-print">
-    <a href="index.html" class="btn-tool secondary">&larr; 서식 전체 목록</a>
-    <button onclick="window.print()" class="btn-tool">인쇄 / PDF 저장</button>
+  <div class="screen-toolbar">
+    <a href="index.html" class="btn-tool secondary">&larr; 서식 목록</a>
+    <button type="button" onclick="window.print()" class="btn-tool">인쇄 / PDF 저장</button>
   </div>
 
   <div class="page-wrap">
     <div class="a3-landscape">
-      <!-- Header -->
       <header class="ws-header">
         <div class="title-group">
-          <h1>
-            <span class="badge-stage">Stage 5: Wrap-up</span>
-            최종 회고 및 성찰 캔버스 (I Like, I Wish, What If)
-          </h1>
-          <p>오늘의 워크숍 경험을 솔직하게 돌아보고, 앞으로의 업무와 협업에 적용할 교훈을 정리합니다.</p>
+          <div class="stage-kicker">
+            <span class="ws-code">WS 07</span>
+            <span class="stage-sep">/</span>
+            <span class="stage-label">Wrap-up &middot; Retrospective</span>
+          </div>
+          <h1>I Like &middot; I Wish &middot; What If 회고 보드</h1>
+          <p>오늘 워크숍의 협업 과정과 배움을 세 가지 관점으로 돌아보고, 실무에 가져갈 시사점을 정리합니다.</p>
         </div>
         <div class="meta-fields">
-          <div class="meta-item"><span class="meta-label">조 번호:</span><span class="meta-line"></span></div>
-          <div class="meta-item"><span class="meta-label">작성 일자:</span><span class="meta-line"></span></div>
-          <div class="meta-item"><span class="meta-label">제한 시간:</span><span style="font-weight:700; color:var(--primary);">15분</span></div>
+          <div class="meta-item"><span class="meta-label">조 번호</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">작성 일자</span><span class="meta-line"></span></div>
+          <div class="meta-item"><span class="meta-label">소요 시간</span><span class="meta-time">15분</span></div>
         </div>
       </header>
 
-      <!-- Summary Bar -->
       <div class="summary-bar">
         <div class="summary-item">
-          <strong>팀 프로젝트명:</strong>
-          <span style="border-bottom: 1.5px solid var(--border-dark); flex: 1; height: 16px;"></span>
+          <strong>팀 프로젝트 주제</strong>
+          <span class="field-underline"></span>
         </div>
         <div class="summary-item">
-          <strong>참여 팀원:</strong>
-          <span style="border-bottom: 1.5px solid var(--border-dark); flex: 1; height: 16px;"></span>
+          <strong>참여 구성원</strong>
+          <span class="field-underline"></span>
         </div>
       </div>
 
-      <!-- 3 Columns Grid -->
       <div class="retro-grid">
-        <!-- Col 1: I Like -->
-        <div class="retro-column col-like">
-          <div class="col-header">
-            <span class="col-title" style="color: #15803d;">
-              I Like (좋았던 점 &amp; 배운 점)
-            </span>
-            <span class="col-desc">협업 과정, 팀의 태도, 깨달음</span>
+        <div class="retro-band">
+          <div class="band-header">
+            <span class="band-index">01 &middot; I LIKE</span>
+            <span class="band-title">좋았던 점과 배운 점</span>
+            <span class="band-desc">효과적이었던 협업 방식, 인상 깊었던 사용자 발견</span>
           </div>
-          <div class="col-canvas">
-            <div class="postit-slot">3x3 포스트잇</div>
-            <div class="postit-slot">3x3 포스트잇</div>
-            <div class="postit-slot">3x3 포스트잇</div>
-            <div class="postit-slot">3x3 포스트잇</div>
+          <div class="band-canvas">
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
           </div>
         </div>
 
-        <!-- Col 2: I Wish -->
-        <div class="retro-column col-wish">
-          <div class="col-header">
-            <span class="col-title" style="color: #b45309;">
-              I Wish (아쉬웠던 점 &amp; 바라는 점)
-            </span>
-            <span class="col-desc">비난이 아닌 아쉬움과 보완 희망</span>
+        <div class="retro-band">
+          <div class="band-header">
+            <span class="band-index">02 &middot; I WISH</span>
+            <span class="band-title">아쉬웠던 점과 보완점</span>
+            <span class="band-desc">시간 배분, 질문 방식, 정보 범위 등에서 개선하고 싶은 점</span>
           </div>
-          <div class="col-canvas">
-            <div class="postit-slot">3x3 포스트잇</div>
-            <div class="postit-slot">3x3 포스트잇</div>
-            <div class="postit-slot">3x3 포스트잇</div>
-            <div class="postit-slot">3x3 포스트잇</div>
+          <div class="band-canvas">
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
           </div>
         </div>
 
-        <!-- Col 3: What If -->
-        <div class="retro-column col-whatif">
-          <div class="col-header">
-            <span class="col-title" style="color: #4338ca;">
-              What If (새로운 시도 &amp; 다음 액션)
-            </span>
-            <span class="col-desc">"만약 ~한다면?" 실무 적용 아이디어</span>
+        <div class="retro-band">
+          <div class="band-header">
+            <span class="band-index">03 &middot; WHAT IF</span>
+            <span class="band-title">새로운 시도와 다음 액션</span>
+            <span class="band-desc">"만약 현업에서 ~해 본다면?" 내일부터 적용할 아이디어</span>
           </div>
-          <div class="col-canvas">
-            <div class="postit-slot">3x3 포스트잇</div>
-            <div class="postit-slot">3x3 포스트잇</div>
-            <div class="postit-slot">3x3 포스트잇</div>
-            <div class="postit-slot">3x3 포스트잇</div>
+          <div class="band-canvas">
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
+            <div class="postit-slot">76&times;76mm 포스트잇</div>
           </div>
         </div>
       </div>
 
-
-      <!-- Footer -->
       <footer class="ws-footer">
-        <span>Design Thinking Workshop Toolkit &bull; Stage 5 Wrap-up Retrospective</span>
-        <span>* 룰: 평가하지 않기 &bull; 사람이 아닌 프로세스에 집중 &bull; What If는 실무 액션으로 연결</span>
-        <span>electronicnomad.net/dtw</span>
+        <span class="footer-mono">Design Thinking Workshop &middot; WS 07 Retrospective (A3)</span>
+        <span>회고 원칙: 개인 평가 대신 과정과 방식에 집중하고, What If 항목 중 1개를 08번 현업 실행 계획서로 연결합니다.</span>
+        <span class="footer-mono">electronicnomad.net/dtw</span>
       </footer>
     </div>
   </div>
