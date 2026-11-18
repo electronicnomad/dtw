@@ -1,6 +1,6 @@
 # Design Thinking Workshop (DTW) 프레젠테이션 & 진행자 가이드
 
-사내에서 Design Thinking Workshop을 직접 운영할 때 사용할 수 있는 **진행자용 웹 프레젠테이션과 실습 자료 모음입니다**.
+조직이나 팀에서 Design Thinking Workshop을 직접 운영할 때 사용할 수 있는 **진행자용 웹 프레젠테이션과 실습 자료 모음입니다**.
 
 처음 참여하는 실무자도 흐름을 따라갈 수 있도록 **하나의 연속 실무 사례(Single-Threaded Case Study)와** **5단계 작성 예시(Sample Deliverables)를** 담았으며, 별도 빌드 과정이나 백엔드 의존성 없이 웹 브라우저에서 바로 열 수 있습니다.
 
@@ -36,7 +36,9 @@
 │   ├── dtw-logo.jpg                      # DTW 로고
 │   ├── dtw_presentation.pptx             # 16:9 와이드스크린 PowerPoint 발표 문서
 │   ├── dtw_presentation.pdf              # PDF 발표 문서
+│   ├── robots.txt                        # 바이너리 에셋 및 AI 크롤러 수집 제한 규칙
 │   └── README.md                         # 서버 디렉터리 안내
+├── DESIGN.md                     # 디자인 시스템 및 UI 기준 문서
 ├── NOTICE.md                     # 제3자 저작권, 라이선스 범위 및 출처 안내
 ├── server.sh                     # 로컬 실행 스크립트 (Python HTTP Server)
 ├── .gitignore                    # Git 관리 제외 파일 정의
@@ -49,9 +51,9 @@
 ## 2. 주요 구성 및 기능
 
 * **밝은 실내·프로젝터 환경을 고려한 라이트 테마:**
-  * 밝은 회의실과 프로젝터 환경에서도 글자가 흐릿해지지 않도록 명도 대비가 높은 라이트 테마(`--bg-slate: #fafafa`, 카드: `#ffffff`, 텍스트: `#18181b`)를 적용했습니다.
+  * 밝은 회의실과 프로젝터 환경에서도 글자가 흐릿해지지 않도록 명도 대비가 높은 라이트 테마(`--bg-subtle: #fafafa`, `--bg-surface: #ffffff`, `--text-main: #18181b`)를 적용했습니다.
 * **5단계 연속 실무 사례 (Single-Threaded Case Study):**
-  * "타 부서 업무 협조 요청 및 진행 현황 확인 지연"이라는 사내 협업 문제를 바탕으로, 1단계 공감부터 5단계 테스트까지 이어지는 산출물 예시를 수록했습니다.
+  * "타 부서 업무 협조 요청 및 진행 현황 확인 지연"이라는 조직 내 협업 문제를 바탕으로, 1단계 공감부터 5단계 테스트까지 이어지는 산출물 예시를 수록했습니다.
 * **듀얼 뷰(Dual View) 실시간 동기화:**
   * 프로젝터 화면(참가자 뷰)과 발표자 모니터(진행자 뷰)를 분리해 운영할 수 있습니다.
   * 브라우저의 `BroadcastChannel` API를 사용해 별도 네트워크 설정 없이 슬라이드 이동과 타이머 상태가 두 창 사이에 동기화됩니다.
@@ -69,8 +71,8 @@
   * 화면 해상도에 맞춰 16:9 비율이 자동 조정되어 프로젝터와 모니터에서 내용이 잘리지 않습니다.
 * **A3/A4 1장 인쇄용 실습 워크시트 (8종):**
   * 팀 공용 보드 4종(A3 가로)과 개인·소그룹 시트 4종(A4)이 브라우저 인쇄(`Ctrl+P` / `Cmd+P`) 시 각 1장에 맞게 출력되도록 여백과 크기를 맞추었습니다.
-* **검색엔진 색인 제외 설정 (Noindex):**
-  * 사내 교육이나 제한된 공유 환경에 맞춰 모든 웹 페이지에 `<meta name="robots" content="noindex, nofollow, noarchive">`를 적용했습니다.
+* **검색엔진 및 AI 크롤러 색인 제외 설정:**
+  * 모든 HTML 페이지에 `robots` 및 `googlebot` 메타 태그(`noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate`)와 링크 `rel="nofollow"`를 적용했고, `server/robots.txt`로 비HTML 바이너리 문서(`.pdf`, `.pptx`, 이미지)와 AI 학습·검색 크롤러의 수집을 차단합니다(HTML 페이지는 검색엔진이 `noindex` 태그를 읽고 색인에서 제외할 수 있도록 열람만 허용).
 
 ---
 
@@ -195,6 +197,6 @@ python3 -m http.server 8080 --directory server
 
 저장소 내 자료는 성격에 따라 라이선스 적용 범위가 구분됩니다:
 
-* **MIT 라이선스 적용 대상 ([LICENSE](LICENSE))**: 자체 제작 웹 프레젠테이션 코드·실무 시나리오(`server/index.html`, `server/dtw_presentation.pptx`, `server/dtw_presentation.pdf`, `server/export_presentation.py`, `server.sh`) 및 인쇄용 실습 워크시트 8종(`server/worksheets/*`). 사내 교육과 대고객 영업·제안 활동을 포함해 자유롭게 사용·수정·배포할 수 있습니다.
+* **MIT 라이선스 적용 대상 ([LICENSE](LICENSE))**: 자체 제작 웹 프레젠테이션 코드·실무 시나리오(`server/index.html`, `server/dtw_presentation.pptx`, `server/dtw_presentation.pdf`, `server/export_presentation.py`, `server.sh`) 및 인쇄용 실습 워크시트 8종(`server/worksheets/*`). 내부 교육과 대고객 영업·제안 활동을 포함해 자유롭게 사용·수정·배포할 수 있습니다.
 * **CC BY-NC-SA 4.0 별도 적용 (`server/guide_dschool_bootleg.html`)**: 스탠퍼드 d.school Bootleg 카드를 번역·요약한 2차적 저작물로 MIT 라이선스가 적용되지 않습니다. 유료 강의, 상업 컨설팅, 대고객 영리 영업 배포는 금지되며 비영리 학습 참고용으로만 사용할 수 있습니다.
 * **외부 프레임워크 참고 요약본 및 기타 에셋 (MIT 제외)**: IDEO U(`server/guide_ideou_framework.*`) 및 Facilitator.com(`server/guide_workshop_facilitation.*`) 기반 참고 요약 문서, 오픈소스 웹폰트(`SIL OFL 1.1`), AI 생성 이미지 에셋의 세부 권리 범위와 비제휴 고지는 **[NOTICE.md](NOTICE.md)를** 확인해 주세요.

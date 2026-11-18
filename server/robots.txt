@@ -1,0 +1,26 @@
+# Search engine crawlers:
+# Keep HTML pages accessible so crawlers can read <meta name="robots" content="noindex, ...">.
+# Blocking HTML via Disallow prevents crawlers from seeing noindex and can leave linked URLs indexed.
+# Block non-HTML binary assets that cannot carry HTML meta tags on static hosting.
+User-agent: *
+Disallow: /*.pdf$
+Disallow: /*.pptx$
+Disallow: /*.jpg$
+Disallow: /*.jpeg$
+Disallow: /*.png$
+
+# AI / LLM training and search bots: full block
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+User-agent: Google-Extended
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: anthropic-ai
+User-agent: CCBot
+User-agent: PerplexityBot
+User-agent: Bytespider
+User-agent: Applebot-Extended
+User-agent: Meta-ExternalAgent
+User-agent: Amazonbot
+Disallow: /

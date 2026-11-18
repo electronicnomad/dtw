@@ -3,6 +3,7 @@ import os
 import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timezone
 from PIL import Image
 from pptx import Presentation
 from pptx.util import Inches
@@ -74,6 +75,14 @@ def main():
 
     print("\nGenerating 16:9 PowerPoint (.pptx) presentation...")
     prs = Presentation()
+    now_utc = datetime.now(timezone.utc).replace(microsecond=0)
+    prs.core_properties.title = "Design Thinking Workshop (DTW)"
+    prs.core_properties.subject = "Design Thinking Workshop Presentation"
+    prs.core_properties.author = "electronicnomad"
+    prs.core_properties.last_modified_by = "electronicnomad"
+    prs.core_properties.comments = ""
+    prs.core_properties.created = now_utc
+    prs.core_properties.modified = now_utc
     prs.slide_width = Inches(13.333333)
     prs.slide_height = Inches(7.5)
     blank_layout = prs.slide_layouts[6]
