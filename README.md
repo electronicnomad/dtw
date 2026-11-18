@@ -193,9 +193,8 @@ python3 -m http.server 8080 --directory server
 
 ## 8. 라이선스 및 제3자 권리 안내
 
-본 프로젝트의 자체 제작 소스코드 및 문서 텍스트는 [MIT License](LICENSE)에 따라 배포됩니다.
+저장소 내 자료는 성격에 따라 라이선스 적용 범위가 구분됩니다:
 
-단, 본 프로젝트에 포함된 일부 2차적 저작물 및 제3자 자료는 각 원저작자의 라이선스를 따르며 상업적 이용이 제한될 수 있습니다:
-* **스탠퍼드 d.school 38개 방법론 가이드 (`server/guide_dschool_bootleg.html`)**: **CC BY-NC-SA 4.0** 라이선스가 적용되는 2차적 저작물입니다. 영리 목적(유료 강의, 상업적 컨설팅 상품 판매 등)의 이용은 금지됩니다.
-* **기타 인용 및 참고 방법론**: IDEO, Facilitator.com, Google Ventures, Christopher Alexander 등의 방법론을 독자적으로 인용·요약했습니다. 각 상표 및 원저작물의 권리는 해당 원저작자에게 있습니다.
-* 세부 출처 표기, 원저작권 정보 및 비제휴 고지는 **[NOTICE.md](NOTICE.md)를** 확인해 주세요.
+* **MIT 라이선스 적용 대상 ([LICENSE](LICENSE))**: 자체 제작 웹 프레젠테이션 코드·실무 시나리오(`server/index.html`, `server/dtw_presentation.pptx`, `server/dtw_presentation.pdf`, `server/export_presentation.py`, `server.sh`) 및 인쇄용 실습 워크시트 8종(`server/worksheets/*`). 사내 교육과 대고객 영업·제안 활동을 포함해 자유롭게 사용·수정·배포할 수 있습니다.
+* **CC BY-NC-SA 4.0 별도 적용 (`server/guide_dschool_bootleg.html`)**: 스탠퍼드 d.school Bootleg 카드를 번역·요약한 2차적 저작물로 MIT 라이선스가 적용되지 않습니다. 유료 강의, 상업 컨설팅, 대고객 영리 영업 배포는 금지되며 비영리 학습 참고용으로만 사용할 수 있습니다.
+* **외부 프레임워크 참고 요약본 및 기타 에셋 (MIT 제외)**: IDEO U(`server/guide_ideou_framework.*`) 및 Facilitator.com(`server/guide_workshop_facilitation.*`) 기반 참고 요약 문서, 오픈소스 웹폰트(`SIL OFL 1.1`), AI 생성 이미지 에셋의 세부 권리 범위와 비제휴 고지는 **[NOTICE.md](NOTICE.md)를** 확인해 주세요.

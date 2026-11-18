@@ -4,390 +4,664 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>스탠퍼드 d.school 디자인 씽킹 38개 방법론 가이드 (Bootleg Deck)</title>
+  <title>스탠퍼드 d.school 38개 방법론 가이드 | Design Thinking Workshop</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-slate: #09090b;
-      --bg-surface: #121215;
-      --bg-card: #18181b;
-      --border-color: #27272a;
-      --border-light: rgba(255, 255, 255, 0.08);
-      --text-main: #f4f4f5;
-      --text-muted: #a1a1aa;
-      --text-dim: #71717a;
-      
-      --color-empathize: #0284c7;
-      --color-define: #059669;
-      --color-ideate: #d97706;
-      --color-prototype: #e11d48;
-      --color-test: #4338ca;
+    @layer reset, base, components;
 
-      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      letter-spacing: -0.015em;
-      word-break: keep-all;
-      background-color: var(--bg-slate);
-      color: var(--text-main);
-      line-height: 1.65;
-      padding-bottom: 80px;
-    }
-
-    header.top-nav {
-      position: sticky;
-      top: 0;
-      height: 64px;
-      padding: 0 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border-light);
-      background: rgba(9, 9, 11, 0.88);
-      backdrop-filter: blur(16px);
-      z-index: 50;
-    }
-
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: var(--text-main);
-    }
-
-    .badge-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      background: rgba(124, 58, 237, 0.15);
-      color: #a78bfa;
-      border: 1px solid rgba(124, 58, 237, 0.4);
-      padding: 3px 10px;
-      border-radius: 9999px;
-      font-weight: 600;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .nav-btn {
-      text-decoration: none;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--border-light);
-      color: var(--text-main);
-      padding: 8px 16px;
-      border-radius: var(--radius-sm);
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: transform 140ms var(--ease-out), background-color 140ms var(--ease-out);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      .nav-btn:hover {
-        background: rgba(255, 255, 255, 0.16);
+    @layer reset {
+      :where(*, *::before, *::after) {
+        box-sizing: border-box;
+      }
+      :where(body, h1, h2, h3, h4, h5, p, ul, ol, dl, dd, figure, blockquote) {
+        margin: 0;
+        padding: 0;
       }
     }
 
-    .nav-btn:active {
-      transform: scale(0.96);
+    @layer base {
+      :root {
+        color-scheme: dark;
+        --bg-slate: #09090b;
+        --bg-surface: #121215;
+        --bg-card: #18181b;
+        --border-color: #27272a;
+        --border-strong: #3f3f46;
+        --border-light: rgba(255, 255, 255, 0.08);
+        --text-main: #f4f4f5;
+        --text-muted: #a1a1aa;
+        --text-dim: #71717a;
+
+        /* Signature Guide Theme: Violet */
+        --accent: #7c3aed;
+        --accent-hover: #8b5cf6;
+        --highlight: #a78bfa;
+
+        /* Mode Indicator Dots */
+        --color-empathize: #38bdf8;
+        --color-define: #34d399;
+        --color-ideate: #fbbf24;
+        --color-prototype: #fb7185;
+        --color-test: #a78bfa;
+
+        --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        --font-mono: 'JetBrains Mono', 'Pretendard Variable', monospace;
+        --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+        --radius-xs: 4px;
+        --radius-sm: 6px;
+        --radius-md: 8px;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        letter-spacing: -0.015em;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+        background-color: var(--bg-slate);
+        color: var(--text-main);
+        line-height: 1.65;
+        padding-bottom: 80px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      p {
+        text-wrap: pretty;
+      }
+
+      :where(a:any-link, button):focus-visible {
+        outline: 2px solid var(--highlight);
+        outline-offset: 3px;
+      }
+
+      .visually-hidden:where(:not(:focus-within, :active)) {
+        position: absolute !important;
+        clip-path: inset(50%) !important;
+        overflow: hidden !important;
+        width: 1px !important;
+        height: 1px !important;
+        margin: -1px !important;
+        padding: 0 !important;
+        border: 0 !important;
+        white-space: nowrap !important;
+      }
     }
 
-    .nav-btn.primary {
-      background: #7c3aed;
-      border-color: #7c3aed;
-      color: #ffffff;
-    }
+    @layer components {
+      .skip-link {
+        position: fixed;
+        top: 12px;
+        left: 16px;
+        z-index: 100;
+        background: var(--accent);
+        color: #ffffff;
+        padding: 8px 14px;
+        border-radius: var(--radius-xs);
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
 
-    .container {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 40px 24px 0;
-    }
+      header.top-nav {
+        position: sticky;
+        top: 0;
+        min-height: 60px;
+        padding: 10px 36px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        border-bottom: 1px solid var(--border-color);
+        background: rgba(9, 9, 11, 0.92);
+        backdrop-filter: blur(12px);
+        z-index: 50;
+      }
 
-    .hero-section {
-      padding: 40px 0 32px;
-      border-bottom: 1px solid var(--border-color);
-      margin-bottom: 32px;
-    }
-
-    .source-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      color: #a78bfa;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 12px;
-      display: block;
-    }
-
-    .hero-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-      margin-bottom: 16px;
-    }
-
-    .hero-desc {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      max-width: 860px;
-      line-height: 1.6;
-    }
-
-    /* Filter Bar */
-    .filter-bar {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 32px;
-      padding: 12px;
-      background: var(--bg-surface);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-color);
-    }
-
-    .filter-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-light);
-      color: var(--text-muted);
-      padding: 8px 18px;
-      border-radius: var(--radius-sm);
-      font-size: 0.88rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 140ms var(--ease-out), background-color 140ms var(--ease-out), color 140ms var(--ease-out);
-      user-select: none;
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      .filter-btn:hover {
-        background: rgba(255, 255, 255, 0.12);
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        font-size: 0.95rem;
         color: var(--text-main);
       }
-    }
 
-    .filter-btn:active {
-      transform: scale(0.96);
-    }
-
-    .filter-btn.active {
-      background: #7c3aed;
-      border-color: #7c3aed;
-      color: #ffffff;
-    }
-
-    /* Section Styles */
-    .mode-section {
-      margin-bottom: 56px;
-    }
-
-    .mode-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding-bottom: 14px;
-      border-bottom: 2px solid var(--border-color);
-      margin-bottom: 24px;
-    }
-
-    .mode-badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 9999px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .mode-empathize { background: rgba(2, 132, 199, 0.15); color: #38bdf8; border: 1px solid rgba(2, 132, 199, 0.4); }
-    .mode-define { background: rgba(5, 150, 105, 0.15); color: #34d399; border: 1px solid rgba(5, 150, 105, 0.4); }
-    .mode-ideate { background: rgba(217, 119, 6, 0.15); color: #fbbf24; border: 1px solid rgba(217, 119, 6, 0.4); }
-    .mode-prototype { background: rgba(225, 29, 72, 0.15); color: #fb7185; border: 1px solid rgba(225, 29, 72, 0.4); }
-    .mode-test { background: rgba(124, 58, 237, 0.15); color: #c084fc; border: 1px solid rgba(124, 58, 237, 0.4); }
-
-    .mode-title {
-      font-size: 1.7rem;
-      font-weight: 800;
-    }
-
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-    }
-
-    .tool-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 16px;
-      transition: transform 160ms var(--ease-out), border-color 160ms var(--ease-out);
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      .tool-card:hover {
-        border-color: rgba(255, 255, 255, 0.3);
-        transform: translateY(-2px);
+      .brand-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--highlight);
+        flex-shrink: 0;
       }
-    }
 
-    .tool-card-top {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+      .brand-sep {
+        color: var(--border-strong);
+        font-weight: 400;
+      }
 
-    .tool-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+      .brand-code {
+        font-family: var(--font-mono);
+        font-size: 0.76rem;
+        font-weight: 700;
+        color: var(--highlight);
+        letter-spacing: 0.04em;
+        font-variant-numeric: tabular-nums;
+      }
 
-    .tool-id {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--text-dim);
-    }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+        user-select: none;
+      }
 
-    .tool-name-ko {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
+      .nav-link {
+        text-decoration: none;
+        color: var(--text-muted);
+        padding: 6px 12px;
+        border-radius: var(--radius-xs);
+        font-size: 0.84rem;
+        font-weight: 500;
+        min-block-size: 34px;
+        display: inline-flex;
+        align-items: center;
+        transition: color 140ms var(--ease-out), background-color 140ms var(--ease-out);
+      }
 
-    .tool-name-en {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
+      @media (hover: hover) and (pointer: fine) {
+        .nav-link:hover {
+          color: var(--text-main);
+          background: rgba(255, 255, 255, 0.06);
+        }
+      }
 
-    .tool-desc {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
+      .nav-divider {
+        width: 1px;
+        height: 18px;
+        background: var(--border-color);
+        margin-inline: 4px;
+      }
 
-    .tool-box {
-      background: rgba(0, 0, 0, 0.25);
-      border-radius: var(--radius-sm);
-      padding: 12px 14px;
-      border-left: 3px solid var(--border-color);
-      font-size: 0.85rem;
-      color: #cbd5e1;
-    }
+      .nav-btn {
+        text-decoration: none;
+        background: var(--accent);
+        border: 1px solid var(--accent);
+        color: #ffffff;
+        padding: 6px 14px;
+        border-radius: var(--radius-xs);
+        font-size: 0.84rem;
+        font-weight: 600;
+        min-block-size: 34px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: transform 140ms var(--ease-out), background-color 140ms var(--ease-out), border-color 140ms var(--ease-out);
+      }
 
-    .tool-box strong {
-      color: var(--text-main);
-      display: block;
-      margin-bottom: 4px;
-    }
-    .license-notice {
-      margin-top: 56px;
-      padding: 28px 32px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      line-height: 1.7;
-    }
+      @media (hover: hover) and (pointer: fine) {
+        .nav-btn:hover {
+          background: var(--accent-hover);
+          border-color: var(--accent-hover);
+        }
+      }
 
-    .license-notice h2 {
-      color: var(--text-main);
-      font-size: 1.1rem;
-      margin-bottom: 12px;
-    }
+      .nav-btn:active {
+        transform: scale(0.97);
+      }
 
-    .license-notice p + p {
-      margin-top: 10px;
-    }
+      .container {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 44px 24px 0;
+      }
 
-    .license-notice a {
-      color: #a78bfa;
-    }
+      .hero-section {
+        padding-bottom: 28px;
+        margin-bottom: 28px;
+      }
 
-    .license-notice strong {
-      color: var(--text-main);
+      .source-label {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--highlight);
+        letter-spacing: 0.04em;
+        margin-bottom: 12px;
+        display: block;
+      }
+
+      .hero-title {
+        font-size: clamp(1.85rem, 1.4rem + 1.5vw, 2.4rem);
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 1.25;
+        margin-bottom: 14px;
+        text-wrap: balance;
+      }
+
+      .hero-desc {
+        font-size: 1.06rem;
+        color: var(--text-muted);
+        max-width: 74ch;
+        line-height: 1.7;
+      }
+
+      .hero-desc a {
+        color: var(--highlight);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .meta-strip {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px 24px;
+        margin-top: 28px;
+        padding: 16px 0;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .meta-key {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--highlight);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .meta-val {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+
+      /* Segmented Filter Toolbar */
+      .filter-bar {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 36px;
+        padding: 8px;
+        background: var(--bg-surface);
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border-color);
+        user-select: none;
+      }
+
+      .filter-btn {
+        font-family: var(--font-sans);
+        background: transparent;
+        border: 1px solid transparent;
+        color: var(--text-muted);
+        padding: 7px 14px;
+        border-radius: var(--radius-xs);
+        font-size: 0.85rem;
+        font-weight: 600;
+        min-block-size: 36px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-variant-numeric: tabular-nums;
+        transition: transform 140ms var(--ease-out), background-color 140ms var(--ease-out), color 140ms var(--ease-out), border-color 140ms var(--ease-out);
+      }
+
+      .filter-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .filter-btn:hover:not(.active) {
+          background: rgba(255, 255, 255, 0.06);
+          color: var(--text-main);
+        }
+      }
+
+      .filter-btn:active {
+        transform: scale(0.97);
+      }
+
+      .filter-btn.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #ffffff;
+      }
+
+      .filter-btn.active .filter-dot {
+        background: #ffffff !important;
+      }
+
+      /* Mode Sections */
+      .mode-section {
+        margin-bottom: 56px;
+      }
+
+      .mode-section[data-mode="empathize"] { --mode-color: var(--color-empathize); }
+      .mode-section[data-mode="define"]    { --mode-color: var(--color-define); }
+      .mode-section[data-mode="ideate"]    { --mode-color: var(--color-ideate); }
+      .mode-section[data-mode="prototype"] { --mode-color: var(--color-prototype); }
+      .mode-section[data-mode="test"]      { --mode-color: var(--color-test); }
+
+      .mode-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 22px;
+      }
+
+      .mode-header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .mode-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--mode-color);
+        flex-shrink: 0;
+      }
+
+      .mode-code {
+        font-family: var(--font-mono);
+        font-size: 0.84rem;
+        font-weight: 700;
+        color: var(--mode-color);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .mode-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 16px;
+      }
+
+      .tool-card {
+        background: var(--bg-surface);
+        border: 1px solid var(--border-color);
+        border-top: 2px solid var(--mode-color);
+        border-radius: var(--radius-sm);
+        padding: 20px 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .tool-card-top {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .tool-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .tool-id {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--mode-color);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .tool-name-ko {
+        font-size: 1.12rem;
+        font-weight: 700;
+        color: var(--text-main);
+        letter-spacing: -0.01em;
+      }
+
+      .tool-name-en {
+        font-family: var(--font-mono);
+        font-size: 0.77rem;
+        color: var(--text-dim);
+        margin-bottom: 4px;
+      }
+
+      .tool-desc {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      .tool-box {
+        background: rgba(255, 255, 255, 0.025);
+        border-top: 1px solid var(--border-light);
+        padding-top: 12px;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.55;
+      }
+
+      .tool-box strong {
+        color: var(--text-main);
+        font-weight: 700;
+        margin-inline-end: 4px;
+      }
+
+      .license-notice {
+        margin-top: 60px;
+        padding: 26px 28px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-inline-start: 3px solid var(--highlight);
+        border-radius: var(--radius-sm);
+        color: var(--text-muted);
+        font-size: 0.88rem;
+        line-height: 1.7;
+        scroll-margin-top: 84px;
+      }
+
+      .license-notice h2 {
+        color: var(--text-main);
+        font-size: 1.05rem;
+        margin-bottom: 12px;
+      }
+
+      .license-notice p + p {
+        margin-top: 10px;
+      }
+
+      .license-notice a {
+        color: var(--highlight);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .license-notice strong {
+        color: var(--text-main);
+      }
+
+      .license-notice code {
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        color: var(--text-main);
+      }
+
+      footer.bottom-bar {
+        margin-top: 40px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        color: var(--text-dim);
+        font-size: 0.83rem;
+      }
+
+      footer.bottom-bar a {
+        color: var(--text-muted);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      @media (max-width: 768px) {
+        header.top-nav {
+          padding: 10px 16px;
+        }
+        .nav-divider {
+          display: none;
+        }
+        .container {
+          padding: 28px 16px 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .nav-link,
+        .nav-btn,
+        .filter-btn {
+          transition: none;
+        }
+      }
+
+      @media print {
+        :root {
+          color-scheme: light;
+          --bg-slate: #ffffff;
+          --bg-surface: #ffffff;
+          --bg-card: #fafafa;
+          --border-color: #d4d4d8;
+          --border-strong: #71717a;
+          --border-light: #e4e4e7;
+          --text-main: #18181b;
+          --text-muted: #3f3f46;
+          --text-dim: #52525b;
+          --highlight: #6d28d9;
+          --color-empathize: #0369a1;
+          --color-define: #047857;
+          --color-ideate: #b45309;
+          --color-prototype: #be123c;
+          --color-test: #4338ca;
+        }
+        header.top-nav {
+          position: static;
+          background: #ffffff;
+          backdrop-filter: none;
+        }
+        .nav-actions,
+        .filter-bar {
+          display: none;
+        }
+      }
     }
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link visually-hidden">본문으로 건너뛰기</a>
 
-  <!-- Top Navigation -->
   <header class="top-nav">
     <div class="nav-brand">
-      <span>Stanford d.school Bootleg Guide</span>
-      <span class="badge-tag">38 Core Methods</span>
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Design Thinking Workshop</span>
+      <span class="brand-sep" aria-hidden="true">/</span>
+      <span class="brand-code">D.SCHOOL BOOTLEG &middot; 38</span>
     </div>
-    <div class="nav-actions">
-      <a href="guide_workshop_facilitation.html" class="nav-btn">운영 가이드</a>
-      <a href="guide_ideou_framework.html" class="nav-btn">IDEO U 가이드</a>
-      <a href="index.html" class="nav-btn primary">프레젠테이션으로 돌아가기</a>
-    </div>
+    <nav class="nav-actions" aria-label="관련 문서 이동">
+      <a href="guide_workshop_facilitation.html" class="nav-link">운영 가이드</a>
+      <a href="guide_ideou_framework.html" class="nav-link">IDEO U 가이드</a>
+      <a href="worksheets/index.html" class="nav-link">워크시트 (8종)</a>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <a href="index.html" class="nav-btn">&larr; 메인 발표자료</a>
+    </nav>
   </header>
 
-  <div class="container">
-    
-    <!-- Hero Section -->
+  <main class="container" id="main-content" tabindex="-1">
     <section class="hero-section">
-      <span class="source-label">Reference: d.school Design Thinking Bootleg Deck (Stanford University)</span>
+      <span class="source-label">REFERENCE &middot; STANFORD D.SCHOOL DESIGN THINKING BOOTLEG DECK</span>
       <h1 class="hero-title">스탠퍼드 d.school 디자인 씽킹 38개 방법론 가이드</h1>
       <p class="hero-desc">
-        스탠퍼드 대학교 d.school이 디자인 프로젝트와 수업을 위해 정리한 38개 방법론(Bootleg Cards)을 
-        한국어로 옮기고 실행 팁을 덧붙인 참고 문서입니다. 원저작물은 CC BY-NC-SA 4.0으로 배포되며, 이 문서도 같은 조건을 따릅니다(<a href="#license" style="color:#a78bfa">출처 및 라이선스</a>). 과제 단계와 상황에 맞는 도구를 골라 활용할 수 있습니다.
+        스탠퍼드 대학교 d.school이 디자인 프로젝트와 수업을 위해 정리한 38개 방법론(Bootleg Cards)을
+        한국어로 옮기고 실행 팁을 덧붙인 참고 문서입니다. 원저작물은 CC BY-NC-SA 4.0으로 배포되며, 이 문서도 같은 조건을 따릅니다(<a href="#license">출처 및 라이선스</a>). 과제 단계와 상황에 맞는 도구를 골라 활용할 수 있습니다.
       </p>
+      <div class="meta-strip">
+        <div class="meta-item">
+          <span class="meta-key">Original Work</span>
+          <span class="meta-val">Hasso Plattner Institute of Design at Stanford (Bootleg 2018)</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">Method Catalog</span>
+          <span class="meta-val">5개 모드 &middot; 총 38개 실무 도구 요약 및 진행 팁</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">License Scope</span>
+          <span class="meta-val">CC BY-NC-SA 4.0 (비영리 &middot; 동일조건변경허락)</span>
+        </div>
+      </div>
     </section>
 
-    <!-- Filter Bar -->
-    <div class="filter-bar">
-      <button class="filter-btn active" onclick="filterMode('all', this)">전체 보기 (38)</button>
-      <button class="filter-btn" onclick="filterMode('empathize', this)">1. 공감 (Empathize, 8)</button>
-      <button class="filter-btn" onclick="filterMode('define', this)">2. 정의 (Define, 9)</button>
-      <button class="filter-btn" onclick="filterMode('ideate', this)">3. 발상 (Ideate, 6)</button>
-      <button class="filter-btn" onclick="filterMode('prototype', this)">4. 프로토타입 (Prototype, 8)</button>
-      <button class="filter-btn" onclick="filterMode('test', this)">5. 테스트 (Test, 7)</button>
+    <div class="filter-bar" role="toolbar" aria-label="단계별 방법론 필터">
+      <button type="button" class="filter-btn active" aria-pressed="true" onclick="filterMode('all', this)">
+        <span>전체 보기 (38)</span>
+      </button>
+      <button type="button" class="filter-btn" aria-pressed="false" onclick="filterMode('empathize', this)">
+        <span class="filter-dot" style="background: var(--color-empathize);" aria-hidden="true"></span>
+        <span>1. 공감 (Empathize, 8)</span>
+      </button>
+      <button type="button" class="filter-btn" aria-pressed="false" onclick="filterMode('define', this)">
+        <span class="filter-dot" style="background: var(--color-define);" aria-hidden="true"></span>
+        <span>2. 정의 (Define, 9)</span>
+      </button>
+      <button type="button" class="filter-btn" aria-pressed="false" onclick="filterMode('ideate', this)">
+        <span class="filter-dot" style="background: var(--color-ideate);" aria-hidden="true"></span>
+        <span>3. 발상 (Ideate, 6)</span>
+      </button>
+      <button type="button" class="filter-btn" aria-pressed="false" onclick="filterMode('prototype', this)">
+        <span class="filter-dot" style="background: var(--color-prototype);" aria-hidden="true"></span>
+        <span>4. 프로토타입 (Prototype, 8)</span>
+      </button>
+      <button type="button" class="filter-btn" aria-pressed="false" onclick="filterMode('test', this)">
+        <span class="filter-dot" style="background: var(--color-test);" aria-hidden="true"></span>
+        <span>5. 테스트 (Test, 7)</span>
+      </button>
     </div>
 
     <!-- 1. EMPATHIZE MODE -->
     <section class="mode-section" data-mode="empathize">
       <div class="mode-header">
-        <span class="mode-badge mode-empathize">Mode 01</span>
-        <h2 class="mode-title">공감 (Empathize) 도구 8선</h2>
+        <div class="mode-header-left">
+          <span class="mode-dot" aria-hidden="true"></span>
+          <span class="mode-code">Mode 01</span>
+          <h2 class="mode-title">공감 (Empathize) 도구 8선</h2>
+        </div>
       </div>
       <div class="tools-grid">
-        
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">EM-01</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">EM-01</span></div>
             <h3 class="tool-name-ko">초심자의 시선 갖기</h3>
             <span class="tool-name-en">Assume a Beginner’s Mindset</span>
             <p class="tool-desc">기존 경험과 업무 지식을 잠시 내려놓고, 처음 접하는 사람의 시선으로 사용자의 환경을 살펴봅니다.</p>
@@ -399,9 +673,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">EM-02</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">EM-02</span></div>
             <h3 class="tool-name-ko">What? How? Why? 관찰법</h3>
             <span class="tool-name-en">What? How? Why?</span>
             <p class="tool-desc">관찰 대상을 3단계로 나누어 기록합니다. What(무엇을 하는가), How(어떻게 행동하는가), Why(왜 그렇게 행동하는가·감정).</p>
@@ -413,9 +685,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">EM-03</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">EM-03</span></div>
             <h3 class="tool-name-ko">공감 인터뷰 준비</h3>
             <span class="tool-name-en">Interview Preparation</span>
             <p class="tool-desc">인터뷰 질문을 미리 모은 뒤 주제별로 묶고, 대화 흐름(도입 -&gt; 신뢰 형성 -&gt; 심층 질문 -&gt; 마무리)에 맞춰 순서를 정합니다.</p>
@@ -427,9 +697,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">EM-04</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">EM-04</span></div>
             <h3 class="tool-name-ko">공감 인터뷰 진행 기법</h3>
             <span class="tool-name-en">Interview for Empathy</span>
             <p class="tool-desc">실제 경험담을 이끌어내는 질문을 던지고, 잠시 침묵이 흐르더라도 상대가 생각을 정리해 말할 때까지 기다립니다.</p>
@@ -441,9 +709,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">EM-05</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">EM-05</span></div>
             <h3 class="tool-name-ko">극단 사용자 탐색</h3>
             <span class="tool-name-en">Extreme Users</span>
             <p class="tool-desc">평균적인 사용자 대신 서비스를 아주 자주 쓰는 헤비 유저나 아예 쓰지 않는 비사용자를 관찰해 일반 인터뷰에서 잘 드러나지 않는 니즈를 찾습니다.</p>
@@ -455,9 +721,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">EM-06</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">EM-06</span></div>
             <h3 class="tool-name-ko">스토리 공유 및 기록</h3>
             <span class="tool-name-en">Story Share-and-Capture</span>
             <p class="tool-desc">인터뷰를 마친 팀원들이 현장에서 들은 발언과 인상적인 장면을 포스트잇에 적어 공유하고 보드에 분류합니다.</p>
@@ -469,9 +733,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">EM-07</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">EM-07</span></div>
             <h3 class="tool-name-ko">유사 영역 유추</h3>
             <span class="tool-name-en">Analogous Empathy</span>
             <p class="tool-desc">우리 분야와 업종은 다르지만 '핵심 감정이나 제약 조건'이 비슷한 다른 현장을 관찰해 해결 단서를 얻습니다.</p>
@@ -483,9 +745,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">EM-08</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">EM-08</span></div>
             <h3 class="tool-name-ko">공감 프로브 (자기 기록 조사)</h3>
             <span class="tool-name-en">Empathy Probe</span>
             <p class="tool-desc">관찰자가 동행하기 어려운 시간대나 공간에서는 사용자에게 메모지나 사진 기록 과제를 주어 직접 일상을 남기게 합니다.</p>
@@ -494,23 +754,22 @@
             <strong>실행 팁:</strong> 하루 중 업무가 가장 막혔던 순간을 사진 3장과 짧은 메모로 남겨 달라고 요청해 보세요.
           </div>
         </div>
-
       </div>
     </section>
 
     <!-- 2. DEFINE MODE -->
     <section class="mode-section" data-mode="define">
       <div class="mode-header">
-        <span class="mode-badge mode-define">Mode 02</span>
-        <h2 class="mode-title">정의 (Define) 도구 9선</h2>
+        <div class="mode-header-left">
+          <span class="mode-dot" aria-hidden="true"></span>
+          <span class="mode-code">Mode 02</span>
+          <h2 class="mode-title">정의 (Define) 도구 9선</h2>
+        </div>
       </div>
       <div class="tools-grid">
-
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">DF-01</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">DF-01</span></div>
             <h3 class="tool-name-ko">고객 여정 맵</h3>
             <span class="tool-name-en">Journey Map</span>
             <p class="tool-desc">사용자가 경험하는 시간 흐름(시작 전 -&gt; 이용 중 -&gt; 종료 후)을 단계별로 나누고 각 구간의 감정 높낮이를 표시합니다.</p>
@@ -522,9 +781,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">DF-02</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">DF-02</span></div>
             <h3 class="tool-name-ko">10의 거듭제곱 (규모 전환)</h3>
             <span class="tool-name-en">Powers of Ten</span>
             <p class="tool-desc">문제를 바라보는 규모를 아주 작게 줄이거나(단일 순간·개인) 크게 넓혀 보며(장기·대규모) 다른 각도의 단서를 찾습니다.</p>
@@ -536,9 +793,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">DF-03</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">DF-03</span></div>
             <h3 class="tool-name-ko">2x2 매트릭스</h3>
             <span class="tool-name-en">2x2 Matrix</span>
             <p class="tool-desc">서로 다른 두 기준축(X축, Y축)을 놓고 인터뷰 자료나 현상을 4분면으로 배치해 패턴과 빈 영역을 살펴봅니다.</p>
@@ -550,9 +805,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">DF-04</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">DF-04</span></div>
             <h3 class="tool-name-ko">왜-어떻게 사다리 타기</h3>
             <span class="tool-name-en">Why-How Laddering</span>
             <p class="tool-desc">'Why'를 물어 상위의 목적과 이유로 올라가고, 'How'를 물어 하위의 구체적 수단으로 내려가며 문제의 추상도를 조절합니다.</p>
@@ -564,9 +817,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">DF-05</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">DF-05</span></div>
             <h3 class="tool-name-ko">관점 정의 (POV) 문장</h3>
             <span class="tool-name-en">Point of View (POV)</span>
             <p class="tool-desc">[특정 사용자]는 [필요]가 필요하다. 왜냐하면 [발견한 인사이트] 때문이다 — 세 요소로 핵심 문제를 한 문장으로 정리합니다.</p>
@@ -578,9 +829,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">DF-06</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">DF-06</span></div>
             <h3 class="tool-name-ko">디자인 가이드라인 수립</h3>
             <span class="tool-name-en">Design Guidelines</span>
             <p class="tool-desc">이후 어떤 형태(앱, 업무 규칙, 대면 서비스)로 풀더라도 지켜야 할 3~4가지 설계 기준을 먼저 정합니다.</p>
@@ -592,9 +841,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">DF-07</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">DF-07</span></div>
             <h3 class="tool-name-ko">HMW (“어떻게 하면 ~할 수 있을까?”)</h3>
             <span class="tool-name-en">“How Might We” Questions</span>
             <p class="tool-desc">POV에서 확인한 문제와 제약을 여러 해결 아이디어가 나올 수 있는 열린 질문 형태로 바꿉니다.</p>
@@ -606,9 +853,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">DF-08</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">DF-08</span></div>
             <h3 class="tool-name-ko">예상 밖 관찰에서 인사이트 찾기</h3>
             <span class="tool-name-en">Surprise-to-Insights</span>
             <p class="tool-desc">관찰 과정에서 팀의 사전 예상과 달랐거나 의아하게 느껴졌던 사용자의 행동을 집중적으로 살펴봅니다.</p>
@@ -620,9 +865,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">DF-09</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">DF-09</span></div>
             <h3 class="tool-name-ko">콘셉트 요약하기</h3>
             <span class="tool-name-en">Describe Your Concept</span>
             <p class="tool-desc">선정한 아이디어를 논의 직후 정리합니다. 이름, 대상 사용자, 기대 효과, 작동 방식을 적고 핵심 기능 하나로 간추립니다.</p>
@@ -631,23 +874,22 @@
             <strong>실행 팁:</strong> 적어 본 콘셉트가 앞서 정의한 사용자 문제와 잘 이어지지 않는다면 후보 목록으로 돌아가 다른 대안을 다시 검토합니다.
           </div>
         </div>
-
       </div>
     </section>
 
     <!-- 3. IDEATE MODE -->
     <section class="mode-section" data-mode="ideate">
       <div class="mode-header">
-        <span class="mode-badge mode-ideate">Mode 03</span>
-        <h2 class="mode-title">발상 (Ideate) 도구 6선</h2>
+        <div class="mode-header-left">
+          <span class="mode-dot" aria-hidden="true"></span>
+          <span class="mode-code">Mode 03</span>
+          <h2 class="mode-title">발상 (Ideate) 도구 6선</h2>
+        </div>
       </div>
       <div class="tools-grid">
-
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">ID-01</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">ID-01</span></div>
             <h3 class="tool-name-ko">스토크 (짧은 활력 활동)</h3>
             <span class="tool-name-en">Stoke Activities</span>
             <p class="tool-desc">아이디어 발산 직전에 2~3분간 자리에서 일어나 박자를 맞추거나 단어를 이어 가는 짧은 활동으로 굳은 분위기를 풀어 줍니다.</p>
@@ -659,9 +901,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">ID-02</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">ID-02</span></div>
             <h3 class="tool-name-ko">브레인스토밍</h3>
             <span class="tool-name-en">Brainstorming</span>
             <p class="tool-desc">평가는 잠시 미루고 대안 생성에 집중하는 15~30분 활동입니다. HMW 질문을 기준으로 떠오르는 대안을 포스트잇에 빠르게 적습니다. 기본 7원칙: 1. 판단 유예 2. 엉뚱한 발상 환영 3. 동료 생각에 덧붙이기 4. 주제 집중 5. 한 번에 한 명씩 6. 시각화하기 7. 양에 집중.</p>
@@ -673,9 +913,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">ID-03</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">ID-03</span></div>
             <h3 class="tool-name-ko">브레인스토밍 촉진 질문</h3>
             <span class="tool-name-en">Facilitate a Brainstorm</span>
             <p class="tool-desc">아이디어가 비슷해지거나 대화가 멈출 때 진행자가 보조 질문이나 가상 조건을 던져 다른 각도의 대안을 이끌어냅니다.</p>
@@ -687,9 +925,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">ID-04</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">ID-04</span></div>
             <h3 class="tool-name-ko">아이디어 선별 (기준별 투표)</h3>
             <span class="tool-name-en">Brainstorm Selection</span>
             <p class="tool-desc">무난하고 익숙한 안만 뽑히는 것을 막기 위해 '당장 적용 가능한 안', '가장 새로운 안', '사용자가 가장 반길 안'처럼 기준을 나누어 투표합니다.</p>
@@ -701,9 +937,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">ID-05</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">ID-05</span></div>
             <h3 class="tool-name-ko">제약 조건 걸어 보기</h3>
             <span class="tool-name-en">Impose Constraints</span>
             <p class="tool-desc">시간, 비용, 화면 수 등에 의도적인 제한을 두어 익숙한 해결 방식 대신 단순하고 본질적인 대안을 찾게 합니다.</p>
@@ -715,9 +949,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">ID-06</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">ID-06</span></div>
             <h3 class="tool-name-ko">Yes, And! 이어 붙이기</h3>
             <span class="tool-name-en">Yes, And! Brainstorm</span>
             <p class="tool-desc">즉흥극(Improv)의 대화 원리를 빌려, 앞사람의 의견을 "하지만(No, But)"으로 끊지 않고 "좋아요, 거기에 더해서(Yes, And)"로 이어 갑니다.</p>
@@ -726,23 +958,22 @@
             <strong>실행 팁:</strong> 설익은 초기 아이디어에 팀원들이 돌아가며 조건을 보태어 실행 가능한 형태로 발전시킬 때 유용합니다.
           </div>
         </div>
-
       </div>
     </section>
 
     <!-- 4. PROTOTYPE MODE -->
     <section class="mode-section" data-mode="prototype">
       <div class="mode-header">
-        <span class="mode-badge mode-prototype">Mode 04</span>
-        <h2 class="mode-title">프로토타입 (Prototype) 도구 8선</h2>
+        <div class="mode-header-left">
+          <span class="mode-dot" aria-hidden="true"></span>
+          <span class="mode-code">Mode 04</span>
+          <h2 class="mode-title">프로토타입 (Prototype) 도구 8선</h2>
+        </div>
       </div>
       <div class="tools-grid">
-
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">PR-01</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">PR-01</span></div>
             <h3 class="tool-name-ko">공감을 위한 프로토타입</h3>
             <span class="tool-name-en">Prototype for Empathy</span>
             <p class="tool-desc">해결책을 확정하기 위해서가 아니라, 사용자의 구체적인 반응과 기준을 더 깊이 듣기 위해 만드는 대화용 모형입니다.</p>
@@ -754,9 +985,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">PR-02</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">PR-02</span></div>
             <h3 class="tool-name-ko">바디스토밍 (현장 재연)</h3>
             <span class="tool-name-en">Improvise to Life</span>
             <p class="tool-desc">책상에서 그리는 대신 팀원들이 직접 사용자와 담당자가 되어 실제 공간에서 움직이며 서비스 흐름을 재연합니다.</p>
@@ -768,9 +997,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">PR-03</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">PR-03</span></div>
             <h3 class="tool-name-ko">장면/소품/역할 시뮬레이션</h3>
             <span class="tool-name-en">Scenes / Props / Roles</span>
             <p class="tool-desc">공간(Scene), 간단한 소품(Props: 상자, 표지판 등), 배역(Role)을 정해 여러 사람이 얽힌 서비스 시나리오를 점검합니다.</p>
@@ -782,9 +1009,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">PR-04</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">PR-04</span></div>
             <h3 class="tool-name-ko">결정을 위한 비교 프로토타입</h3>
             <span class="tool-name-en">Prototype to Decide</span>
             <p class="tool-desc">팀 안에서 의견이 갈리는 두 가지 안(A안 vs B안)을 각각 간단한 모형으로 만들어 나란히 두고 사용자 반응을 비교합니다.</p>
@@ -796,9 +1021,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">PR-05</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">PR-05</span></div>
             <h3 class="tool-name-ko">단일 변수 분리 검증</h3>
             <span class="tool-name-en">Identify a Variable</span>
             <p class="tool-desc">서비스 전체를 만들지 않고, 지금 확인하려는 '핵심 가설 하나(예: 버튼 문구 이해도, 사용 의향)'만 떼어내어 모형으로 만듭니다.</p>
@@ -810,9 +1033,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">PR-06</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">PR-06</span></div>
             <h3 class="tool-name-ko">오즈의 마법사 프로토타이핑</h3>
             <span class="tool-name-en">Wizard of Oz</span>
             <p class="tool-desc">사용자 눈앞의 화면은 자동화된 기능처럼 보이게 두고, 실제 처리는 뒤에서 사람이 수동으로 응답해 개발 전에 효용을 검증합니다.</p>
@@ -824,9 +1045,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">PR-07</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">PR-07</span></div>
             <h3 class="tool-name-ko">비디오 프로토타입 촬영</h3>
             <span class="tool-name-en">Shooting Video</span>
             <p class="tool-desc">스마트폰으로 사용자가 솔루션을 만나 문제를 해결하는 1분 내외의 장면을 촬영해 서비스 맥락과 전달력을 점검합니다.</p>
@@ -838,9 +1057,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">PR-08</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">PR-08</span></div>
             <h3 class="tool-name-ko">비디오 편집 및 핵심 장면 요약</h3>
             <span class="tool-name-en">Editing Video</span>
             <p class="tool-desc">촬영본에서 부연 설명을 덜어내고 문제 상황과 해결 순간이 드러나는 30초 내외의 핵심 장면만 묶어 공유합니다.</p>
@@ -849,23 +1066,22 @@
             <strong>실행 팁:</strong> 긴 문서 설명보다 실제 사용 맥락이 담긴 짧은 영상 한 편이 타 부서 이해관계자의 이해를 돕는 데 효과적입니다.
           </div>
         </div>
-
       </div>
     </section>
 
     <!-- 5. TEST MODE -->
     <section class="mode-section" data-mode="test">
       <div class="mode-header">
-        <span class="mode-badge mode-test">Mode 05</span>
-        <h2 class="mode-title">테스트 (Test) 도구 7선</h2>
+        <div class="mode-header-left">
+          <span class="mode-dot" aria-hidden="true"></span>
+          <span class="mode-code">Mode 05</span>
+          <h2 class="mode-title">테스트 (Test) 도구 7선</h2>
+        </div>
       </div>
       <div class="tools-grid">
-
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">TE-01</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">TE-01</span></div>
             <h3 class="tool-name-ko">사용자 테스트 (Show, Don’t Tell)</h3>
             <span class="tool-name-en">Testing with Users</span>
             <p class="tool-desc">프로토타입을 건네주고 사용법을 미리 설명하지 않습니다. 사용자가 스스로 살펴보며 겪는 시행착오를 그대로 관찰합니다.</p>
@@ -877,9 +1093,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">TE-02</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">TE-02</span></div>
             <h3 class="tool-name-ko">사용자 참여형 프로토타이핑</h3>
             <span class="tool-name-en">User-Driven Prototyping</span>
             <p class="tool-desc">완성된 안을 보여 주는 대신 사용자에게 종이 카드나 구성 요소를 건네고 "원하는 순서나 화면을 직접 배치해 보세요"라고 요청합니다.</p>
@@ -891,9 +1105,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">TE-03</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">TE-03</span></div>
             <h3 class="tool-name-ko">피드백 캡처 매트릭스</h3>
             <span class="tool-name-en">Feedback Capture Matrix</span>
             <p class="tool-desc">보드를 사분면으로 나누어 좌상 [+ 좋았던 점], 우상 [Δ 보완할 점], 좌하 [? 질문], 우하 [전구: 새 아이디어]로 반응을 기록합니다. (본 워크숍 워크시트는 Δ와 전구 대신 -와 ! 기호를 사용합니다.)</p>
@@ -905,9 +1117,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">TE-04</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">TE-04</span></div>
             <h3 class="tool-name-ko">스토리텔링 공유</h3>
             <span class="tool-name-en">Storytelling</span>
             <p class="tool-desc">기능 목록만 나열하지 않고 '사용자가 겪던 상황 -&gt; 핵심 문제 -&gt; 프로토타입 시연 -&gt; 테스트에서 확인한 배움' 순서로 전달합니다.</p>
@@ -919,9 +1129,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">TE-05</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">TE-05</span></div>
             <h3 class="tool-name-ko">I Like, I Wish, What If 회고</h3>
             <span class="tool-name-en">I Like, I Wish, What If</span>
             <p class="tool-desc">세션을 마친 뒤 "좋았던 점(I Like)", "아쉬웠거나 바라는 점(I Wish)", "실무에 적용해 볼 제안(What If)" 세 항목으로 의견을 나눕니다.</p>
@@ -933,9 +1141,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">TE-06</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">TE-06</span></div>
             <h3 class="tool-name-ko">정성 인사이트와 정량 데이터 결합</h3>
             <span class="tool-name-en">Empathetic Data</span>
             <p class="tool-desc">인터뷰와 관찰에서 찾은 정성적 가설을 설문이나 사용 로그 같은 수치 데이터와 함께 대조해 타당성을 점검합니다.</p>
@@ -947,9 +1153,7 @@
 
         <div class="tool-card">
           <div class="tool-card-top">
-            <div class="tool-meta">
-              <span class="tool-id">TE-07</span>
-            </div>
+            <div class="tool-meta"><span class="tool-id">TE-07</span></div>
             <h3 class="tool-name-ko">아이디어 포트폴리오 점검</h3>
             <span class="tool-name-en">Review Your Portfolio</span>
             <p class="tool-desc">팀이 추린 해법들이 단기 소폭 개선에만 몰려 있지 않은지, 즉시 실행 과제와 중장기 실험 과제가 균형을 이루는지 살핍니다.</p>
@@ -958,7 +1162,6 @@
             <strong>실행 팁:</strong> 예컨대 단기 개선안 70%, 중기 확장안 20%, 장기 실험안 10%처럼 조직 여건에 맞는 비중을 정해 두고 점검합니다.
           </div>
         </div>
-
       </div>
     </section>
 
@@ -987,12 +1190,20 @@
       </p>
     </section>
 
-  </div>
+    <footer class="bottom-bar">
+      <div>스탠퍼드 d.school Design Thinking Bootleg 기반 한국어 요약본 &bull; <a href="https://github.com/electronicnomad/dtw/blob/main/NOTICE.md" target="_blank" rel="noopener noreferrer">권리 범위(NOTICE)</a></div>
+      <div>CC BY-NC-SA 4.0 &middot; Method Reference</div>
+    </footer>
+  </main>
 
   <script>
     function filterMode(mode, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
 
       const sections = document.querySelectorAll('.mode-section');
       sections.forEach(sec => {

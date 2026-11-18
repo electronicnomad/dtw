@@ -4,449 +4,653 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>IDEO U 디자인 씽킹 프레임워크 가이드</title>
+  <title>IDEO U 디자인 씽킹 프레임워크 가이드 | Design Thinking Workshop</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-slate: #09090b;
-      --bg-surface: #121215;
-      --bg-card: #18181b;
-      --border-color: #27272a;
-      --border-light: rgba(255, 255, 255, 0.08);
-      --text-main: #f4f4f5;
-      --text-muted: #a1a1aa;
-      --text-dim: #71717a;
-      --accent: #d97706;
-      --accent-bg: rgba(217, 119, 6, 0.12);
-      --accent-border: rgba(217, 119, 6, 0.35);
-      --highlight: #f59e0b;
-      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-    }
+    @layer reset, base, components;
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      letter-spacing: -0.015em;
-      word-break: keep-all;
-      background-color: var(--bg-slate);
-      color: var(--text-main);
-      line-height: 1.65;
-      padding-bottom: 80px;
-    }
-
-    header.top-nav {
-      position: sticky;
-      top: 0;
-      height: 64px;
-      padding: 0 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border-light);
-      background: rgba(9, 9, 11, 0.88);
-      backdrop-filter: blur(16px);
-      z-index: 50;
-    }
-
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: var(--text-main);
-    }
-
-    .badge-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      background: var(--accent-bg);
-      color: var(--highlight);
-      border: 1px solid var(--accent-border);
-      padding: 3px 10px;
-      border-radius: 9999px;
-      font-weight: 600;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .nav-btn {
-      text-decoration: none;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--border-light);
-      color: var(--text-main);
-      padding: 8px 16px;
-      border-radius: var(--radius-sm);
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: transform 140ms var(--ease-out), background-color 140ms var(--ease-out);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      .nav-btn:hover {
-        background: rgba(255, 255, 255, 0.16);
+    @layer reset {
+      :where(*, *::before, *::after) {
+        box-sizing: border-box;
+      }
+      :where(body, h1, h2, h3, h4, h5, p, ul, ol, dl, dd, figure, blockquote) {
+        margin: 0;
+        padding: 0;
       }
     }
 
-    .nav-btn:active {
-      transform: scale(0.96);
-    }
+    @layer base {
+      :root {
+        color-scheme: dark;
+        --bg-slate: #09090b;
+        --bg-surface: #121215;
+        --bg-card: #18181b;
+        --border-color: #27272a;
+        --border-strong: #3f3f46;
+        --border-light: rgba(255, 255, 255, 0.08);
+        --text-main: #f4f4f5;
+        --text-muted: #a1a1aa;
+        --text-dim: #71717a;
 
-    .nav-btn.primary {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #0b0f19;
-      font-weight: 700;
-    }
+        /* Signature Guide Theme: Warm Amber */
+        --accent: #d97706;
+        --accent-hover: #f59e0b;
+        --highlight: #f59e0b;
 
-    .container {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 40px 24px 0;
-    }
+        --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        --font-mono: 'JetBrains Mono', 'Pretendard Variable', monospace;
+        --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+        --radius-xs: 4px;
+        --radius-sm: 6px;
+        --radius-md: 8px;
+      }
 
-    .hero-section {
-      padding: 40px 0 32px;
-      border-bottom: 1px solid var(--border-color);
-      margin-bottom: 40px;
-    }
+      body {
+        font-family: var(--font-sans);
+        letter-spacing: -0.015em;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+        background-color: var(--bg-slate);
+        color: var(--text-main);
+        line-height: 1.65;
+        padding-bottom: 80px;
+        -webkit-font-smoothing: antialiased;
+      }
 
-    .source-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      color: var(--highlight);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 12px;
-      display: block;
-    }
+      p {
+        text-wrap: pretty;
+      }
 
-    .hero-title {
-      font-size: 2.35rem;
-      font-weight: 800;
-      letter-spacing: -0.025em;
-      line-height: 1.25;
-      margin-bottom: 16px;
-      color: var(--text-main);
-    }
+      :where(a:any-link, button):focus-visible {
+        outline: 2px solid var(--highlight);
+        outline-offset: 3px;
+      }
 
-    .hero-subtitle {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      max-width: 860px;
-      line-height: 1.7;
-    }
-
-    .meta-pills {
-      display: flex;
-      gap: 12px;
-      margin-top: 24px;
-      flex-wrap: wrap;
-    }
-
-    .meta-pill {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      padding: 6px 14px;
-      border-radius: var(--radius-sm);
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .meta-pill strong {
-      color: var(--text-main);
-    }
-
-    .content-section {
-      margin-bottom: 56px;
-    }
-
-    .section-title {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border-light);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .section-title .sec-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1rem;
-      color: var(--highlight);
-      background: var(--accent-bg);
-      padding: 4px 10px;
-      border-radius: var(--radius-sm);
-    }
-
-    .card-grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-      gap: 20px;
-      margin-bottom: 24px;
-    }
-
-    .card-grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
-      gap: 20px;
-      margin-bottom: 24px;
-    }
-
-    .info-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 24px;
-      position: relative;
-      transition: transform 140ms var(--ease-out), border-color 140ms var(--ease-out);
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      .info-card:hover {
-        border-color: var(--accent-border);
-        transform: translateY(-2px);
+      .visually-hidden:where(:not(:focus-within, :active)) {
+        position: absolute !important;
+        clip-path: inset(50%) !important;
+        overflow: hidden !important;
+        width: 1px !important;
+        height: 1px !important;
+        margin: -1px !important;
+        padding: 0 !important;
+        border: 0 !important;
+        white-space: nowrap !important;
       }
     }
 
-    .card-badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--highlight);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
-      display: inline-block;
-    }
+    @layer components {
+      .skip-link {
+        position: fixed;
+        top: 12px;
+        left: 16px;
+        z-index: 100;
+        background: var(--highlight);
+        color: #09090b;
+        padding: 8px 14px;
+        border-radius: var(--radius-xs);
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
 
-    .card-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--text-main);
-    }
-
-    .card-desc {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-      margin-bottom: 14px;
-    }
-
-    .card-list {
-      list-style: none;
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .card-list li {
-      position: relative;
-      padding-left: 18px;
-    }
-
-    .card-list li::before {
-      content: "-";
-      position: absolute;
-      left: 0;
-      color: var(--highlight);
-      font-weight: 700;
-    }
-
-    .callout-box {
-      background: rgba(245, 158, 11, 0.08);
-      border: 1px solid var(--accent-border);
-      border-left: 4px solid var(--accent);
-      border-radius: var(--radius-sm);
-      padding: 20px 24px;
-      margin: 24px 0;
-    }
-
-    .callout-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--highlight);
-      margin-bottom: 8px;
-    }
-
-    .callout-text {
-      font-size: 0.95rem;
-      color: var(--text-main);
-      line-height: 1.65;
-    }
-
-    .step-timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin: 24px 0;
-    }
-
-    .step-item {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 20px 24px;
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 20px;
-      align-items: start;
-    }
-
-    .step-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--highlight);
-      background: var(--accent-bg);
-      border: 1px solid var(--accent-border);
-      padding: 6px 10px;
-      border-radius: var(--radius-sm);
-      text-align: center;
-    }
-
-    .step-content h4 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--text-main);
-    }
-
-    .step-content p {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .matrix-container {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 28px;
-      margin: 24px 0;
-    }
-
-    .matrix-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 16px;
-      text-align: center;
-    }
-
-    table.data-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.9rem;
-      margin-top: 16px;
-    }
-
-    table.data-table th, table.data-table td {
-      border: 1px solid var(--border-color);
-      padding: 12px 16px;
-      text-align: left;
-    }
-
-    table.data-table th {
-      background: var(--bg-surface);
-      color: var(--highlight);
-      font-weight: 700;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-    }
-
-    table.data-table td {
-      color: var(--text-muted);
-    }
-
-    table.data-table tr:hover td {
-      background: rgba(255, 255, 255, 0.02);
-      color: var(--text-main);
-    }
-
-    footer.bottom-bar {
-      margin-top: 60px;
-      padding-top: 32px;
-      border-top: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      color: var(--text-dim);
-      font-size: 0.85rem;
-    }
-
-    @media (max-width: 768px) {
       header.top-nav {
-        padding: 0 16px;
+        position: sticky;
+        top: 0;
+        min-height: 60px;
+        padding: 10px 36px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        border-bottom: 1px solid var(--border-color);
+        background: rgba(9, 9, 11, 0.92);
+        backdrop-filter: blur(12px);
+        z-index: 50;
       }
+
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--text-main);
+      }
+
+      .brand-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--highlight);
+        flex-shrink: 0;
+      }
+
+      .brand-sep {
+        color: var(--border-strong);
+        font-weight: 400;
+      }
+
+      .brand-code {
+        font-family: var(--font-mono);
+        font-size: 0.76rem;
+        font-weight: 700;
+        color: var(--highlight);
+        letter-spacing: 0.04em;
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+        user-select: none;
+      }
+
+      .nav-link {
+        text-decoration: none;
+        color: var(--text-muted);
+        padding: 6px 12px;
+        border-radius: var(--radius-xs);
+        font-size: 0.84rem;
+        font-weight: 500;
+        min-block-size: 34px;
+        display: inline-flex;
+        align-items: center;
+        transition: color 140ms var(--ease-out), background-color 140ms var(--ease-out);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .nav-link:hover {
+          color: var(--text-main);
+          background: rgba(255, 255, 255, 0.06);
+        }
+      }
+
+      .nav-divider {
+        width: 1px;
+        height: 18px;
+        background: var(--border-color);
+        margin-inline: 4px;
+      }
+
+      .nav-btn {
+        text-decoration: none;
+        background: var(--highlight);
+        border: 1px solid var(--highlight);
+        color: #09090b;
+        padding: 6px 14px;
+        border-radius: var(--radius-xs);
+        font-size: 0.84rem;
+        font-weight: 700;
+        min-block-size: 34px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: transform 140ms var(--ease-out), background-color 140ms var(--ease-out), border-color 140ms var(--ease-out);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .nav-btn:hover {
+          background: #fbbf24;
+          border-color: #fbbf24;
+        }
+      }
+
+      .nav-btn:active {
+        transform: scale(0.97);
+      }
+
       .container {
-        padding: 24px 16px 0;
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 44px 24px 0;
       }
+
+      .hero-section {
+        padding-bottom: 32px;
+        margin-bottom: 44px;
+      }
+
+      .source-label {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--highlight);
+        letter-spacing: 0.04em;
+        margin-bottom: 12px;
+        display: block;
+      }
+
       .hero-title {
-        font-size: 1.85rem;
+        font-size: clamp(1.85rem, 1.4rem + 1.5vw, 2.35rem);
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 1.25;
+        margin-bottom: 14px;
+        color: var(--text-main);
+        text-wrap: balance;
       }
-      .card-grid-2 {
-        grid-template-columns: 1fr;
+
+      .hero-subtitle {
+        font-size: 1.06rem;
+        color: var(--text-muted);
+        max-width: 74ch;
+        line-height: 1.7;
       }
-      .step-item {
-        grid-template-columns: 1fr;
+
+      .meta-strip {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px 24px;
+        margin-top: 28px;
+        padding: 16px 0;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .meta-key {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--highlight);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .meta-val {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+
+      .meta-val a {
+        color: var(--text-main);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .content-section {
+        margin-bottom: 58px;
+      }
+
+      .section-title {
+        font-size: 1.45rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 18px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        align-items: baseline;
         gap: 12px;
+      }
+
+      .section-title .sec-num {
+        font-family: var(--font-mono);
+        font-size: 0.92rem;
+        font-weight: 700;
+        color: var(--highlight);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .section-lead {
+        color: var(--text-muted);
+        font-size: 0.96rem;
+        max-width: 76ch;
+        margin-bottom: 22px;
+      }
+
+      .section-lead strong {
+        color: var(--text-main);
+      }
+
+      .card-grid-3 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 16px;
+        margin-bottom: 22px;
+      }
+
+      .card-grid-2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+        gap: 16px;
+        margin-bottom: 22px;
+      }
+
+      .info-card {
+        background: var(--bg-surface);
+        border: 1px solid var(--border-color);
+        border-top: 2px solid var(--border-strong);
+        border-radius: var(--radius-sm);
+        padding: 20px 22px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .info-card.theme-top {
+        border-top-color: var(--accent);
+      }
+
+      .card-badge {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--highlight);
+        letter-spacing: 0.04em;
+        margin-bottom: 8px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .card-title {
+        font-size: 1.12rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--text-main);
+        letter-spacing: -0.01em;
+      }
+
+      .card-desc {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.65;
+      }
+
+      .card-desc + .card-list {
+        margin-top: 12px;
+      }
+
+      .card-list {
+        list-style: none;
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+
+      .card-list li {
+        position: relative;
+        padding-inline-start: 16px;
+        line-height: 1.55;
+      }
+
+      .card-list li::before {
+        content: "-" / "";
+        position: absolute;
+        inset-inline-start: 0;
+        color: var(--highlight);
+        font-family: var(--font-mono);
+        font-weight: 700;
+      }
+
+      .callout-box {
+        background: var(--bg-surface);
+        border: 1px solid var(--border-color);
+        border-inline-start: 3px solid var(--highlight);
+        border-radius: var(--radius-xs);
+        padding: 18px 22px;
+        margin: 22px 0;
+      }
+
+      .callout-title {
+        font-size: 0.98rem;
+        font-weight: 700;
+        color: var(--highlight);
+        margin-bottom: 6px;
+      }
+
+      .callout-text {
+        font-size: 0.92rem;
+        color: var(--text-muted);
+        line-height: 1.65;
+      }
+
+      .callout-text strong {
+        color: var(--text-main);
+      }
+
+      /* Editorial Step List */
+      .step-timeline {
+        display: flex;
+        flex-direction: column;
+        border-top: 1px solid var(--border-color);
+        margin: 20px 0;
+      }
+
+      .step-item {
+        display: grid;
+        grid-template-columns: 96px 1fr;
+        gap: 20px;
+        padding: 16px 4px;
+        border-bottom: 1px solid var(--border-color);
+        align-items: baseline;
+      }
+
+      .step-tag {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--highlight);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .step-content h3 {
+        font-size: 1.04rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+        color: var(--text-main);
+      }
+
+      .step-content p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.65;
+      }
+
+      .matrix-container {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 24px;
+        margin: 22px 0;
+      }
+
+      .matrix-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 16px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .matrix-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--text-main);
+      }
+
+      .matrix-kicker {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--highlight);
+      }
+
+      .subsection-heading {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-main);
+        margin: 28px 0 12px;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        margin-top: 14px;
+      }
+
+      table.data-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+        border-top: 1px solid var(--border-strong);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      table.data-table th,
+      table.data-table td {
+        padding: 13px 16px;
+        text-align: start;
+        vertical-align: top;
+      }
+
+      table.data-table thead th {
+        background: var(--bg-surface);
+        color: var(--highlight);
+        font-weight: 700;
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        letter-spacing: 0.03em;
+        border-bottom: 1px solid var(--border-strong);
+      }
+
+      table.data-table tbody tr:not(:last-child) td {
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      table.data-table td {
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      table.data-table td strong {
+        color: var(--text-main);
+      }
+
+      footer.bottom-bar {
+        margin-top: 64px;
+        padding-top: 28px;
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        color: var(--text-dim);
+        font-size: 0.83rem;
+      }
+
+      footer.bottom-bar a {
+        color: var(--text-muted);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      @media (max-width: 768px) {
+        header.top-nav {
+          padding: 10px 16px;
+        }
+        .nav-divider {
+          display: none;
+        }
+        .container {
+          padding: 28px 16px 0;
+        }
+        .card-grid-2 {
+          grid-template-columns: 1fr;
+        }
+        .step-item {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .nav-link,
+        .nav-btn {
+          transition: none;
+        }
+      }
+
+      @media print {
+        :root {
+          color-scheme: light;
+          --bg-slate: #ffffff;
+          --bg-surface: #ffffff;
+          --bg-card: #fafafa;
+          --border-color: #d4d4d8;
+          --border-strong: #71717a;
+          --border-light: #e4e4e7;
+          --text-main: #18181b;
+          --text-muted: #3f3f46;
+          --text-dim: #52525b;
+          --highlight: #b45309;
+          --accent: #b45309;
+        }
+        header.top-nav {
+          position: static;
+          background: #ffffff;
+          backdrop-filter: none;
+        }
+        .nav-actions {
+          display: none;
+        }
       }
     }
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link visually-hidden">본문으로 건너뛰기</a>
 
-  <!-- Header Navigation -->
   <header class="top-nav">
     <div class="nav-brand">
+      <span class="brand-dot" aria-hidden="true"></span>
       <span>Design Thinking Workshop</span>
-      <span class="badge-tag">IDEO U FRAMEWORK GUIDE</span>
+      <span class="brand-sep" aria-hidden="true">/</span>
+      <span class="brand-code">IDEO U REFERENCE</span>
     </div>
-    <div class="nav-actions">
-      <a href="index.html" class="nav-btn primary">&larr; 메인 발표자료로 이동</a>
-      <a href="guide_workshop_facilitation.html" class="nav-btn">운영 가이드</a>
-      <a href="guide_dschool_bootleg.html" class="nav-btn">d.school 툴킷 (38종)</a>
-    </div>
+    <nav class="nav-actions" aria-label="관련 문서 이동">
+      <a href="guide_workshop_facilitation.html" class="nav-link">운영 가이드</a>
+      <a href="guide_dschool_bootleg.html" class="nav-link">d.school 툴킷 (38종)</a>
+      <a href="worksheets/index.html" class="nav-link">워크시트 (8종)</a>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <a href="index.html" class="nav-btn">&larr; 메인 발표자료</a>
+    </nav>
   </header>
 
-  <div class="container">
-    <!-- Hero Section -->
+  <main class="container" id="main-content" tabindex="-1">
     <section class="hero-section">
       <span class="source-label">IDEO U FRAMEWORK SUMMARY &amp; FACILITATION NOTES</span>
       <h1 class="hero-title">IDEO U 디자인 씽킹 프레임워크 가이드</h1>
       <p class="hero-subtitle">
         디자인 컨설팅 기업 IDEO의 교육 채널인 IDEO U 공개 자료를 바탕으로, 혁신의 3대 렌즈(DVF), 크리에이티브 마인드셋, 오프닝 웜업, 이종 영역 유추 탐색(Analogous Inspiration), 고객 여정 맵(Customer Journey Map), 저충실도 프로토타이핑 기법을 정리한 진행자 참고 문서입니다.
       </p>
-      <div class="meta-pills">
-        <div class="meta-pill"><strong>원문 출처:</strong> <a href="https://www.ideou.com/" target="_blank" rel="noopener noreferrer" style="color: inherit;">IDEO U</a> 공개 자료 (비공식 한국어 요약)</div>
-        <div class="meta-pill"><strong>참고 인물:</strong> Brendan Boyle (IDEO Play Lab, 웜업)</div>
-        <div class="meta-pill"><strong>활용 범위:</strong> 워크숍 오프닝 웜업, 타 산업 사례 탐색, 여정 분석, 프로토타이핑 안내</div>
+      <div class="meta-strip">
+        <div class="meta-item">
+          <span class="meta-key">Primary Source</span>
+          <span class="meta-val"><a href="https://www.ideou.com/" target="_blank" rel="noopener noreferrer">IDEO U</a> 공개 자료 (비공식 한국어 요약)</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">Featured Method</span>
+          <span class="meta-val">Brendan Boyle (IDEO Play Lab, 오프닝 웜업)</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">Workshop Application</span>
+          <span class="meta-val">오프닝 웜업, 타 산업 사례 탐색, 여정 분석, 프로토타이핑 안내</span>
+        </div>
       </div>
     </section>
 
@@ -456,38 +660,38 @@
         <span class="sec-num">01</span>
         혁신의 3대 렌즈: DVF 프레임워크 (The Sweet Spot of Innovation)
       </h2>
-      <p style="color: var(--text-muted); margin-bottom: 24px;">
+      <p class="section-lead">
         IDEO는 실효성 있는 혁신이 기술이나 아이디어의 참신함 하나만으로 이루어지지 않는다고 설명합니다. 설득력 있는 해법은 <strong>사용자 필요성(Desirability)</strong>, <strong>기술적 실현 가능성(Feasibility)</strong>, <strong>비즈니스 지속 가능성(Viability)</strong> 세 축이 만나는 교집합(Sweet Spot)에서 나옵니다.
       </p>
 
       <div class="card-grid-3">
-        <div class="info-card" style="border-top: 4px solid #f59e0b;">
-          <span class="card-badge">PEOPLE &amp; NEEDS</span>
+        <div class="info-card theme-top">
+          <span class="card-badge">LENS 01 &middot; PEOPLE &amp; NEEDS</span>
           <h3 class="card-title">1. Desirability (사용자 필요성)</h3>
           <p class="card-desc">"사람들이 이것을 실제로 원하고 필요로 하는가?"</p>
-          <ul class="card-list">
+          <ul class="card-list" role="list">
             <li>표면적 요청 뒤에 있는 잠재 니즈(Latent Needs) 파악</li>
             <li>기술이나 수익성을 따지기 전에 가장 먼저 확인해야 할 출발점</li>
             <li>인터뷰와 행동 관찰을 통해 실제 불편 지점(Pain Point) 확인</li>
           </ul>
         </div>
 
-        <div class="info-card" style="border-top: 4px solid #3b82f6;">
-          <span class="card-badge">TECHNOLOGY &amp; OPS</span>
+        <div class="info-card theme-top">
+          <span class="card-badge">LENS 02 &middot; TECHNOLOGY &amp; OPS</span>
           <h3 class="card-title">2. Feasibility (실현 가능성)</h3>
           <p class="card-desc">"현재 또는 가까운 시일 내의 기술과 자원으로 구현 가능한가?"</p>
-          <ul class="card-list">
+          <ul class="card-list" role="list">
             <li>보유한 기술, 엔지니어링 역량, 운영 인프라 검토</li>
             <li>파트너십 및 외부 도구와의 연계 가능성 확인</li>
             <li>저충실도 프로토타입으로 핵심 기능의 동작 방식 사전 점검</li>
           </ul>
         </div>
 
-        <div class="info-card" style="border-top: 4px solid #10b981;">
-          <span class="card-badge">BUSINESS &amp; MODEL</span>
+        <div class="info-card theme-top">
+          <span class="card-badge">LENS 03 &middot; BUSINESS &amp; MODEL</span>
           <h3 class="card-title">3. Viability (지속 가능성)</h3>
           <p class="card-desc">"조직과 시장 안에서 지속적으로 운영 가능한 가치를 만드는가?"</p>
-          <ul class="card-list">
+          <ul class="card-list" role="list">
             <li>비용 구조, 수익 모델, 시장 규모 및 지불 의사(WTP) 검토</li>
             <li>조직의 중장기 방향 및 운영 체계와의 정합성 확인</li>
             <li>참여 주체들에게 무리가 없는 가치 교환 구조 설계</li>
@@ -558,31 +762,31 @@
         <span class="sec-num">03</span>
         세션 시작 전 웜업: Brendan Boyle의 우주 탐사 시각화
       </h2>
-      <p style="color: var(--text-muted); margin-bottom: 24px;">
+      <p class="section-lead">
         IDEO Play Lab 설립자 Brendan Boyle은 실무자들이 회의실에 들어올 때 갖고 있는 자기 검열과 긴장을 풀기 위해 1~2분 분량의 짧은 시각화 웜업을 제안합니다.
       </p>
 
       <div class="step-timeline">
         <div class="step-item">
-          <div class="step-tag">1단계</div>
+          <div class="step-tag">STEP 01</div>
           <div class="step-content">
-            <h4>자리에서 일어나 눈 감기 (Standing &amp; Closing Eyes)</h4>
+            <h3>자리에서 일어나 눈 감기 (Standing &amp; Closing Eyes)</h3>
             <p>참가자들을 자리에서 일어나게 한 뒤 잠시 눈을 감도록 안내합니다. "탁 트인 들판 위에 서 있다고 가볍게 떠올려 보세요."</p>
           </div>
         </div>
 
         <div class="step-item">
-          <div class="step-tag">2단계</div>
+          <div class="step-tag">STEP 02</div>
           <div class="step-content">
-            <h4>카운트다운 및 비행 상상 (3-2-1 Blast Off)</h4>
+            <h3>카운트다운 및 비행 상상 (3-2-1 Blast Off)</h3>
             <p>"카운트다운합니다. 3, 2, 1, 출발." 신호와 함께 약 15초 동안 우주로 올라가 달 주변을 돌아보는 장면을 각자 자유롭게 떠올리게 합니다.</p>
           </div>
         </div>
 
         <div class="step-item">
-          <div class="step-tag">3단계</div>
+          <div class="step-tag">STEP 03</div>
           <div class="step-content">
-            <h4>눈 뜨기 및 짧은 확인 질문</h4>
+            <h3>눈 뜨기 및 짧은 확인 질문</h3>
             <p>
               다시 눈을 뜬 뒤 진행자가 가볍게 손을 들어 보게 합니다:<br>
               - "상상 속에서 우주복을 입고 계셨던 분?"<br>
@@ -607,58 +811,64 @@
         <span class="sec-num">04</span>
         맥락 밖에서 단서 찾기: 이종 영역 유추 탐색 (Analogous Inspiration)
       </h2>
-      <p style="color: var(--text-muted); margin-bottom: 24px;">
+      <p class="section-lead">
         같은 업계 사례만 들여다보면 익숙한 방식에서 벗어나기 어렵습니다. IDEO는 사용자가 겪는 <strong>핵심 심리적 장벽(Emotional Friction)을</strong> 먼저 짚은 뒤, 전혀 다른 분야에서 비슷한 장벽을 풀어낸 사례를 살피는 <strong>유추 탐색 기법을</strong> 활용합니다.
       </p>
 
       <div class="matrix-container">
-        <div class="matrix-title">IDEO 사례: 초심자용 크루저 자전거 프로젝트</div>
+        <div class="matrix-header">
+          <h3 class="matrix-title">IDEO 사례: 초심자용 크루저 자전거 프로젝트</h3>
+          <span class="matrix-kicker">CASE STUDY &middot; SHIMANO COASTING</span>
+        </div>
         <div class="card-grid-3" style="margin-bottom: 0;">
           <div class="info-card">
-            <span class="card-badge" style="color: #ef4444;">1단계: 감정 장벽 파악</span>
-            <h4 style="font-size: 1.05rem; margin-bottom: 8px;">위축감과 낯섦</h4>
+            <span class="card-badge">PHASE 01 &middot; 감정 장벽 파악</span>
+            <h4 class="card-title">위축감과 낯섦</h4>
             <p class="card-desc">자전거에 익숙하지 않은 일반인이 전문 매장에 들어설 때 느끼는 기술 용어와 마니아 중심 분위기의 부담감을 핵심 장벽으로 도출 (Shimano 'Coasting' 프로젝트).</p>
           </div>
           <div class="info-card">
-            <span class="card-badge" style="color: #3b82f6;">2단계: 타 분야 매장 관찰</span>
-            <h4 style="font-size: 1.05rem; margin-bottom: 8px;">화장품 매장 '세포라' 방문</h4>
+            <span class="card-badge">PHASE 02 &middot; 타 분야 매장 관찰</span>
+            <h4 class="card-title">화장품 매장 '세포라' 방문</h4>
             <p class="card-desc">자전거와 무관하지만 입문자가 비슷한 낯섦을 느낄 수 있는 매장을 방문해, 초심자가 안내받고 제품을 시험해 보는 방식을 관찰.</p>
           </div>
           <div class="info-card">
-            <span class="card-badge" style="color: #10b981;">3단계: 해결 원리 적용</span>
-            <h4 style="font-size: 1.05rem; margin-bottom: 8px;">초심자 친화적 경험 설계</h4>
+            <span class="card-badge">PHASE 03 &middot; 해결 원리 적용</span>
+            <h4 class="card-title">초심자 친화적 경험 설계</h4>
             <p class="card-desc">관찰에서 얻은 단서를 바탕으로, 복잡한 부품 사양보다 입문자가 부담 없이 시승하고 고를 수 있는 제품·매장 경험을 구상. (구체적 방식과 결과는 IDEO U 원문 사례 참고)</p>
           </div>
         </div>
       </div>
 
-      <h3 style="font-size: 1.15rem; font-weight: 700; margin: 28px 0 16px;">팀 실습 가이드: 3단계 유추 탐색 표</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th style="width: 25%;">단계</th>
-            <th style="width: 35%;">질문 및 작성 내용</th>
-            <th style="width: 40%;">예시 (병원 대기 경험 개선 과제)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>1. 감정 장벽 도출</strong></td>
-            <td>사용자가 겪는 가장 큰 심리적 부담(불안, 지루함, 혼란)은?</td>
-            <td>"내 차례가 언제 오는지 모른 채 기다려야 하는 답답함과 불안"</td>
-          </tr>
-          <tr>
-            <td><strong>2. 타 분야 사례 찾기</strong></td>
-            <td>대기 시간의 지루함과 불확실성을 효과적으로 줄인 다른 분야는?</td>
-            <td>테마파크 대기 동선(예상 대기 시간 안내판 및 동선 내 볼거리 배치)</td>
-          </tr>
-          <tr>
-            <td><strong>3. 적용 요소 추출</strong></td>
-            <td>그곳의 공간·안내·상호작용 방식 중 무엇을 참고할 수 있는가?</td>
-            <td>모바일 실시간 순번 안내 및 대기 중 사전 문진·건강 정보 카드 제공</td>
-          </tr>
-        </tbody>
-      </table>
+      <h3 class="subsection-heading">팀 실습 가이드: 3단계 유추 탐색 표</h3>
+      <div class="table-wrap">
+        <table class="data-table">
+          <caption class="visually-hidden">3단계 이종 영역 유추 탐색 작성 가이드 및 예시</caption>
+          <thead>
+            <tr>
+              <th scope="col" style="width: 25%;">단계</th>
+              <th scope="col" style="width: 35%;">질문 및 작성 내용</th>
+              <th scope="col" style="width: 40%;">예시 (병원 대기 경험 개선 과제)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. 감정 장벽 도출</strong></td>
+              <td>사용자가 겪는 가장 큰 심리적 부담(불안, 지루함, 혼란)은?</td>
+              <td>"내 차례가 언제 오는지 모른 채 기다려야 하는 답답함과 불안"</td>
+            </tr>
+            <tr>
+              <td><strong>2. 타 분야 사례 찾기</strong></td>
+              <td>대기 시간의 지루함과 불확실성을 효과적으로 줄인 다른 분야는?</td>
+              <td>테마파크 대기 동선(예상 대기 시간 안내판 및 동선 내 볼거리 배치)</td>
+            </tr>
+            <tr>
+              <td><strong>3. 적용 요소 추출</strong></td>
+              <td>그곳의 공간·안내·상호작용 방식 중 무엇을 참고할 수 있는가?</td>
+              <td>모바일 실시간 순번 안내 및 대기 중 사전 문진·건강 정보 카드 제공</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <!-- SECTION 5: Customer Journey Maps -->
@@ -667,39 +877,39 @@
         <span class="sec-num">05</span>
         고객 여정 맵 (Customer Journey Map)으로 개선 지점 찾기
       </h2>
-      <p style="color: var(--text-muted); margin-bottom: 24px;">
+      <p class="section-lead">
         개선 기회는 단일 화면이나 기능보다 <strong>사용자 경험의 전후 흐름에</strong> 놓여 있는 경우가 많습니다. 여정 맵은 그 흐름을 시간 순서로 펼쳐 보는 도구입니다.
       </p>
 
       <div class="step-timeline">
         <div class="step-item">
-          <div class="step-tag">STEP 1</div>
+          <div class="step-tag">STEP 01</div>
           <div class="step-content">
-            <h4>여정 범위 설정 (Define the Full Arc)</h4>
+            <h3>여정 범위 설정 (Define the Full Arc)</h3>
             <p>제품을 직접 쓰는 순간뿐 아니라 문제를 처음 인식한 시점(사전), 선택 및 사용 과정(본 과정), 정리·보관·후속 처리(사후)까지 범위를 잡습니다.</p>
           </div>
         </div>
 
         <div class="step-item">
-          <div class="step-tag">STEP 2</div>
+          <div class="step-tag">STEP 02</div>
           <div class="step-content">
-            <h4>세부 행동 단계 나열 (Break Down Micro-steps)</h4>
+            <h3>세부 행동 단계 나열 (Break Down Micro-steps)</h3>
             <p>사소해 보이는 행동도 포스트잇에 시간 순서대로 적습니다. 예: 페인트칠 &rarr; 색상 고르기 &rarr; 캔 뚜껑 열기 &rarr; 마스킹 테이프 붙이기 &rarr; 붓 씻기 &rarr; 남은 페인트 보관.</p>
           </div>
         </div>
 
         <div class="step-item">
-          <div class="step-tag">STEP 3</div>
+          <div class="step-tag">STEP 03</div>
           <div class="step-content">
-            <h4>감정 흐름 및 병목 구간(Moments of Truth) 표시</h4>
+            <h3>감정 흐름 및 병목 구간(Moments of Truth) 표시</h3>
             <p>단계별 사용자의 감정 높낮이(수월함 vs 번거로움·불안)를 표시하고, 불편이 가장 크게 쌓이는 병목 지점에 표시합니다.</p>
           </div>
         </div>
 
         <div class="step-item">
-          <div class="step-tag">STEP 4</div>
+          <div class="step-tag">STEP 04</div>
           <div class="step-content">
-            <h4>HMW(How Might We) 질문으로 전환</h4>
+            <h3>HMW(How Might We) 질문으로 전환</h3>
             <p>"우리가 어떻게 하면 페인트 캔 뚜껑을 열고 닫을 때 손에 묻거나 굳어서 열리지 않는 불편을 줄일 수 있을까?"처럼 탐색 질문으로 옮깁니다.</p>
           </div>
         </div>
@@ -712,7 +922,7 @@
         <span class="sec-num">06</span>
         저충실도 프로토타이핑: Build to Think
       </h2>
-      <p style="color: var(--text-muted); margin-bottom: 24px;">
+      <p class="section-lead">
         프로토타입의 목적은 완성품 제작이 아니라 <strong>'핵심 가설 하나를 빠르게 확인하고 배우는 것(Fail often to succeed sooner)'입니다.</strong>
       </p>
 
@@ -766,55 +976,56 @@
         <span class="sec-num">07</span>
         진행자 단계별 운영 체크리스트
       </h2>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th style="width: 20%;">단계</th>
-            <th style="width: 40%;">운영 포인트</th>
-            <th style="width: 40%;">진행자 안내 멘트 예시</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>오프닝 웜업</strong></td>
-            <td>우주 탐사 시각화 또는 30 Circles로 초기 긴장 완화</td>
-            <td>"잘 그리는지 보는 시간이 아닙니다. 떠오르는 대로 가볍게 손을 풀어 보세요."</td>
-          </tr>
-          <tr>
-            <td><strong>공감 &amp; 유추</strong></td>
-            <td>핵심 심리 장벽 정의 후 타 분야(매장, 공항, 테마파크 등) 참고</td>
-            <td>"우리 업종 밖에서 비슷한 불안이나 대기를 잘 풀어낸 곳은 어디가 있을까요?"</td>
-          </tr>
-          <tr>
-            <td><strong>여정 분석</strong></td>
-            <td>경험 전후 단계 나열 및 가장 불편한 병목 구간(Moments of Truth) 표시</td>
-            <td>"사소해 보이는 전후 단계도 적어 보세요. 가장 번거로운 구간이 개선 지점입니다."</td>
-          </tr>
-          <tr>
-            <td><strong>아이디어 선별</strong></td>
-            <td>DVF 3대 렌즈(사용자 필요성, 실현 가능성, 지속 가능성) 교차 검토</td>
-            <td>"사용자에게 실제로 필요하고, 우리 팀이 시험해 볼 수 있는 후보를 추려 봅시다."</td>
-          </tr>
-          <tr>
-            <td><strong>프로토타입</strong></td>
-            <td>구두 논의 대신 손으로 구체화하기 (Build to Think, 30분 제한)</td>
-            <td>"논의가 길어지면 종이와 포스트잇으로 핵심 장면부터 먼저 만들어 보세요."</td>
-          </tr>
-          <tr>
-            <td><strong>테스트</strong></td>
-            <td>Show, Don't Tell (사전 설명 없이 사용자의 조작 관찰)</td>
-            <td>"모형을 건네고 먼저 설명하지 마세요. 테스터가 멈칫하는 지점을 그대로 기록합니다."</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-wrap">
+        <table class="data-table">
+          <caption class="visually-hidden">워크숍 단계별 진행자 운영 포인트 및 안내 멘트 체크리스트</caption>
+          <thead>
+            <tr>
+              <th scope="col" style="width: 20%;">단계</th>
+              <th scope="col" style="width: 40%;">운영 포인트</th>
+              <th scope="col" style="width: 40%;">진행자 안내 멘트 예시</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>오프닝 웜업</strong></td>
+              <td>우주 탐사 시각화 또는 30 Circles로 초기 긴장 완화</td>
+              <td>"잘 그리는지 보는 시간이 아닙니다. 떠오르는 대로 가볍게 손을 풀어 보세요."</td>
+            </tr>
+            <tr>
+              <td><strong>공감 &amp; 유추</strong></td>
+              <td>핵심 심리 장벽 정의 후 타 분야(매장, 공항, 테마파크 등) 참고</td>
+              <td>"우리 업종 밖에서 비슷한 불안이나 대기를 잘 풀어낸 곳은 어디가 있을까요?"</td>
+            </tr>
+            <tr>
+              <td><strong>여정 분석</strong></td>
+              <td>경험 전후 단계 나열 및 가장 불편한 병목 구간(Moments of Truth) 표시</td>
+              <td>"사소해 보이는 전후 단계도 적어 보세요. 가장 번거로운 구간이 개선 지점입니다."</td>
+            </tr>
+            <tr>
+              <td><strong>아이디어 선별</strong></td>
+              <td>DVF 3대 렌즈(사용자 필요성, 실현 가능성, 지속 가능성) 교차 검토</td>
+              <td>"사용자에게 실제로 필요하고, 우리 팀이 시험해 볼 수 있는 후보를 추려 봅시다."</td>
+            </tr>
+            <tr>
+              <td><strong>프로토타입</strong></td>
+              <td>구두 논의 대신 손으로 구체화하기 (Build to Think, 30분 제한)</td>
+              <td>"논의가 길어지면 종이와 포스트잇으로 핵심 장면부터 먼저 만들어 보세요."</td>
+            </tr>
+            <tr>
+              <td><strong>테스트</strong></td>
+              <td>Show, Don't Tell (사전 설명 없이 사용자의 조작 관찰)</td>
+              <td>"모형을 건네고 먼저 설명하지 마세요. 테스터가 멈칫하는 지점을 그대로 기록합니다."</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bottom-bar">
-      <div>IDEO U 공개 자료를 바탕으로 한 비공식 한국어 요약 &bull; IDEO 및 IDEO U와 제휴하지 않았습니다. 원문의 권리는 IDEO에 있습니다.</div>
-      <div>16:9 와이드스크린 지원 &bull; Google Stitch 디자인 시스템 적용</div>
+      <div>IDEO U 공개 자료를 바탕으로 한 비공식 한국어 요약 &bull; IDEO 및 IDEO U와 제휴하지 않았습니다. 원문의 권리는 IDEO에 있습니다. &bull; <a href="https://github.com/electronicnomad/dtw/blob/main/NOTICE.md" target="_blank" rel="noopener noreferrer">권리 범위(NOTICE)</a></div>
+      <div>Design Thinking Workshop &middot; Framework Reference</div>
     </footer>
-  </div>
-
+  </main>
 </body>
 </html>

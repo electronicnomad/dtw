@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 Design Thinking Workshop Contributors
+Copyright (c) 2026 Kwanghoon Jhin (electronicnomad)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,29 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+Scope and Third-Party Exclusions (적용 범위 및 예외 안내)
+
+1. Covered by MIT License:
+   This MIT License applies to the original software source code, interactive
+   presentation deck (`server/index.html`, `server/dtw_presentation.pptx`,
+   `server/dtw_presentation.pdf`), build/server scripts, and printable worksheet
+   templates (`server/worksheets/*`) authored for this repository.
+
+2. Excluded from MIT License (See NOTICE.md):
+   Third-party derivative works, external framework reference summaries,
+   open-source fonts, and AI-generated visual assets listed in `NOTICE.md` are
+   NOT licensed under this MIT License and remain subject to their respective
+   terms:
+   - `server/guide_dschool_bootleg.html` is a derivative work of Stanford
+     d.school's Design Thinking Bootleg and is licensed separately under
+     CC BY-NC-SA 4.0 (Non-Commercial). Commercial use is prohibited.
+   - `server/guide_ideou_framework.html` (`.md`) and
+     `server/guide_workshop_facilitation.html` (`.md`) summarize publicly
+     available third-party frameworks; underlying rights and trademarks remain
+     reserved by their respective owners as detailed in `NOTICE.md`.
+   - Visual assets listed in Section 7 of `NOTICE.md` were generated with AI
+     tools; no standalone exclusive copyright is claimed over purely
+     AI-generated elements.
