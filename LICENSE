@@ -26,9 +26,9 @@ Scope and Third-Party Exclusions (적용 범위 및 예외 안내)
 
 1. Covered by MIT License:
    This MIT License applies to the original software source code, interactive
-   presentation deck (`server/index.html`, `server/dtw_presentation.pptx`,
-   `server/dtw_presentation.pdf`), build/server scripts, and printable worksheet
-   templates (`server/worksheets/*`) authored for this repository.
+   presentation deck (`server/index.html`, `server/dtw_presentation.pdf`),
+   build/server scripts, and printable worksheet templates
+   (`server/worksheets/*`) authored for this repository.
 
 2. Excluded from MIT License (See NOTICE.md):
    Third-party derivative works, external framework reference summaries,

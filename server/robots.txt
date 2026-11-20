@@ -4,7 +4,6 @@
 # Block non-HTML binary assets that cannot carry HTML meta tags on static hosting.
 User-agent: *
 Disallow: /*.pdf$
-Disallow: /*.pptx$
 Disallow: /*.jpg$
 Disallow: /*.jpeg$
 Disallow: /*.png$

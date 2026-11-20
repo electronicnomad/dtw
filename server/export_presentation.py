@@ -3,10 +3,7 @@ import os
 import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime, timezone
 from PIL import Image
-from pptx import Presentation
-from pptx.util import Inches
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SERVER_DIR = os.path.join(BASE_DIR, "server")
@@ -73,29 +70,7 @@ def main():
     images[0].save(pdf_out, save_all=True, append_images=images[1:], resolution=150.0)
     print(f"PDF saved: {pdf_out} ({os.path.getsize(pdf_out) / (1024*1024):.2f} MB)")
 
-    print("\nGenerating 16:9 PowerPoint (.pptx) presentation...")
-    prs = Presentation()
-    now_utc = datetime.now(timezone.utc).replace(microsecond=0)
-    prs.core_properties.title = "Design Thinking Workshop (DTW)"
-    prs.core_properties.subject = "Design Thinking Workshop Presentation"
-    prs.core_properties.author = "electronicnomad"
-    prs.core_properties.last_modified_by = "electronicnomad"
-    prs.core_properties.comments = ""
-    prs.core_properties.created = now_utc
-    prs.core_properties.modified = now_utc
-    prs.slide_width = Inches(13.333333)
-    prs.slide_height = Inches(7.5)
-    blank_layout = prs.slide_layouts[6]
-    
-    for p in slide_paths:
-        slide = prs.slides.add_slide(blank_layout)
-        slide.shapes.add_picture(p, Inches(0), Inches(0), width=prs.slide_width, height=prs.slide_height)
-        
-    pptx_out = os.path.join(SERVER_DIR, "dtw_presentation.pptx")
-    prs.save(pptx_out)
-    print(f"PPTX saved: {pptx_out} ({os.path.getsize(pptx_out) / (1024*1024):.2f} MB)")
-
-    print(f"\nExport completed successfully! All {TOTAL_SLIDES} slides exported to PDF & PPTX.")
+    print(f"\nExport completed successfully! All {TOTAL_SLIDES} slides exported to PDF.")
 
 if __name__ == "__main__":
     main()

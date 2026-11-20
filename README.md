@@ -29,13 +29,12 @@
 │   ├── guide_dschool_bootleg.html        # 스탠퍼드 d.school 38개 방법론 가이드 (HTML)
 │   ├── guide_ideou_framework.html        # IDEO U 디자인 씽킹 프레임워크 가이드 (HTML)
 │   ├── guide_ideou_framework.md          # IDEO U 디자인 씽킹 프레임워크 가이드 (Markdown)
-│   ├── export_presentation.py            # Headless Chrome 기반 PPTX/PDF 변환 스크립트
+│   ├── export_presentation.py            # Headless Chrome 기반 PDF 변환 스크립트
 │   ├── export_slides/                    # 16:9 1080p 슬라이드 캡처 이미지 (31장)
 │   ├── design-thinking-process.png       # 5단계 프로세스 다이어그램
 │   ├── dtw-actions.jpg                   # 팀 활동 키 비주얼
 │   ├── dtw-logo.jpg                      # DTW 로고
-│   ├── dtw_presentation.pptx             # 16:9 와이드스크린 PowerPoint 발표 문서
-│   ├── dtw_presentation.pdf              # PDF 발표 문서
+│   ├── dtw_presentation.pdf              # 오프라인용 PDF 발표 문서
 │   ├── robots.txt                        # 바이너리 에셋 및 AI 크롤러 수집 제한 규칙
 │   └── README.md                         # 서버 디렉터리 안내
 ├── DESIGN.md                     # 디자인 시스템 및 UI 기준 문서
@@ -72,7 +71,7 @@
 * **A3/A4 1장 인쇄용 실습 워크시트 (8종):**
   * 팀 공용 보드 4종(A3 가로)과 개인·소그룹 시트 4종(A4)이 브라우저 인쇄(`Ctrl+P` / `Cmd+P`) 시 각 1장에 맞게 출력되도록 여백과 크기를 맞추었습니다.
 * **검색엔진 및 AI 크롤러 색인 제외 설정:**
-  * 모든 HTML 페이지에 `robots` 및 `googlebot` 메타 태그(`noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate`)와 링크 `rel="nofollow"`를 적용했고, `server/robots.txt`로 비HTML 바이너리 문서(`.pdf`, `.pptx`, 이미지)와 AI 학습·검색 크롤러의 수집을 차단합니다(HTML 페이지는 검색엔진이 `noindex` 태그를 읽고 색인에서 제외할 수 있도록 열람만 허용).
+  * 모든 HTML 페이지에 `robots` 및 `googlebot` 메타 태그(`noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate`)와 링크 `rel="nofollow"`를 적용했고, `server/robots.txt`로 비HTML 바이너리 문서(`.pdf`, 이미지)와 AI 학습·검색 크롤러의 수집을 차단합니다(HTML 페이지는 검색엔진이 `noindex` 태그를 읽고 색인에서 제외할 수 있도록 열람만 허용).
 
 ---
 
@@ -186,9 +185,8 @@ python3 -m http.server 8080 --directory server
 
 ---
 
-## 7. 프레젠테이션 파일 다운로드 (PowerPoint / PDF)
+## 7. 오프라인용 프레젠테이션 다운로드 (PDF)
 
-* **[PowerPoint 프레젠테이션 (`server/dtw_presentation.pptx`)](server/dtw_presentation.pptx)** (16:9 와이드스크린, 31슬라이드)
 * **[PDF 프레젠테이션 문서 (`server/dtw_presentation.pdf`)](server/dtw_presentation.pdf)** (16:9 비율, 31페이지)
 
 ---
@@ -197,6 +195,6 @@ python3 -m http.server 8080 --directory server
 
 저장소 내 자료는 성격에 따라 라이선스 적용 범위가 구분됩니다:
 
-* **MIT 라이선스 적용 대상 ([LICENSE](LICENSE))**: 자체 제작 웹 프레젠테이션 코드·실무 시나리오(`server/index.html`, `server/dtw_presentation.pptx`, `server/dtw_presentation.pdf`, `server/export_presentation.py`, `server.sh`) 및 인쇄용 실습 워크시트 8종(`server/worksheets/*`). 내부 교육과 대고객 영업·제안 활동을 포함해 자유롭게 사용·수정·배포할 수 있습니다.
+* **MIT 라이선스 적용 대상 ([LICENSE](LICENSE))**: 자체 제작 웹 프레젠테이션 코드·실무 시나리오(`server/index.html`, `server/dtw_presentation.pdf`, `server/export_presentation.py`, `server.sh`) 및 인쇄용 실습 워크시트 8종(`server/worksheets/*`). 내부 교육과 대고객 영업·제안 활동을 포함해 자유롭게 사용·수정·배포할 수 있습니다.
 * **CC BY-NC-SA 4.0 별도 적용 (`server/guide_dschool_bootleg.html`)**: 스탠퍼드 d.school Bootleg 카드를 번역·요약한 2차적 저작물로 MIT 라이선스가 적용되지 않습니다. 유료 강의, 상업 컨설팅, 대고객 영리 영업 배포는 금지되며 비영리 학습 참고용으로만 사용할 수 있습니다.
 * **외부 프레임워크 참고 요약본 및 기타 에셋 (MIT 제외)**: IDEO U(`server/guide_ideou_framework.*`) 및 Facilitator.com(`server/guide_workshop_facilitation.*`) 기반 참고 요약 문서, 오픈소스 웹폰트(`SIL OFL 1.1`), AI 생성 이미지 에셋의 세부 권리 범위와 비제휴 고지는 **[NOTICE.md](NOTICE.md)를** 확인해 주세요.

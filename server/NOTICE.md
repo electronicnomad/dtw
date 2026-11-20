@@ -5,7 +5,7 @@
 ### 라이선스 적용 범위 구분
 
 * **MIT 라이선스 적용 대상 ([LICENSE](LICENSE)):**
-  * 자체 제작 웹 프레젠테이션 코드·레이아웃·실무 시나리오(`server/index.html`, `server/dtw_presentation.pptx`, `server/dtw_presentation.pdf`, `server/export_presentation.py`, `server.sh`) 및 인쇄용 실습 워크시트 8종(`server/worksheets/*`).
+  * 자체 제작 웹 프레젠테이션 코드·레이아웃·실무 시나리오(`server/index.html`, `server/dtw_presentation.pdf`, `server/export_presentation.py`, `server.sh`) 및 인쇄용 실습 워크시트 8종(`server/worksheets/*`).
   * 위 대상은 [LICENSE](LICENSE) 조건(저작권 및 허락 고지 유지)에 따라 사내 교육, 대고객 영업·제안 워크숍 등 영리·비영리 목적을 불문하고 자유롭게 사용·수정·배포할 수 있습니다.
 * **MIT 라이선스 제외 대상 (아래 1~7항):**
   * 제3자 원저작물을 번역·요약한 2차적 저작물(`CC BY-NC-SA 4.0`), 외부 프레임워크·가이드 참고 요약 문서, 오픈소스 웹폰트(`SIL OFL 1.1`), AI 생성 이미지 에셋은 본 저장소의 MIT 라이선스(제3자에 대한 영리 재판매·서브라이선스 허락) 적용 범위에서 제외되며 아래 각 항목의 조건을 따릅니다.
