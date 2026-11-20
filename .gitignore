@@ -19,3 +19,4 @@ ENV/
 .vscode/
 
 backup/
+server/export_slides/

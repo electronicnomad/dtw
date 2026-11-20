@@ -7,6 +7,7 @@ Disallow: /*.pdf$
 Disallow: /*.jpg$
 Disallow: /*.jpeg$
 Disallow: /*.png$
+Disallow: /*.webp$
 
 # AI / LLM training and search bots: full block
 User-agent: GPTBot

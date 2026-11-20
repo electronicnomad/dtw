@@ -26,7 +26,8 @@ Scope and Third-Party Exclusions (적용 범위 및 예외 안내)
 
 1. Covered by MIT License:
    This MIT License applies to the original software source code, interactive
-   presentation deck (`server/index.html`, `server/dtw_presentation.pdf`),
+   presentation deck (`server/index.html`, `server/styles.css`,
+   `server/presenter-data.js`, `server/deck.js`, `server/dtw_presentation.pdf`),
    build/server scripts, and printable worksheet templates
    (`server/worksheets/*`) authored for this repository.
 
@@ -38,8 +39,8 @@ Scope and Third-Party Exclusions (적용 범위 및 예외 안내)
    - `server/guide_dschool_bootleg.html` is a derivative work of Stanford
      d.school's Design Thinking Bootleg and is licensed separately under
      CC BY-NC-SA 4.0 (Non-Commercial). Commercial use is prohibited.
-   - `server/guide_ideou_framework.html` (`.md`) and
-     `server/guide_workshop_facilitation.html` (`.md`) summarize publicly
+   - `server/guide_ideou_framework.html` and
+     `server/guide_workshop_facilitation.html` summarize publicly
      available third-party frameworks; underlying rights and trademarks remain
      reserved by their respective owners as detailed in `NOTICE.md`.
    - Visual assets listed in Section 7 of `NOTICE.md` were generated with AI

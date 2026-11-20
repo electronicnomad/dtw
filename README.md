@@ -13,7 +13,10 @@
 │   └── workflows/
 │       └── deploy.yml            # GitHub Pages 자동 배포 워크플로우 (Actions 기반)
 ├── server/
-│   ├── index.html                # 메인 프레젠테이션 및 진행자 뷰 (31 슬라이드)
+│   ├── index.html                # 메인 프레젠테이션 및 진행자 뷰 마크업 (31 슬라이드)
+│   ├── styles.css                # 프레젠테이션 및 진행자 뷰 스타일시트
+│   ├── presenter-data.js         # 슬라이드별 진행자 대본·팁·체크리스트 데이터
+│   ├── deck.js                   # 슬라이드 제어, 타이머 및 BroadcastChannel 동기화 로직
 │   ├── worksheets/               # A3/A4 1장 출력용 실습 워크시트 (8종 + 인덱스)
 │   │   ├── index.html            # 워크시트 목록 및 인쇄 안내
 │   │   ├── 01_empathy_map.html   # 1단계: 페르소나 및 4분면 공감 맵 (A3 가로)
@@ -24,16 +27,13 @@
 │   │   ├── 06_feedback_grid.html # 5단계: 피드백 캡처 그리드 (A3 가로)
 │   │   ├── 07_retrospective.html # 회고: I Like, I Wish, What If (A3 가로)
 │   │   └── 08_action_sprint.html # 후속: 1주일 현업 검증 실행 계획서 (A4 세로)
-│   ├── guide_workshop_facilitation.html  # 워크숍 진행자 통합 운영 가이드 (HTML)
-│   ├── guide_workshop_facilitation.md    # 워크숍 진행자 통합 운영 가이드 (Markdown)
-│   ├── guide_dschool_bootleg.html        # 스탠퍼드 d.school 38개 방법론 가이드 (HTML)
-│   ├── guide_ideou_framework.html        # IDEO U 디자인 씽킹 프레임워크 가이드 (HTML)
-│   ├── guide_ideou_framework.md          # IDEO U 디자인 씽킹 프레임워크 가이드 (Markdown)
+│   ├── guide_workshop_facilitation.html  # 워크숍 진행자 통합 운영 가이드
+│   ├── guide_dschool_bootleg.html        # 스탠퍼드 d.school 38개 방법론 가이드
+│   ├── guide_ideou_framework.html        # IDEO U 디자인 씽킹 프레임워크 가이드
 │   ├── export_presentation.py            # Headless Chrome 기반 PDF 변환 스크립트
-│   ├── export_slides/                    # 16:9 1080p 슬라이드 캡처 이미지 (31장)
-│   ├── design-thinking-process.png       # 5단계 프로세스 다이어그램
-│   ├── dtw-actions.jpg                   # 팀 활동 키 비주얼
-│   ├── dtw-logo.jpg                      # DTW 로고
+│   ├── design-thinking-process.webp      # 5단계 프로세스 다이어그램
+│   ├── dtw-actions.webp                  # 팀 활동 키 비주얼
+│   ├── dtw-logo.webp                     # DTW 로고
 │   ├── dtw_presentation.pdf              # 오프라인용 PDF 발표 문서
 │   ├── robots.txt                        # 바이너리 에셋 및 AI 크롤러 수집 제한 규칙
 │   └── README.md                         # 서버 디렉터리 안내
@@ -60,7 +60,7 @@
   * 슬라이드별 구어체 진행 대본
   * 진행 팁 및 자주 막히는 상황 대응 메모
   * 현장 준비물 및 산출물 점검 체크리스트
-  * 슬라이드별 권장 시간 자동 적용 및 타이머 제어 패널
+  * 슬라이드별 권장 시간 원클릭 적용 및 타이머 제어 패널
   * 현재 슬라이드 및 다음 슬라이드 미리보기
 * **내장 워크숍 타이머:**
   * 활동별 권장 시간 설정 (또는 3분, 5분, 10분, 15분, 20분, 30분 프리셋)
@@ -121,7 +121,8 @@
 ## 4. 실행 및 배포 방법
 
 ### 1) 로컬 브라우저에서 직접 열기
-* [server/index.html](server/index.html) 파일을 웹 브라우저(Chrome 권장)로 열어 바로 사용합니다.
+* [server/index.html](server/index.html) 파일을 웹 브라우저(Chrome 권장)로 열어 단일 화면 발표 자료를 바로 볼 수 있습니다.
+* 단, 브라우저 보안 정책(`file://` 오리진 격리)으로 인해 `BroadcastChannel` 기반의 창 간 동기화가 제한되므로, **듀얼 모니터 진행자 뷰 실시간 동기화를 사용할 때는 아래 `2) 로컬 웹 서버 실행` 방식을 사용해 주세요.**
 
 ### 2) 로컬 웹 서버 실행 (권장)
 ```bash
@@ -156,7 +157,7 @@ python3 -m http.server 8080 --directory server
 | `P` | 진행자 뷰(Presenter View) 열기 |
 | `T` | 참가자 화면용 온스크린 타이머 토글 |
 | `O` | 전체 슬라이드 조망(Overview Grid) 토글 |
-| `F` | 전체화면 모드 토글 |
+| `F` | 전체화면 모드 토글 (상·하단 바 자동 숨김) |
 | `Esc` | 오버뷰 또는 팝업 모달 닫기 |
 | `?` | 단축키 안내 창 토글 |
 
@@ -179,9 +180,9 @@ python3 -m http.server 8080 --directory server
 * [08. 1주일 현업 검증 실행 계획서 (A4 세로)](server/worksheets/08_action_sprint.html)
 
 ### 2) 참고 가이드 문서
-* **[워크숍 진행자 통합 운영 가이드](server/guide_workshop_facilitation.html) ([Markdown](server/guide_workshop_facilitation.md))**: 1일 타임테이블(9단계), 3가지 역할(퍼실리테이터·디사이더·팀), 상황별 대응 방법.
+* **[워크숍 진행자 통합 운영 가이드](server/guide_workshop_facilitation.html)**: 1일 타임테이블(9단계), 3가지 역할(퍼실리테이터·디사이더·팀), 상황별 대응 방법.
 * **[스탠퍼드 d.school 디자인 씽킹 38개 방법론 가이드](server/guide_dschool_bootleg.html)**: d.school 38개 도구 한국어 요약 및 실행 팁, 단계별 필터 (CC BY-NC-SA 4.0 적용).
-* **[IDEO U 디자인 씽킹 프레임워크 가이드](server/guide_ideou_framework.html) ([Markdown](server/guide_ideou_framework.md))**: DVF 3요소, 5가지 크리에이티브 마인드셋, Brendan Boyle 웜업, 타 분야 유추 탐색.
+* **[IDEO U 디자인 씽킹 프레임워크 가이드](server/guide_ideou_framework.html)**: DVF 3요소, 5가지 크리에이티브 마인드셋, Brendan Boyle 웜업, 타 분야 유추 탐색.
 
 ---
 
@@ -195,6 +196,6 @@ python3 -m http.server 8080 --directory server
 
 저장소 내 자료는 성격에 따라 라이선스 적용 범위가 구분됩니다:
 
-* **MIT 라이선스 적용 대상 ([LICENSE](LICENSE))**: 자체 제작 웹 프레젠테이션 코드·실무 시나리오(`server/index.html`, `server/dtw_presentation.pdf`, `server/export_presentation.py`, `server.sh`) 및 인쇄용 실습 워크시트 8종(`server/worksheets/*`). 내부 교육과 대고객 영업·제안 활동을 포함해 자유롭게 사용·수정·배포할 수 있습니다.
+* **MIT 라이선스 적용 대상 ([LICENSE](LICENSE))**: 자체 제작 웹 프레젠테이션 코드·실무 시나리오(`server/index.html`, `server/styles.css`, `server/presenter-data.js`, `server/deck.js`, `server/dtw_presentation.pdf`, `server/export_presentation.py`, `server.sh`) 및 인쇄용 실습 워크시트 8종(`server/worksheets/*`). 내부 교육과 대고객 영업·제안 활동을 포함해 자유롭게 사용·수정·배포할 수 있습니다.
 * **CC BY-NC-SA 4.0 별도 적용 (`server/guide_dschool_bootleg.html`)**: 스탠퍼드 d.school Bootleg 카드를 번역·요약한 2차적 저작물로 MIT 라이선스가 적용되지 않습니다. 유료 강의, 상업 컨설팅, 대고객 영리 영업 배포는 금지되며 비영리 학습 참고용으로만 사용할 수 있습니다.
-* **외부 프레임워크 참고 요약본 및 기타 에셋 (MIT 제외)**: IDEO U(`server/guide_ideou_framework.*`) 및 Facilitator.com(`server/guide_workshop_facilitation.*`) 기반 참고 요약 문서, 오픈소스 웹폰트(`SIL OFL 1.1`), AI 생성 이미지 에셋의 세부 권리 범위와 비제휴 고지는 **[NOTICE.md](NOTICE.md)를** 확인해 주세요.
+* **외부 프레임워크 참고 요약본 및 기타 에셋 (MIT 제외)**: IDEO U(`server/guide_ideou_framework.html`) 및 Facilitator.com(`server/guide_workshop_facilitation.html`) 기반 참고 요약 문서, 오픈소스 웹폰트(`SIL OFL 1.1`), AI 생성 이미지 에셋의 세부 권리 범위와 비제휴 고지는 **[NOTICE.md](NOTICE.md)를** 확인해 주세요.

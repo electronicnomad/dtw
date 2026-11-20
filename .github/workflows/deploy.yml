@@ -33,8 +33,9 @@ jobs:
           mkdir -p _site
           cp -R server/* _site/
           cp LICENSE _site/LICENSE
-          # 배포 대상이 아닌 빌드 스크립트, 마크다운 문서 및 임시 이미지 제외
-          rm -rf _site/export_presentation.py _site/export_slides _site/README.md _site/guide_*.md
+          cp NOTICE.md _site/NOTICE.md
+          # 배포 대상이 아닌 빌드 스크립트 및 서버 안내 문서 제외
+          rm -rf _site/export_presentation.py _site/export_slides _site/README.md
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3

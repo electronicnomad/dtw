@@ -63,8 +63,8 @@ Design Thinking Workshop(DTW) 웹 프레젠테이션, 진행자 참고 가이드
 
 ## 3. 타이포그래피 규칙 (Typography)
 
-- **국문·본문 서체 (`--font-sans`):** `'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif`
-- **영문 코드·수치 서체 (`--font-mono`):** `'JetBrains Mono', 'Pretendard Variable', monospace`
+- **국문·본문 서체 (`--font-sans`):** `'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', 'Malgun Gothic', sans-serif`
+- **영문 코드·수치 서체 (`--font-mono`):** `'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Pretendard Variable', Pretendard, monospace`
 - **조판 원칙:**
   - 국문 줄바꿈은 `word-break: keep-all`을 기본으로 하되, 긴 영문 URL은 `overflow-wrap: break-word`로 처리합니다.
   - 테두리 박스가 없는 단독 제목에는 `text-wrap: balance`를, 본문 문단에는 `text-wrap: pretty`를 적용합니다.

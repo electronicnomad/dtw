@@ -5,7 +5,7 @@
 ### 라이선스 적용 범위 구분
 
 * **MIT 라이선스 적용 대상 ([LICENSE](LICENSE)):**
-  * 자체 제작 웹 프레젠테이션 코드·레이아웃·실무 시나리오(`server/index.html`, `server/dtw_presentation.pdf`, `server/export_presentation.py`, `server.sh`) 및 인쇄용 실습 워크시트 8종(`server/worksheets/*`).
+  * 자체 제작 웹 프레젠테이션 코드·레이아웃·실무 시나리오(`server/index.html`, `server/styles.css`, `server/presenter-data.js`, `server/deck.js`, `server/dtw_presentation.pdf`, `server/export_presentation.py`, `server.sh`) 및 인쇄용 실습 워크시트 8종(`server/worksheets/*`).
   * 위 대상은 [LICENSE](LICENSE) 조건(저작권 및 허락 고지 유지)에 따라 사내 교육, 대고객 영업·제안 워크숍 등 영리·비영리 목적을 불문하고 자유롭게 사용·수정·배포할 수 있습니다.
 * **MIT 라이선스 제외 대상 (아래 1~7항):**
   * 제3자 원저작물을 번역·요약한 2차적 저작물(`CC BY-NC-SA 4.0`), 외부 프레임워크·가이드 참고 요약 문서, 오픈소스 웹폰트(`SIL OFL 1.1`), AI 생성 이미지 에셋은 본 저장소의 MIT 라이선스(제3자에 대한 영리 재판매·서브라이선스 허락) 적용 범위에서 제외되며 아래 각 항목의 조건을 따릅니다.
@@ -32,7 +32,7 @@
 
 ## 2. IDEO 및 IDEO U 참고 요약 자료
 
-* **사용 위치:** `server/guide_ideou_framework.html`, `server/guide_ideou_framework.md`, 프레젠테이션 덱 내 혁신 3요소(DVF)·마인드셋·웜업 설명
+* **사용 위치:** `server/guide_ideou_framework.html`, 프레젠테이션 덱 내 혁신 3요소(DVF)·마인드셋·웜업 설명
 * **출처:**
   * IDEO U 공개 프레임워크 및 아티클 ([https://www.ideou.com/](https://www.ideou.com/))
   * Shimano "Coasting" 자전거 사례 (타 분야 유추 탐색)
@@ -47,7 +47,7 @@
 
 ## 3. Facilitator.com / AJ&Smart 워크숍 가이드 참고 자료
 
-* **사용 위치:** `server/guide_workshop_facilitation.html`, `server/guide_workshop_facilitation.md`
+* **사용 위치:** `server/guide_workshop_facilitation.html`
 * **참고 자료:** Jonathan Courtney, *"How To Run a Design Thinking Workshop [2024 Guide]"*, Facilitator.com / AJ&Smart (2024)
   * URL: [https://facilitator.com/blog/how-to-run-a-design-thinking-workshop](https://facilitator.com/blog/how-to-run-a-design-thinking-workshop)
   * 저작권: &copy; AJ&Smart. All rights reserved.
@@ -58,7 +58,7 @@
 
 ## 4. Forrester Research / IBM Enterprise Design Thinking 연구
 
-* **사용 위치:** `server/guide_workshop_facilitation.html`, `server/guide_workshop_facilitation.md`
+* **사용 위치:** `server/guide_workshop_facilitation.html`
 * **출처:** *"The Total Economic Impact™ of IBM's Design Thinking Practice"*, Forrester Research, Inc. (2018년 IBM 의뢰)
 * **내용 정정 및 주의:** 가이드에서 언급되는 "ROI 301%"(약 300%)는 Forrester가 IBM의 실제 고객사 인터뷰를 바탕으로 구성한 복합 조직(Composite Organization) 모델에서 추정한 3개년 Net Present Value 기반 지표입니다. 모든 워크숍에 보장되는 성과 수치가 아니며 교육적 참고 사례로만 인용되었습니다.
 
@@ -83,8 +83,8 @@
 
 ## 7. 이미지 에셋 안내
 
-* `server/dtw-logo.jpg`: 메인 타이틀 키 비주얼
-* `server/dtw-actions.jpg`: 실습 방식 안내 비주얼
-* `server/design-thinking-process.png`: 인피니티 루프 프로세스 다이어그램
+* `server/dtw-logo.webp`: 메인 타이틀 키 비주얼
+* `server/dtw-actions.webp`: 실습 방식 안내 비주얼
+* `server/design-thinking-process.webp`: 인피니티 루프 프로세스 다이어그램
 * 위 3개 이미지 에셋들은 AI도구를 활용하여 직접 제작하였습니다.
 * 순수 AI 생성 이미지 요소에 대해서는 MIT 라이선스상의 배타적 저작권을 별도로 주장하지 않으며, 프로젝트 식별 및 슬라이드 시각 보조 용도로만 포함되었습니다.
